@@ -1,0 +1,55 @@
+1- login 1 :
+POST http://localhost:8080/production/login
+{
+	"username": "admin",
+  	"password": "admin"
+}
+
+2- login 2 :
+POST http://localhost:8080/production/login
+{
+	"username": "admin",
+  	"password": "adlmin"
+}
+
+3- create order :
+POST http://localhost:8080/orders
+{
+	"client" : "old client",
+    "model" : "new model",
+    "article" : "new article",
+    "minConfection" : 5.2,
+    "minCut" : 3.25
+}
+
+4- update order :
+PUT http://localhost:8080/orders
+{
+	"client" : "2nd client",
+    "model" : "2nd model",
+    "article" : "new article",
+    "minConfection" : 10.2,
+    "minCut" : 3.25,
+  	"id": "d1b0771c-c934-4ac9-be2d-4d266656dd17"
+}
+
+5- get orders :
+GET http://localhost:8080/orders
+
+6- get order by id :
+GET http://localhost:8080/orders/8c99b8cb-c7c0-4a10-9601-9ef60089dc9b
+
+7- delete by id :
+DELETE http://localhost:8080/orders/8c99b8cb-c7c0-4a10-9601-9ef60089dc9b
+{}
+
+8- delete :
+DELETE http://localhost:8080/orders
+{
+   "client" : "2nd client",
+   "model" : "2nd model",
+   "article" : "new article",
+   "minConfection" : 10.2,
+   "minCut" : 3.25,
+   "id" : "d1b0771c-c934-4ac9-be2d-4d266656dd17"
+}

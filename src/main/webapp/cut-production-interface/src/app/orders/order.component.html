@@ -1,0 +1,134 @@
+<h3>Recherche des commandes</h3>
+
+<app-navbar></app-navbar>
+
+<form class="form-inline md-form form-sm" [formGroup]="searchOrderForm" (ngSubmit)="onSearchOrderFormSubmit()">
+    <div class="d-inline form-group">
+        <label>Client</label>
+        <input type="text" formControlName="client" class="form-control"/>
+    </div>
+    <div class="d-inline form-group">
+        <label>Modèle</label>
+        <input type="text" formControlName="model" class="form-control"/>
+    </div>
+    <div class="d-inline form-group">
+        <label>article</label>
+        <input type="text" formControlName="article" class="form-control"/>
+    </div>
+    <div class="d-inline form-group">
+        <label>Min Confection</label>
+        <input type="text" formControlName="minConfection" class="form-control"/>
+    </div>
+    <div class="d-inline form-group">
+        <label>Min Cut</label>
+        <input type="text" formControlName="minCut" class="form-control"/>
+    </div>
+    <div class="d-inline form-group">
+      <label> Lancer la recherche </label>
+        <button class="btn btn-primary">Search</button>
+    </div>
+    <div class="form-group">
+       
+    </div>
+</form>
+<button (click)="refresh()">Refresh</button>
+<!-- <ng-template #create>
+  <h3> Create New Order</h3>
+</ng-template> -->
+<h1>Nouvelle commande</h1>
+
+<div>
+  <form [formGroup]="orderForm" (ngSubmit)="onOrderFormSubmit()">
+    <table>
+      <tr>
+        <td>Client</td>
+        <td><input class="form-control" formControlName="client">
+          <label *ngIf="orderForm.get('client').invalid && processValidation" [ngClass]="'error'"> Client est
+            requis. </label>
+        </td>
+      </tr>
+      <tr>
+        <td>Modèle</td>
+        <td><input class="form-control" formControlName="model">
+          <label *ngIf="orderForm.get('model').invalid && processValidation" [ngClass]="'error'"> Modèle est
+            requis. </label>
+        </td>
+      </tr>
+      <tr>
+        <td>Article</td>
+        <td><input class="form-control" formControlName="article">
+          <label *ngIf="orderForm.get('article').invalid && processValidation" [ngClass]="'error'"> Article est
+            requis. </label>
+        </td>
+      </tr>
+      <tr>
+      <tr>
+        <td>Min Confection</td>
+        <td><input class="form-control" formControlName="minConfection">
+          <label *ngIf="orderForm.get('minConfection').invalid && processValidation" [ngClass]="'error'"> Min Confection est
+            requis. </label>
+        </td>
+      </tr>
+      <tr>
+          <td>Min Coupe</td>
+          <td><input class="form-control" formControlName="minCut">
+            <label *ngIf="orderForm.get('minCut').invalid && processValidation" [ngClass]="'error'"> Min Coupe est
+              requis. </label>
+          </td>
+        </tr>
+      <tr>
+        <td colspan="2">
+          <button *ngIf="!orderIdToUpdate">Ajouter</button>
+          <button *ngIf="orderIdToUpdate">Modifier</button>
+          <button (click)="backToCreateOrder()" *ngIf="orderIdToUpdate">Retourner</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <br />
+  <div *ngIf="statusCode; else processing">
+    <div *ngIf="statusCode === 201" [ngClass]="'success'">
+      Commande ajoutée.
+    </div>
+    <div *ngIf="statusCode === 409" [ngClass]="'success'">
+      Commande déjà ajoutée.
+    </div>
+    <div *ngIf="statusCode === 200" [ngClass]="'success'">
+      Commande modifiée.
+    </div>
+    <div *ngIf="statusCode === 204" [ngClass]="'success'">
+      Commande supprimée.
+    </div>
+    <div *ngIf="statusCode === 500" [ngClass]="'error'">
+      Erreur Serveur.
+    </div>
+  </div>
+  <ng-template #processing>
+    <img *ngIf="requestProcessing" src="assets/images/loading.gif">
+  </ng-template>
+</div>
+<h3>Détails des commandes</h3>
+<table mdbTable class="table table-border">
+  <thead>
+    <tr>
+      <th>Client</th>
+      <th>Modèle</th>
+      <th>Article</th>
+      <th>Min Confection</th>
+      <th>Min Coupe</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr mdbTableCol *ngFor="let order of orders">
+      <td>{{order.client}}</td>
+      <td>{{order.model}}</td>
+      <td>{{order.article}}</td>
+      <td>{{order.minConfection}}</td>
+      <td>{{order.minCut}}</td>
+      <td><button type="button" (click)="loadOrderToEdit(order.id)">Edit</button> </td>
+      <td><button type="button" (click)="deleteOrder(order.id)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
