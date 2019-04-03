@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 
 import { OrderService } from './order.service';
 import { Order } from './order';
+import { ExcelService } from '../excel/excel.service';
+import { saveAs } from 'file-saver';
 
 @Component({
     selector: 'app-order',
@@ -17,7 +19,9 @@ export class OrderComponent implements OnInit {
     orderIdToUpdate = null;
     processValidation = false;
 
-    constructor(private orderService: OrderService, private formBuilder: FormBuilder) {
+    constructor(private orderService: OrderService, 
+        private formBuilder: FormBuilder,
+        private excelService: ExcelService) {
     }
 
     orderForm = new FormGroup({
@@ -162,5 +166,9 @@ export class OrderComponent implements OnInit {
 
     refresh(){
         this.searchOrderForm.reset();
+    }
+
+    exportAsXLSX():void {
+        this.excelService.exportAsExcelFile(this.orders, 'commandes');
     }
 }

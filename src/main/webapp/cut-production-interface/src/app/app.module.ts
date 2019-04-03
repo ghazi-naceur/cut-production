@@ -16,6 +16,7 @@ import { LoginService } from './login/login.service';
 import { SuccessComponent } from './success/success.component';
 import { OrderComponent } from './orders/order.component';
 import { OrderService } from './orders/order.service';
+import { ExcelService } from './excel/excel.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { OrderService } from './orders/order.service';
   providers: [
     OrderService,
     DataFileService,
-    LoginService
+    LoginService,
+    ExcelService
   ],
   bootstrap: [AppComponent]
 })
