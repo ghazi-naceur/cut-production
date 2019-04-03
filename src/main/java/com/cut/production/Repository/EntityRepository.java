@@ -126,12 +126,16 @@ public class EntityRepository<T> implements Repo<T> {
 
     @Override
     public boolean isEntityExist(String index, String type, Map entityAsMap) {
-        T order;
-        order = getById((String) entityAsMap.get("id"), index, type);
-        if (order == null){
-            return false;
+        try {
+            List<T> entities = getDocumentsUsingEntityAsMap(index, entityAsMap);
+            if (!entities.isEmpty()) {
+                logger.error("The entity from the index {} with the id {} already exist ", index, ((Entity) entities.get(0)).getId());
+                return true;
+            }
+        } catch (IOException e) {
+            logger.error("An error occurred when trying to search for entity from the index {} : {}", index, e);
         }
-        return true;
+        return false;
     }
 
     @Override

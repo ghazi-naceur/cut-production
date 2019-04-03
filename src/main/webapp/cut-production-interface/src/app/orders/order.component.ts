@@ -5,6 +5,9 @@ import { OrderService } from './order.service';
 import { Order } from './order';
 import { ExcelService } from '../excel/excel.service';
 import { saveAs } from 'file-saver';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 @Component({
     selector: 'app-order',
@@ -62,7 +65,8 @@ export class OrderComponent implements OnInit {
                         this.getAllOrders();
                     }, 500)
                 },
-                    errorCode => this.statusCode = errorCode
+                    errorCode => {this.statusCode = errorCode;
+                    debugger}
                 );
         } else {
             order.id = this.orderIdToUpdate;
