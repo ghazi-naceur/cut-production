@@ -47,7 +47,7 @@ public class UserService implements CrudService {
     }
 
     @Override
-    public List<Order> searchOrders(String index, Map searchCriteria) {
+    public List<Order> searchEntities(String index, Map searchCriteria) {
         return null;
     }
 

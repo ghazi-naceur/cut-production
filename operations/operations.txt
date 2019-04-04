@@ -53,3 +53,6 @@ DELETE http://localhost:8080/orders
    "minCut" : 3.25,
    "id" : "d1b0771c-c934-4ac9-be2d-4d266656dd17"
 }
+
+9- create index :
+PUT http://localhost:9200/cut_plannings

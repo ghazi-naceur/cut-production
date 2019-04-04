@@ -65,8 +65,7 @@ export class OrderComponent implements OnInit {
                         this.getAllOrders();
                     }, 500)
                 },
-                    errorCode => {this.statusCode = errorCode;
-                    debugger}
+                    errorCode => this.statusCode = errorCode
                 );
         } else {
             order.id = this.orderIdToUpdate;

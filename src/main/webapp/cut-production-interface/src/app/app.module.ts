@@ -17,6 +17,8 @@ import { SuccessComponent } from './success/success.component';
 import { OrderComponent } from './orders/order.component';
 import { OrderService } from './orders/order.service';
 import { ExcelService } from './excel/excel.service';
+import { CutPlanningComponent } from './cut-planning/cut-planning.component';
+import { CutPlanningService } from './cut-planning/cut-planning.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { ExcelService } from './excel/excel.service';
     NavbarComponent,
     NotFoundComponent,
     LoginComponent,
-    SuccessComponent
+    SuccessComponent,
+    CutPlanningComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { ExcelService } from './excel/excel.service';
     OrderService,
     DataFileService,
     LoginService,
-    ExcelService
+    ExcelService,
+    CutPlanningService
   ],
   bootstrap: [AppComponent]
 })

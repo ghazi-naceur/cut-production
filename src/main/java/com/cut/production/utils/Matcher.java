@@ -1,5 +1,6 @@
 package com.cut.production.utils;
 
+import com.cut.production.entities.CutPlanning;
 import com.cut.production.entities.Order;
 import com.cut.production.entities.User;
 
@@ -19,6 +20,7 @@ public final class Matcher {
         MAPPER = new HashMap<>();
         MAPPER.put(Constants.ORDER_INDEX, Order.class);
         MAPPER.put(Constants.USER_INDEX, User.class);
+        MAPPER.put(Constants.CUT_PLANNING_INDEX, CutPlanning.class);
         INVERTED_MAPPER = getInvertedMapper();
     }
 

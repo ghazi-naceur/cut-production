@@ -45,7 +45,7 @@ public class OrderService implements CrudService{
     }
 
     @Override
-    public List<Order> searchOrders(String index, Map searchCriteria) {
+    public List<Order> searchEntities(String index, Map searchCriteria) {
         return (List<Order>) repo.searchEntities(index, searchCriteria);
     }
 

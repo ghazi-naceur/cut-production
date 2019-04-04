@@ -125,7 +125,7 @@ public class OrderController {
 
         HttpHeaders headers = new HttpHeaders();
         try {
-            List<Order> orders = service.searchOrders(ORDER_INDEX, searchCriteria);
+            List<Order> orders = service.searchEntities(ORDER_INDEX, searchCriteria);
             logger.info("A orders search request is performed successfully.");
             return new ResponseEntity<List<Order>>(orders, headers, HttpStatus.CREATED);
         } catch (Exception e) {
