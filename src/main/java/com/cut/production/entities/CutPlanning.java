@@ -4,13 +4,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.elasticsearch.annotations.Document;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 @Document(indexName = "cut_plannings", type = "cut_planning")
 public class CutPlanning extends Entity {
 
-    private String exportDate;
+    private Date exportDate;
     private Integer planningWeek;
     private String client;
     private String model;
@@ -24,7 +25,7 @@ public class CutPlanning extends Entity {
     private Integer absenteeismRate;
 
     @JsonCreator
-    public CutPlanning(@JsonProperty(value = "exportDate") String exportDate,
+    public CutPlanning(@JsonProperty(value = "exportDate") Date exportDate,
                        @JsonProperty(value = "planningWeek") Integer planningWeek,
                        @JsonProperty(value = "client") String client,
                        @JsonProperty(value = "model") String model,
@@ -50,11 +51,11 @@ public class CutPlanning extends Entity {
         this.absenteeismRate = absenteeismRate;
     }
 
-    public String getExportDate() {
+    public Date getExportDate() {
         return exportDate;
     }
 
-    public void setExportDate(String exportDate) {
+    public void setExportDate(Date exportDate) {
         this.exportDate = exportDate;
     }
 

@@ -1,0 +1,390 @@
+<h3>Planning Coupe</h3>
+
+<app-navbar></app-navbar>
+
+<!-- <form class="form-inline md-form form-sm" [formGroup]="searchOrderForm" (ngSubmit)="onSearchOrderFormSubmit()">
+    <div class="d-inline form-group">
+        <label>Client</label>
+        <input type="text" formControlName="client" class="form-control"/>
+    </div>
+    <div class="d-inline form-group">
+        <label>Modèle</label>
+        <input type="text" formControlName="model" class="form-control"/>
+    </div>
+    <div class="d-inline form-group">
+        <label>article</label>
+        <input type="text" formControlName="article" class="form-control"/>
+    </div>
+    <div class="d-inline form-group">
+        <label>Min Confection</label>
+        <input type="text" formControlName="minConfection" class="form-control"/>
+    </div>
+    <div class="d-inline form-group">
+        <label>Min Cut</label>
+        <input type="text" formControlName="minCut" class="form-control"/>
+    </div>
+    <div class="d-inline form-group">
+      <label> Lancer la recherche </label>
+        <button class="btn btn-primary">Search</button>
+    </div>
+    <div class="form-group">
+       
+    </div>
+</form> -->
+<!-- <button (click)="refresh()">Refresh</button> -->
+<!-- <ng-template #create>
+  <h3> Create New Order</h3>
+</ng-template> -->
+<h1>Nouveau planning coupe</h1>
+<div>
+  <!-- <div class="container">
+    <div class="row">
+      <div class="col-xs-6"> -->
+  <form class="container" [formGroup]="cutPlanningForm" (ngSubmit)="onCutPlanningFormSubmit()">
+    <table>
+      <div class="row">
+        <div class="col-xs-6">
+          <tr>
+            <td>Date d'export</td>
+            <!-- \d{1,2}/\d{1,2}/\d{4} type="date"  (0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}-->
+            <td><input type="date" class="form-control" formControlName="exportDate">
+              <label *ngIf="cutPlanningForm.get('exportDate').invalid && processValidation" [ngClass]="'error'"> Date
+                d'export est
+                requis. </label>
+            </td>
+          </tr>
+          <tr>
+            <td>Semaine</td>
+            <td><input class="form-control" formControlName="planningWeek">
+              <label *ngIf="cutPlanningForm.get('planningWeek').invalid && processValidation" [ngClass]="'error'">
+                Semaine
+                est
+                requis. </label>
+            </td>
+          </tr>
+          <tr>
+            <td>Client</td>
+            <td><input class="form-control" formControlName="client">
+              <label *ngIf="cutPlanningForm.get('client').invalid && processValidation" [ngClass]="'error'"> Client
+                est
+                requis. </label>
+            </td>
+          </tr>
+          <tr>
+          <tr>
+            <td>Modèle</td>
+            <td><input class="form-control" formControlName="model">
+              <label *ngIf="cutPlanningForm.get('model').invalid && processValidation" [ngClass]="'error'"> Modèle
+                est
+                requis. </label>
+            </td>
+          </tr>
+          <tr>
+            <td>Article</td>
+            <td><input class="form-control" formControlName="article">
+              <label *ngIf="cutPlanningForm.get('article').invalid && processValidation" [ngClass]="'error'"> Article
+                est
+                requis. </label>
+            </td>
+          </tr>
+          <tr>
+            <td>Quantité</td>
+            <td><input class="form-control" formControlName="quantity">
+              <label *ngIf="cutPlanningForm.get('quantity').invalid && processValidation" [ngClass]="'error'">
+                Quantité est
+                requis. </label>
+            </td>
+          </tr>
+        </div>
+        <div class="col-xs-6">
+          <tr>
+            <td>Rendement</td>
+            <td><input class="form-control" formControlName="efficiency">
+              <label *ngIf="cutPlanningForm.get('efficiency').invalid && processValidation" [ngClass]="'error'">
+                Rendement
+                est
+                requis. </label>
+            </td>
+          </tr>
+          <tr>
+            <td>Effectif</td>
+            <td><input class="form-control" formControlName="effective">
+              <label *ngIf="cutPlanningForm.get('effective').invalid && processValidation" [ngClass]="'error'">
+                Effectif
+                est
+                requis. </label>
+            </td>
+          </tr>
+          <tr>
+            <td>Jour</td>
+            <td><input class="form-control" formControlName="day">
+              <label *ngIf="cutPlanningForm.get('day').invalid && processValidation" [ngClass]="'error'"> Jour est
+                requis. </label>
+            </td>
+          </tr>
+          <tr>
+            <td>Temps de présence</td>
+            <td><input class="form-control" formControlName="presenceTime">
+              <label *ngIf="cutPlanningForm.get('presenceTime').invalid && processValidation" [ngClass]="'error'">
+                Temps
+                de
+                présence est
+                requis. </label>
+            </td>
+          </tr>
+          <tr>
+            <td>Responsable de coupe</td>
+            <td><input class="form-control" formControlName="cutResponsable">
+              <label *ngIf="cutPlanningForm.get('cutResponsable').invalid && processValidation" [ngClass]="'error'">
+                Responsable de coupe est
+                requis. </label>
+            </td>
+          </tr>
+          <tr>
+            <td>Taux d'absentéisme</td>
+            <td><input class="form-control" formControlName="absenteeismRate">
+              <label *ngIf="cutPlanningForm.get('absenteeismRate').invalid && processValidation" [ngClass]="'error'">
+                Taux
+                d'absentéisme est
+                requis. </label>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <button *ngIf="!cutPlanningIdToUpdate">Ajouter</button>
+              <button *ngIf="cutPlanningIdToUpdate">Modifier</button>
+              <button (click)="backToCreateCutPlanning()" *ngIf="cutPlanningIdToUpdate">Retourner</button>
+            </td>
+          </tr>
+        </div>
+      </div>
+    </table>
+  </form>
+  <!-- </div>
+    </div>
+  </div> -->
+  <br />
+  <div *ngIf="statusCode; else processing">
+    <div *ngIf="statusCode === 201" [ngClass]="'success'">
+      Planning coupe ajouté.
+    </div>
+    <div *ngIf="statusCode === 409" [ngClass]="'success'">
+      Planning coupe déjà ajouté.
+    </div>
+    <div *ngIf="statusCode === 200" [ngClass]="'success'">
+      Planning coupe modifié.
+    </div>
+    <div *ngIf="statusCode === 204" [ngClass]="'success'">
+      Planning coupe supprimé.
+    </div>
+    <div *ngIf="statusCode === 500" [ngClass]="'error'">
+      Erreur Serveur.
+    </div>
+  </div>
+  <ng-template #processing>
+    <img *ngIf="requestProcessing" src="assets/images/loading.gif">
+  </ng-template>
+</div>
+<h3>Détails du planning coupe</h3>
+
+<button (click)="exportAsXLSX()">Télécharger le planning coupe</button>
+
+<table mdbTable class="table table-border">
+  <thead>
+    <tr>
+      <th>Date d'export</th>
+      <th>Semaine</th>
+      <th>Client</th>
+      <th>Modèle</th>
+      <th>Article</th>
+      <th>Quantité</th>
+      <th>Rendement</th>
+      <th>Effectif</th>
+      <th>Jour</th>
+      <th>Date de présence</th>
+      <th>Responsable coupe</th>
+      <th>Taux d'absentéisme</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr mdbTableCol *ngFor="let cutPlanning of cutPlannings">
+      <td>{{cutPlanning.exportDate  | date: 'dd/MM/yyyy'}}</td>
+      <td>{{cutPlanning.planningWeek}}</td>
+      <td>{{cutPlanning.client}}</td>
+      <td>{{cutPlanning.model}}</td>
+      <td>{{cutPlanning.article}}</td>
+      <td>{{cutPlanning.quantity}}</td>
+      <td>{{cutPlanning.efficiency}}</td>
+      <td>{{cutPlanning.effective}}</td>
+      <td>{{cutPlanning.day}}</td>
+      <td>{{cutPlanning.presenceTime}}</td>
+      <td>{{cutPlanning.cutResponsable}}</td>
+      <td>{{cutPlanning.absenteeismRate}}</td>
+      <td><button type="button" (click)="loadCutPlanningToEdit(cutPlanning.id)">Edit</button> </td>
+      <td><button type="button" (click)="deleteCutPlanning(cutPlanning.id)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- <div class="card-columns">
+  <div class="card bg-light">
+    <div class="card-body text-center">
+      <p class="card-text">Responsable Coupe : </p>
+    </div>
+  </div>
+  <div class="card bg-light">
+    <div class="card-body text-center">
+      <p class="card-text">Planning de la semaine : </p>
+    </div>
+  </div>
+  <div class="card bg-light">
+    <div class="card-body text-center">
+      <p class="card-text">Date d'export : </p>
+    </div>
+  </div>
+</div> -->
+
+
+<table class="table table-bordered">
+  <thead>
+      <tr>
+          <th scope="col" colspan="2">Responsable Coupe : </th>
+          <th scope="col" colspan="3">Planning de la semaine : </th>
+          <th scope="col" colspan="2">Date d'export : </th>
+        </tr>
+        <tr>
+            <th scope="col" colspan="7"></th>
+          </tr>
+          <tr>
+              <th scope="col" colspan="7"></th>
+            </tr>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Lundi</th>
+      <th scope="col">Mardi</th>
+      <th scope="col">Mercredi</th>
+      <th scope="col">Jeudi</th>
+      <th scope="col">Vendredi</th>
+      <th scope="col">Samedi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">07:15-08:15</th>
+      <td>lundi1</td>
+      <td>mardi1</td>
+      <td>mercredi1</td>
+      <td>jeudi1</td>
+      <td>vendredi1</td>
+      <td>samedi1</td>
+    </tr>
+    <tr>
+      <th scope="row">08:15-09:15</th>
+      <td>lundi2</td>
+      <td>mardi2</td>
+      <td>mercredi2</td>
+      <td>jeudi2</td>
+      <td>vendredi2</td>
+      <td>samedi2</td>
+    </tr>
+    <tr>
+      <th scope="row">09:15-10:15</th>
+      <td>lundi3</td>
+      <td>mardi3</td>
+      <td>mercredi3</td>
+      <td>jeudi3</td>
+      <td>vendredi3</td>
+      <td>samedi3</td>
+    </tr>
+    <tr>
+      <th scope="row">10:15-11:15</th>
+      <td>lundi4</td>
+      <td>mardi4</td>
+      <td>mercredi4</td>
+      <td>jeudi4</td>
+      <td>vendredi4</td>
+      <td>samedi4</td>
+    </tr>
+    <tr>
+      <th scope="row">11:15-12:00</th>
+      <td>lundi5</td>
+      <td>mardi5</td>
+      <td>mercredi5</td>
+      <td>jeudi5</td>
+      <td>vendredi5</td>
+      <td>samedi5</td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>samedi6</td>
+    </tr>
+    <tr>
+      <th scope="row">12:45-13:45</th>
+      <td>lundi6</td>
+      <td>mardi6</td>
+      <td>mercredi6</td>
+      <td>jeudi6</td>
+      <td>vendredi6</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">13:45-14:45</th>
+      <td>lundi7</td>
+      <td>mardi7</td>
+      <td>mercredi7</td>
+      <td>jeudi7</td>
+      <td>vendredi7</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">14:45-15:45</th>
+      <td>lundi8</td>
+      <td>mardi8</td>
+      <td>mercredi8</td>
+      <td>jeudi8</td>
+      <td>vendredi8</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">15:45-16:30</th>
+      <td>lundi9</td>
+      <td>mardi9</td>
+      <td>mercredi9</td>
+      <td>jeudi9</td>
+      <td>vendredi9</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+        <th scope="row"></th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    <tr>
+        <th scope="row"></th>
+        <td></td>
+        <td></td>
+        <td colspan="4" class="font-weight-bold">Validé par le responsable planning :</td>
+      </tr>
+  </tbody>
+</table>
+

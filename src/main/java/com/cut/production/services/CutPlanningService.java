@@ -21,7 +21,7 @@ public class CutPlanningService implements CrudService {
     @Override
     public Object create(Object entity) {
         Object object = repo.create(entity);
-        calculateProduction((CutPlanning) object);
+//        calculateProduction((CutPlanning) object);
         return object;
     }
 
