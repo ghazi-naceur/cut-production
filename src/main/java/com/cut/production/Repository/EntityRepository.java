@@ -228,7 +228,9 @@ public class EntityRepository<T> implements Repo<T> {
                 return Collections.emptyList();
             }
             Map<String, Object> result = response.getSourceAsMap();
-            return (List<String>) result.get(field);
+            if (result.containsKey(field)){
+                return (List<String>) result.get(field);
+            }
         } catch (Exception e) {
             logger.error("An error occurred when trying to retrieve the '" + field + "' value, caused by :", e);
         }
