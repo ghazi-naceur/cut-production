@@ -26,7 +26,7 @@ public class CutPlanningService implements CrudService {
     public Object create(Object entity) {
         Object object = repo.create(entity);
         // this is tempo
-//        calculateProduction((CutPlanning) object);
+        calculateProduction((CutPlanning) object);
         return object;
     }
 
@@ -89,10 +89,14 @@ public class CutPlanningService implements CrudService {
             map.put("client", cutPlanning.getClient());
             map.put("article", cutPlanning.getArticle());
             List<Order> list = repo.searchEntities(Constants.ORDER_INDEX, map);
-            double production = (cutPlanning.getEfficiency() * cutPlanning.getPresenceTime() * cutPlanning.getEffective()) / (100 * list.get(0).getMinCut() * cutPlanning.getQuantity() * (1 - (cutPlanning.getAbsenteeismRate() / 100)));
+            if (list.isEmpty()){
+                throw new IllegalArgumentException("Probablement il n'y a pas de commande pour le client '"+cutPlanning.getClient()+"' - article '"+cutPlanning.getArticle()+"'");
+            }
+            double production = (cutPlanning.getEfficiency() * cutPlanning.getPresenceTime() * cutPlanning.getEffective()) / (100 * list.get(0).getMinCut() * (1 - (cutPlanning.getAbsenteeismRate() / 100.0f)));
+            System.out.println("Quantity : " + cutPlanning.getQuantity());
             System.out.println("Production : " + production);
-//            double piecePerHour = Math.round(cutPlanning.getQuantity() / production);
-            double piecePerHour = Math.round(55.0);
+            double piecePerHour = Math.round(cutPlanning.getQuantity() / production);
+//            double piecePerHour = Math.round(55.0);
             System.out.println("Piece per hour : " + piecePerHour);
             for (int i = 0; i < piecePerHour; i++) {
                 tasks.add(cutPlanning.getClient() +cutPlanning.getArticle());
@@ -112,7 +116,9 @@ public class CutPlanningService implements CrudService {
                     if (i <= 50) {
                         currentWeek.add(weeklyTasks.get(i));
                     } else {
-                        currentWeek.remove(0);
+                        if (!currentWeek.isEmpty()){
+                            currentWeek.remove(0);
+                        }
                         nextWeek.add(weeklyTasks.get(i));
                     }
                 }

@@ -1,0 +1,84 @@
+PUT http://localhost:9200/cut_plannings
+{
+  "mappings": {
+  "cut_planning":{
+    "properties": {
+          "absenteeismRate" : {
+            "type" : "long"
+          },
+          "article" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "client" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "cutResponsable" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "day" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "effective" : {
+            "type" : "long"
+          },
+          "efficiency" : {
+            "type" : "float"
+          },
+          "exportDate" : {
+            "type" : "date"
+          },
+          "id" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "model" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "planningWeek" : {
+            "type" : "long"
+          },
+          "presenceTime" : {
+            "type" : "float"
+          },
+          "quantity" : {
+            "type" : "long"
+          }
+        }
+        }
+        }
+}
