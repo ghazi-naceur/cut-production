@@ -9,6 +9,7 @@ import 'rxjs/add/observable/throw';
 import { CutPlanning } from './cut-planning';
 import { CutPlanningService } from './cut-planning.service';
 import { WeekWork } from './weekwork';
+import { WeekWorkTable } from './weekworkcalendar';
 
 @Component({
     selector: 'app-cut-planning',
@@ -18,11 +19,12 @@ import { WeekWork } from './weekwork';
 export class CutPlanningComponent implements OnInit {
 
     cutPlannings: CutPlanning[];
-    weekWorks: WeekWork[];
+    weekWorks: WeekWork;
     statusCode: number;
     requestProcessing = false;
     cutPlanningIdToUpdate = null;
     processValidation = false;
+    weekWorkTable: string[] = [];
 
     constructor(private cutPlanningService: CutPlanningService, 
         private formBuilder: FormBuilder,
@@ -111,15 +113,20 @@ export class CutPlanningComponent implements OnInit {
     getAllCutPlannings() {
         this.cutPlanningService.getAllCutPlannings()
             .subscribe(
-                data => {this.cutPlannings = data;
-                debugger},
+                data => this.cutPlannings = data,
                 errorCode => this.statusCode = errorCode);
     }
 
     getAllWeekWorks() {
         this.cutPlanningService.getAllWeekWorks()
             .subscribe(
-                data => this.weekWorks = data,
+                data => {
+                    this.weekWorks = data;
+                    // this.weekWorkTable.concat(this.weekWorks.currentWeekTasks);
+                    // this.weekWorkTable.concat(this.weekWorks.nextWeekTasks);
+                    // debugger
+                    this.weekWorkTable = [ ...this.weekWorks.currentWeekTasks, ...this.weekWorks.nextWeekTasks];
+                },
                 errorCode => this.statusCode = errorCode);
     }
 

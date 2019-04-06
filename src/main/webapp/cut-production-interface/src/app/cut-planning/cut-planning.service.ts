@@ -37,7 +37,7 @@ export class CutPlanningService {
 		        .catch(this.handleError);
     }
 
-    getAllWeekWorks(): Observable<WeekWork[]> {
+    getAllWeekWorks(): Observable<WeekWork> {
         return this.http.get(this.cutPlanningUrl + "/weekwork")
 		   		.map(this.extractData)
 		        .catch(this.handleError);
