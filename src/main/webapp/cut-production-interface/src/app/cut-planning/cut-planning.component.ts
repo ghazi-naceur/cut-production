@@ -8,6 +8,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { CutPlanning } from './cut-planning';
 import { CutPlanningService } from './cut-planning.service';
+import { WeekWork } from './weekwork';
 
 @Component({
     selector: 'app-cut-planning',
@@ -17,6 +18,7 @@ import { CutPlanningService } from './cut-planning.service';
 export class CutPlanningComponent implements OnInit {
 
     cutPlannings: CutPlanning[];
+    weekWorks: WeekWork[];
     statusCode: number;
     requestProcessing = false;
     cutPlanningIdToUpdate = null;
@@ -52,6 +54,7 @@ export class CutPlanningComponent implements OnInit {
 
     ngOnInit(): void {
         this.getAllCutPlannings();
+        this.getAllWeekWorks();
     }
 
     onCutPlanningFormSubmit() {
@@ -70,6 +73,7 @@ export class CutPlanningComponent implements OnInit {
                     this.backToCreateCutPlanning();
                     setTimeout(() => {
                         this.getAllCutPlannings();
+                        this.getAllWeekWorks();
                     }, 500)
                 },
                     errorCode => this.statusCode = errorCode
@@ -80,9 +84,11 @@ export class CutPlanningComponent implements OnInit {
                 .subscribe(successCode => {
                     this.statusCode = successCode;
                     this.getAllCutPlannings();
+                    this.getAllWeekWorks();
                     this.backToCreateCutPlanning();
                     setTimeout(() => {
                         this.getAllCutPlannings();
+                        this.getAllWeekWorks();
                     }, 1000)
                 },
                     errorCode => this.statusCode = errorCode);
@@ -105,7 +111,15 @@ export class CutPlanningComponent implements OnInit {
     getAllCutPlannings() {
         this.cutPlanningService.getAllCutPlannings()
             .subscribe(
-                data => this.cutPlannings = data,
+                data => {this.cutPlannings = data;
+                debugger},
+                errorCode => this.statusCode = errorCode);
+    }
+
+    getAllWeekWorks() {
+        this.cutPlanningService.getAllWeekWorks()
+            .subscribe(
+                data => this.weekWorks = data,
                 errorCode => this.statusCode = errorCode);
     }
 
@@ -144,6 +158,7 @@ export class CutPlanningComponent implements OnInit {
 
                 setTimeout(() => {
                     this.getAllCutPlannings();
+                    this.getAllWeekWorks();
                 }, 500)
             },
                 errorCode => this.statusCode = errorCode);

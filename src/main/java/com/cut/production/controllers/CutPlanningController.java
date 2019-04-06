@@ -2,6 +2,7 @@ package com.cut.production.controllers;
 
 
 import com.cut.production.entities.CutPlanning;
+import com.cut.production.entities.WeekWork;
 import com.cut.production.services.CutPlanningService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,8 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
 import java.util.Map;
 
-import static com.cut.production.utils.Constants.CUT_PLANNING_INDEX;
-import static com.cut.production.utils.Constants.CUT_PLANNING_TYPE;
+import static com.cut.production.utils.Constants.*;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @Controller
@@ -75,6 +75,22 @@ public class CutPlanningController {
             return new ResponseEntity<>(cutPlannings, HttpStatus.OK);
         } catch (Exception e) {
             logger.error("An error occurred when trying to retrieve the first page of cutPlannings, caused by {}", e);
+            return new ResponseEntity<>(headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping(value = "/weekwork")
+    public ResponseEntity<WeekWork> findAllWeekWorks() {
+        HttpHeaders headers = new HttpHeaders();
+        try {
+            WeekWork weekWork = service.findAllWeekWorks(WEEK_WORK_INDEX, WEEK_WORK_TYPE);
+            if (weekWork == null) {
+                logger.warn("Your weekwork index is empty.");
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(weekWork, HttpStatus.OK);
+        } catch (Exception e) {
+            logger.error("An error occurred when trying to retrieve the first page of weekwork, caused by {}", e);
             return new ResponseEntity<>(headers, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

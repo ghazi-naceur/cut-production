@@ -7,6 +7,7 @@ import 'rxjs/add/operator/catch';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 import { CutPlanning } from './cut-planning';
+import { WeekWork } from './weekwork';
 
 @Injectable()
 export class CutPlanningService {
@@ -32,6 +33,12 @@ export class CutPlanningService {
 
     getAllCutPlannings(): Observable<CutPlanning[]> {
         return this.http.get(this.cutPlanningUrl)
+		   		.map(this.extractData)
+		        .catch(this.handleError);
+    }
+
+    getAllWeekWorks(): Observable<WeekWork[]> {
+        return this.http.get(this.cutPlanningUrl + "/weekwork")
 		   		.map(this.extractData)
 		        .catch(this.handleError);
     }

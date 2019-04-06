@@ -4,6 +4,7 @@ package com.cut.production.services;
 import com.cut.production.Repository.EntityRepository;
 import com.cut.production.entities.CutPlanning;
 import com.cut.production.entities.Order;
+import com.cut.production.entities.WeekWork;
 import com.cut.production.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +49,10 @@ public class CutPlanningService implements CrudService {
     @Override
     public List<CutPlanning> findAllEntities(String index, String type) {
         return repo.findAll(index, type, CutPlanning.class);
+    }
+
+    public WeekWork findAllWeekWorks(String index, String type) {
+        return  (WeekWork)getById(type, index, type);
     }
 
     @Override

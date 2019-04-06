@@ -13,7 +13,7 @@ public class Constants {
     public static final String CUT_PLANNING_INDEX = "cut_plannings";
     public static final String CUT_PLANNING_TYPE = "cut_planning";
     public static final String WEEK_WORK_INDEX = "weekly_work";
-    public static final String WEEK_WORK_TYPE = "works";
+    public static final String WEEK_WORK_TYPE = "task";
     public static final String WEEK_WORK_ID = "task";
     public static final String NEXT_WEEK_WORK_ID = "next_task";
     public static final String CURRENT_WEEK_TASKS_FIELD = "currentWeekTasks";
