@@ -36,7 +36,7 @@ export class CutPlanningComponent implements OnInit {
         quantity: new FormControl('', Validators.required),
         efficiency: new FormControl('', Validators.required),
         effective: new FormControl('', Validators.required),
-        day: new FormControl('', Validators.required),
+        day: new FormControl('', ),
         presenceTime: new FormControl('', Validators.required),
         cutResponsable: new FormControl('', Validators.required),
         absenteeismRate: new FormControl('', Validators.required)

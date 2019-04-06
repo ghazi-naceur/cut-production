@@ -32,7 +32,12 @@ public class CutPlanningService implements CrudService {
 
     @Override
     public Object update(Object entity, String index, String type, String id) {
-        return repo.update(entity, index, type, id);
+
+        CutPlanning cutPlanning = (CutPlanning)repo.getById(id, index, type);
+        deleteTasks(cutPlanning);
+        CutPlanning cut = (CutPlanning)repo.update(entity, index, type, id);
+        calculateProduction(cut);
+        return cut;
     }
 
     @Override
@@ -54,6 +59,10 @@ public class CutPlanningService implements CrudService {
     public void deleteById(String index, String type, String id) {
         CutPlanning cutPlanning = (CutPlanning)repo.getById(id, index, type);
         repo.deleteById(index, type, id);
+        deleteTasks(cutPlanning);
+    }
+
+    private void deleteTasks(CutPlanning cutPlanning) {
         List<String> result = repo.getfieldValue(CURRENT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID);
         List<String> nextResult = repo.getfieldValue(NEXT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID);
         String taskName = cutPlanning.getClient() + cutPlanning.getArticle();
