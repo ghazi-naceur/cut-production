@@ -115,7 +115,7 @@ export class CutPlanningComponent implements OnInit {
             .subscribe(cutPlanning => {
                 this.cutPlanningIdToUpdate = cutPlanning.id;
                 this.cutPlanningForm.setValue({
-                    exportDate: cutPlanning.exportDate.slice(0, 10),
+                    exportDate: new Date(cutPlanning.exportDate.toString().slice(0, 10)),
                     planningWeek: cutPlanning.planningWeek, 
                     client: cutPlanning.client,
                     model: cutPlanning.model,

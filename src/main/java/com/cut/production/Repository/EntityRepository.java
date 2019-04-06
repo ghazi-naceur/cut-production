@@ -6,11 +6,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.elasticsearch.action.ActionFuture;
 import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;
+import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.common.xcontent.XContentFactory;
+import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
@@ -30,6 +33,9 @@ import org.springframework.stereotype.Repository;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static com.cut.production.utils.Constants.WEEK_WORK_ID;
+import static com.cut.production.utils.Constants.WEEK_WORK_INDEX;
 
 
 @Repository
@@ -200,9 +206,56 @@ public class EntityRepository<T> implements Repo<T> {
     }
 
     private List<SearchHit> getDocument(String index, SearchSourceBuilder builder) throws IOException {
-        SearchRequest request = new SearchRequest(index);
-        request.source(builder);
-        SearchResponse response = client.search(request, RequestOptions.DEFAULT);
-        return Arrays.asList(response.getHits().getHits());
+        try {
+            SearchRequest request = new SearchRequest(index);
+            request.source(builder);
+            SearchResponse response = client.search(request, RequestOptions.DEFAULT);
+            return Arrays.asList(response.getHits().getHits());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return Collections.emptyList();
+    }
+
+    public List<String> getfieldValue(String field, String index, String type, String id) {
+        try {
+            GetResponse response = elasticsearchOperations.getClient().prepareGet(index, type, id).get();
+
+            if (!response.isExists()) {
+                IndexRequest indexRequest = new IndexRequest(index, type, id);
+                indexRequest.source(Collections.emptyMap());
+                elasticsearchOperations.getClient().index(indexRequest).get();
+                return Collections.emptyList();
+            }
+            Map<String, Object> result = response.getSourceAsMap();
+            return (List<String>) result.get(field);
+        } catch (Exception e) {
+            logger.error("An error occurred when trying to retrieve the '" + field + "' value, caused by :", e);
+        }
+        return Collections.emptyList();
+    }
+
+    public void indexEntity(String index, String type, String id, Map<String, Object> entity) throws IOException {
+        IndexRequest indexRequest = new IndexRequest(index, type, id);
+        indexRequest.source(entity);
+        client.index(indexRequest, RequestOptions.DEFAULT);
+    }
+
+    public void updatefield(String field, List<String> value) {
+        try {
+            GetResponse response =
+                    elasticsearchOperations.getClient().prepareGet(WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID).setRefresh(true).execute().actionGet();
+            if (!response.isExists()) {
+                IndexRequest indexRequest = new IndexRequest(WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID);
+                indexRequest.source(Collections.emptyMap());
+                elasticsearchOperations.getClient().index(indexRequest).get();
+            }
+
+            UpdateRequest updateRequest = new UpdateRequest(WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID);
+            updateRequest.doc(XContentFactory.jsonBuilder().startObject().field(field, value).endObject());
+            elasticsearchOperations.getClient().update(updateRequest).get();
+        } catch (Exception e) {
+            logger.error("An error occurred when trying to set the field '" + field + "' to '" + value + "', caused by : ", e);
+        }
     }
 }

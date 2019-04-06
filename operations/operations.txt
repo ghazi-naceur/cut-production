@@ -56,3 +56,5 @@ DELETE http://localhost:8080/orders
 
 9- create index :
 PUT http://localhost:9200/cut_plannings
+PUT http://localhost:9200/weekly_work_planning
+PUT http://localhost:9200/weekly_work
