@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static com.cut.production.utils.Constants.*;
 
@@ -26,17 +23,17 @@ public class CutPlanningService implements CrudService {
     @Override
     public Object create(Object entity) {
         Object object = repo.create(entity);
-        // this is tempo
         calculateProduction((CutPlanning) object);
         return object;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Object update(Object entity, String index, String type, String id) {
 
-        CutPlanning cutPlanning = (CutPlanning)repo.getById(id, index, type);
+        CutPlanning cutPlanning = (CutPlanning) repo.getById(id, index, type);
         deleteTasks(cutPlanning);
-        CutPlanning cut = (CutPlanning)repo.update(entity, index, type, id);
+        CutPlanning cut = (CutPlanning) repo.update(entity, index, type, id);
         calculateProduction(cut);
         return cut;
     }
@@ -52,7 +49,7 @@ public class CutPlanningService implements CrudService {
     }
 
     public WeekWork findAllWeekWorks(String index, String type) {
-        return  (WeekWork)getById(type, index, type);
+        return (WeekWork) getById(type, index, type);
     }
 
     @Override
@@ -62,7 +59,7 @@ public class CutPlanningService implements CrudService {
 
     @Override
     public void deleteById(String index, String type, String id) {
-        CutPlanning cutPlanning = (CutPlanning)repo.getById(id, index, type);
+        CutPlanning cutPlanning = (CutPlanning) repo.getById(id, index, type);
         repo.deleteById(index, type, id);
         deleteTasks(cutPlanning);
     }
@@ -73,10 +70,23 @@ public class CutPlanningService implements CrudService {
         String taskName = cutPlanning.getClient() + cutPlanning.getArticle();
         result.removeIf(task -> task.equals(taskName));
         nextResult.removeIf(task -> task.equals(taskName));
-        Map<String, Object> entity = new HashMap<>();
-        entity.put(CURRENT_WEEK_TASKS_FIELD, result);
-        entity.put(NEXT_WEEK_TASKS_FIELD, nextResult);
         try {
+            repo.indexEntity(WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID, Collections.emptyMap());
+            // TODO I think i need to reinitialize nextweeks , put its value somewhere and append to current week, and the rest will be put in nextweek
+            Map<String, Object> entity = new HashMap<>();
+            result.addAll(nextResult);
+            List<String> firstSlice = new ArrayList<>();
+            nextResult = new ArrayList<>();
+            for (int i = 0; i < result.size(); i++) {
+                if (i <= 50) {
+                    firstSlice.add(result.get(i));
+                } else {
+                    nextResult.add(result.get(i));
+                }
+            }
+            entity.put(CURRENT_WEEK_TASKS_FIELD, firstSlice);
+            entity.put(NEXT_WEEK_TASKS_FIELD, nextResult);
+
             repo.indexEntity(WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID, entity);
         } catch (IOException e) {
             e.printStackTrace();
@@ -93,9 +103,9 @@ public class CutPlanningService implements CrudService {
         return repo.isEntityExist(index, type, entityAsMap);
     }
 
-    public void calculateProduction(CutPlanning cutPlanning) {
-        // TODO check if null
-        List<String> tasks = new ArrayList<>();
+    @SuppressWarnings("unchecked")
+    private void calculateProduction(CutPlanning cutPlanning) {
+        List<String> calculatedTasks = new ArrayList<>();
         List<String> currentWeek = new ArrayList<>();
         List<String> nextWeek = new ArrayList<>();
         Map<String, Object> map = new HashMap<>();
@@ -103,46 +113,44 @@ public class CutPlanningService implements CrudService {
             map.put("client", cutPlanning.getClient());
             map.put("article", cutPlanning.getArticle());
             List<Order> list = repo.searchEntities(Constants.ORDER_INDEX, map);
-            if (list.isEmpty()){
-                throw new IllegalArgumentException("Probablement il n'y a pas de commande pour le client '"+cutPlanning.getClient()+"' - article '"+cutPlanning.getArticle()+"'");
+            if (list.isEmpty()) {
+                throw new IllegalArgumentException("Probablement il n'y a pas de commande pour le client '" + cutPlanning.getClient() + "' - article '" + cutPlanning.getArticle() + "'");
             }
             double production = (cutPlanning.getEfficiency() * cutPlanning.getPresenceTime() * cutPlanning.getEffective()) / (100 * list.get(0).getMinCut() * (1 - (cutPlanning.getAbsenteeismRate() / 100.0f)));
             System.out.println("Quantity : " + cutPlanning.getQuantity());
             System.out.println("Production : " + production);
             double piecePerHour = Math.round(cutPlanning.getQuantity() / production);
-//            double piecePerHour = Math.round(55.0);
-            System.out.println("Piece per hour : " + piecePerHour);
+            System.out.println("=> Piece per hour : " + piecePerHour);
+            // todo !!! 0.4 case to 1
+//            if (piecePerHour < 1) {
+//                calculatedTasks.add(cutPlanning.getClient() + cutPlanning.getArticle());
+//            }
             for (int i = 0; i < piecePerHour; i++) {
-                tasks.add(cutPlanning.getClient() +cutPlanning.getArticle());
+                calculatedTasks.add(cutPlanning.getClient() + cutPlanning.getArticle());
             }
             List<String> weeklyTasks = new ArrayList<>();
-            List<String> result = repo.getfieldValue(CURRENT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID);
-            if (result != null){
-                weeklyTasks.addAll(result);
+            List<String> currentFromDB = repo.getfieldValue(CURRENT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID);
+            List<String> nextFromDB = repo.getfieldValue(NEXT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID);
+            if (currentFromDB != null) {
+                weeklyTasks.addAll(currentFromDB);
+                weeklyTasks.addAll(nextFromDB);
             }
-            weeklyTasks.addAll(tasks);
+            weeklyTasks.addAll(calculatedTasks);
             if (weeklyTasks.size() <= 51) {
                 Map<String, Object> entity = new HashMap<>();
                 entity.put(CURRENT_WEEK_TASKS_FIELD, weeklyTasks);
                 repo.indexEntity(WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID, entity);
             } else {
-                for (int i = 0 ; i < weeklyTasks.size() ; i++) {
+                for (int i = 0; i < weeklyTasks.size(); i++) {
                     if (i <= 50) {
                         currentWeek.add(weeklyTasks.get(i));
                     } else {
-                        if (!currentWeek.isEmpty()){
-                            currentWeek.remove(0);
-                        }
                         nextWeek.add(weeklyTasks.get(i));
                     }
                 }
-//                repo.indexEntity(INDEX, TYPE, ID, currentWeek);
-//                repo.indexEntity(INDEX, TYPE, ID, nextWeek);
-//                repo.updatefield(CURRENT_WEEK_TASKS_FIELD, currentWeek);
                 Map<String, Object> entity = new HashMap<>();
                 entity.put(CURRENT_WEEK_TASKS_FIELD, currentWeek);
                 entity.put(NEXT_WEEK_TASKS_FIELD, nextWeek);
-//                NEXT_WEEK_WORK_ID
                 repo.indexEntity(WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID, entity);
             }
 

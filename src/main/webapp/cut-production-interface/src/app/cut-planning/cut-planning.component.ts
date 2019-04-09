@@ -25,6 +25,8 @@ export class CutPlanningComponent implements OnInit {
     cutPlanningIdToUpdate = null;
     processValidation = false;
     weekWorkTable: string[] = [];
+    nextWeekTasksList: string[] = [];
+    numberOfNextWeekTasks: Number = 0;
 
     constructor(private cutPlanningService: CutPlanningService, 
         private formBuilder: FormBuilder,
@@ -122,10 +124,22 @@ export class CutPlanningComponent implements OnInit {
             .subscribe(
                 data => {
                     this.weekWorks = data;
-                    // this.weekWorkTable.concat(this.weekWorks.currentWeekTasks);
-                    // this.weekWorkTable.concat(this.weekWorks.nextWeekTasks);
-                    // debugger
-                    this.weekWorkTable = [ ...this.weekWorks.currentWeekTasks, ...this.weekWorks.nextWeekTasks];
+                    
+                    if(this.weekWorks.nextWeekTasks == null || this.weekWorks.nextWeekTasks == undefined) {
+                        this.weekWorks.nextWeekTasks = [];
+                    }
+                    if(this.weekWorks.currentWeekTasks == null || this.weekWorks.currentWeekTasks == undefined) {
+                        this.weekWorks.currentWeekTasks = [];
+                    }
+
+                    if(this.weekWorks.currentWeekTasks.length == 51 && this.weekWorks.nextWeekTasks.length > 0) {
+                        this.weekWorkTable = [...this.weekWorks.currentWeekTasks, ...this.weekWorks.nextWeekTasks];
+                        // this.nextWeekTasksList = this.weekWorks.nextWeekTasks;
+                        this.numberOfNextWeekTasks = this.weekWorks.nextWeekTasks.length;
+                        
+                    } else {
+                        this.weekWorkTable = [...this.weekWorks.currentWeekTasks];                    
+                    }
                 },
                 errorCode => this.statusCode = errorCode);
     }
