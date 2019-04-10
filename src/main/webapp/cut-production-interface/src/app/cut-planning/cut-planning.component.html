@@ -185,8 +185,6 @@
 </div>
 <h3>Détails du planning coupe</h3>
 
-<button (click)="exportAsXLSX()">Télécharger le planning coupe</button>
-
 <table mdbTable class="table table-border">
   <thead>
     <tr>
@@ -244,13 +242,13 @@
   </div>
 </div> -->
 
-
-<table class="table table-bordered">
+<button (click)="exportAsXLSX()">Télécharger le planning coupe</button>
+<table class="table table-bordered" #table>
   <thead>
       <tr>
-          <th scope="col" colspan="2">Responsable Coupe : </th>
-          <th scope="col" colspan="3">Planning de la semaine : </th>
-          <th scope="col" colspan="2">Date d'export : </th>
+          <th scope="col" colspan="2">Responsable Coupe : {{responsable}} </th>
+          <th scope="col" colspan="3">Planning de la semaine : {{planningWeek}} </th>
+          <th scope="col" colspan="2">Date d'export : {{exportDate  | date: 'dd/MM/yyyy'}} </th>
         </tr>
         <tr>
             <th scope="col" colspan="7"></th>

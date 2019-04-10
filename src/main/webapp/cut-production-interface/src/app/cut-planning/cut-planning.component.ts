@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 import { ExcelService } from '../excel/excel.service';
@@ -10,6 +10,7 @@ import { CutPlanning } from './cut-planning';
 import { CutPlanningService } from './cut-planning.service';
 import { WeekWork } from './weekwork';
 import { WeekWorkTable } from './weekworkcalendar';
+import * as XLSX from 'xlsx';
 
 @Component({
     selector: 'app-cut-planning',
@@ -18,7 +19,7 @@ import { WeekWorkTable } from './weekworkcalendar';
 
 export class CutPlanningComponent implements OnInit {
 
-    cutPlannings: CutPlanning[];
+    cutPlannings: CutPlanning[] = [];
     weekWorks: WeekWork;
     statusCode: number;
     requestProcessing = false;
@@ -27,6 +28,10 @@ export class CutPlanningComponent implements OnInit {
     weekWorkTable: string[] = [];
     nextWeekTasksList: string[] = [];
     numberOfNextWeekTasks: Number = 0;
+    @ViewChild('table') table: ElementRef;
+    responsable: string;
+    exportDate: Date;
+    planningWeek: Number;
 
     constructor(private cutPlanningService: CutPlanningService, 
         private formBuilder: FormBuilder,
@@ -59,6 +64,18 @@ export class CutPlanningComponent implements OnInit {
     ngOnInit(): void {
         this.getAllCutPlannings();
         this.getAllWeekWorks();
+        
+        if (this.cutPlannings.length >= 1) {
+            this.responsable = this.cutPlannings[this.cutPlannings.length - 1].cutResponsable;
+            this.planningWeek = this.cutPlannings[this.cutPlannings.length - 1].planningWeek;
+            this.exportDate = this.cutPlannings[this.cutPlannings.length - 1].exportDate;
+        }
+    }
+
+    updateTableHeader(cutPlanning: CutPlanning) {
+        this.responsable = cutPlanning.cutResponsable;
+        this.planningWeek = cutPlanning.planningWeek;
+        this.exportDate = cutPlanning.exportDate;
     }
 
     onCutPlanningFormSubmit() {
@@ -78,7 +95,8 @@ export class CutPlanningComponent implements OnInit {
                     setTimeout(() => {
                         this.getAllCutPlannings();
                         this.getAllWeekWorks();
-                    }, 500)
+                        this.updateTableHeader(cutPlanning);
+                    }, 1000)
                 },
                     errorCode => this.statusCode = errorCode
                 );
@@ -93,6 +111,7 @@ export class CutPlanningComponent implements OnInit {
                     setTimeout(() => {
                         this.getAllCutPlannings();
                         this.getAllWeekWorks();
+                        this.updateTableHeader(cutPlanning);
                     }, 1000)
                 },
                     errorCode => this.statusCode = errorCode);
@@ -222,6 +241,15 @@ export class CutPlanningComponent implements OnInit {
     // }
 
     exportAsXLSX():void {
-        this.excelService.exportAsExcelFile(this.cutPlannings, 'cut-planning');
+        // this.excelService.exportAsExcelFile(this.cutPlannings, 'cut-planning');
+        this.getAllWeekWorks();
+        this.getAllCutPlannings();
+        const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.table.nativeElement);
+        const wb: XLSX.WorkBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+  
+        /* save to file */
+        XLSX.writeFile(wb, 'planning.xlsx');
+  
     }
 }

@@ -121,10 +121,9 @@ public class CutPlanningService implements CrudService {
             System.out.println("Production : " + production);
             double piecePerHour = Math.round(cutPlanning.getQuantity() / production);
             System.out.println("=> Piece per hour : " + piecePerHour);
-            // todo !!! 0.4 case to 1
-//            if (piecePerHour < 1) {
-//                calculatedTasks.add(cutPlanning.getClient() + cutPlanning.getArticle());
-//            }
+            if (piecePerHour < 1) {
+                calculatedTasks.add(cutPlanning.getClient() + cutPlanning.getArticle());
+            }
             for (int i = 0; i < piecePerHour; i++) {
                 calculatedTasks.add(cutPlanning.getClient() + cutPlanning.getArticle());
             }
