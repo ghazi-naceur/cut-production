@@ -13,9 +13,10 @@ import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.xcontent.XContentFactory;
-import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.reindex.DeleteByQueryAction;
+import org.elasticsearch.index.reindex.DeleteByQueryRequestBuilder;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.slf4j.Logger;
@@ -181,6 +182,18 @@ public class EntityRepository<T> implements Repo<T> {
             logger.error("An error occurred when trying to search for entity from the index {} : {}", index, e);
         }
         return Collections.emptyList();
+    }
+
+    @Override
+    public void deleteAll(String index) {
+        try {
+            new DeleteByQueryRequestBuilder(elasticsearchOperations.getClient(), DeleteByQueryAction.INSTANCE)
+                    .filter(QueryBuilders.matchAllQuery())
+                    .source(index)
+                    .get();
+        } catch (Exception e) {
+            logger.error("An error occurred when trying to delete all entities in the index {} : {}", index, e);
+        }
     }
 
     public List<T> getDocumentsUsingEntityAsMap(String index, Map<String, Object> entityAsMap) throws IOException {

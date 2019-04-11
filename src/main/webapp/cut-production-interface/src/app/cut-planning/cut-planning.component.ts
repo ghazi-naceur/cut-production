@@ -199,7 +199,7 @@ export class CutPlanningComponent implements OnInit {
                 setTimeout(() => {
                     this.getAllCutPlannings();
                     this.getAllWeekWorks();
-                }, 500)
+                }, 1000)
             },
                 errorCode => this.statusCode = errorCode);
     }
@@ -251,5 +251,15 @@ export class CutPlanningComponent implements OnInit {
         /* save to file */
         XLSX.writeFile(wb, 'planning.xlsx');
   
+    }
+
+    clearCutPlannings() {
+        this.cutPlanningService.clearCutPlannings().subscribe(data => {
+            setTimeout(() => {
+                this.getAllCutPlannings();
+                this.getAllWeekWorks();
+            }, 1000)
+        },
+            errorCode => this.statusCode = errorCode)
     }
 }

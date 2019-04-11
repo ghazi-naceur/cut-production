@@ -47,6 +47,11 @@ public class UserService implements CrudService {
     }
 
     @Override
+    public void deleteAll(String index) {
+
+    }
+
+    @Override
     public List<Order> searchEntities(String index, Map searchCriteria) {
         return null;
     }

@@ -108,9 +108,15 @@
   </ng-template>
 </div>
 <h3>Détails des commandes</h3>
-
-<button (click)="exportAsXLSX()">Télécharger les commandes</button>
-
+<div>
+  <div class="d-inline col">
+    <button (click)="exportAsXLSX()">Télécharger les commandes</button>
+  </div>
+  
+  <div class="d-inline col">
+    <button (click)="clearOrders()">Vider</button>
+  </div>
+</div>
 <table mdbTable class="table table-border">
   <thead>
     <tr>

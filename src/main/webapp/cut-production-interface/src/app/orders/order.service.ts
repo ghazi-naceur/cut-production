@@ -66,4 +66,10 @@ export class OrderService {
             .map(this.extractData)
             .catch(this.handleError);
     }
+
+    clearOrders() {
+        return this.http.delete(this.orderUrl + "/delete_orders", this.options)
+        .map(this.extractData)
+        .catch(this.handleError);
+    }
 }

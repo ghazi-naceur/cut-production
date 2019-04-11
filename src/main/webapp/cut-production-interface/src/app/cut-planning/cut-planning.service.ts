@@ -72,4 +72,10 @@ export class CutPlanningService {
             .map(this.extractData)
             .catch(this.handleError);
     }
+
+    clearCutPlannings() {
+        return this.http.delete(this.cutPlanningUrl + "/delete_orders", this.options)
+        .map(this.extractData)
+        .catch(this.handleError);
+    }
 }

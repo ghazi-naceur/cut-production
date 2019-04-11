@@ -45,6 +45,11 @@ public class OrderService implements CrudService{
     }
 
     @Override
+    public void deleteAll(String index) {
+        repo.deleteAll(index);
+    }
+
+    @Override
     public List<Order> searchEntities(String index, Map searchCriteria) {
         return (List<Order>) repo.searchEntities(index, searchCriteria);
     }

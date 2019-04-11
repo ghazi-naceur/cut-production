@@ -64,6 +64,20 @@ public class CutPlanningService implements CrudService {
         deleteTasks(cutPlanning);
     }
 
+    @Override
+    public void deleteAll(String index) {
+        repo.deleteAll(index);
+
+        Map<String, Object> entity = new HashMap<>();
+        entity.put(CURRENT_WEEK_TASKS_FIELD, Collections.emptyList());
+        entity.put(NEXT_WEEK_TASKS_FIELD, Collections.emptyList());
+        try {
+            repo.indexEntity(WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID, entity);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void deleteTasks(CutPlanning cutPlanning) {
         List<String> result = repo.getfieldValue(CURRENT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID);
         List<String> nextResult = repo.getfieldValue(NEXT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID);

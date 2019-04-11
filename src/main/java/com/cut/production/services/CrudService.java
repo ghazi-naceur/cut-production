@@ -23,4 +23,6 @@ public interface CrudService<T> {
     void deleteById(String index, String type, String id);
 
     List<Order> searchEntities(String index, Map<String, Object> searchCriteria);
+
+    void deleteAll(String index);
 }

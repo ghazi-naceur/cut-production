@@ -174,4 +174,13 @@ export class OrderComponent implements OnInit {
     exportAsXLSX():void {
         this.excelService.exportAsExcelFile(this.orders, 'commandes');
     }
+
+    clearOrders() {
+        this.orderService.clearOrders().subscribe(data => {
+            setTimeout(() => {
+                this.getAllOrders();
+            }, 1000)
+        },
+            errorCode => this.statusCode = errorCode)
+    }
 }

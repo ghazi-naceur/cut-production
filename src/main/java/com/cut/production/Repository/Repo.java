@@ -20,4 +20,6 @@ public interface Repo<T> {
     void deleteById(String index, String type, String id);
 
     List<T> searchEntities(String index, Map<String, Object> searchEntities);
+
+    void deleteAll(String index);
 }
