@@ -26,7 +26,7 @@ export class OrderComponent implements OnInit, AfterViewInit {
     orderIdToUpdate = null;
     processValidation = false;
 
-    displayedColumns = ['id','client', 'model', 'article', 'minConfection', 'minCut', 'edit', 'delete'];
+    displayedColumns = ['Client', 'Modèle', 'Article', 'Min Confection', 'Min Coupe', 'edit', 'delete'];
 
     constructor(private orderService: OrderService, 
         private formBuilder: FormBuilder,

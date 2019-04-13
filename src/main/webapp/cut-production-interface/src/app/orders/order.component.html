@@ -107,16 +107,7 @@
     <img *ngIf="requestProcessing" src="assets/images/loading.gif">
   </ng-template>
 </div>
-<h3>Détails des commandes</h3>
-<div>
-  <div class="d-inline col">
-    <button (click)="exportAsXLSX()">Télécharger les commandes</button>
-  </div>
-  
-  <div class="d-inline col">
-    <button (click)="clearOrders()">Vider</button>
-  </div>
-</div>
+<!-- 
 <table mdbTable class="table table-border">
   <thead>
     <tr>
@@ -140,50 +131,60 @@
       <td><button type="button" (click)="deleteOrder(order.id)">Delete</button></td>
     </tr>
   </tbody>
-</table>
+</table> -->
 
+<h3>Détails des commandes</h3>
+<div>
+  <div class="d-inline col">
+    <button (click)="exportAsXLSX()">Télécharger les commandes</button>
+  </div>
+  
+  <div class="d-inline col">
+    <button (click)="clearOrders()">Vider</button>
+  </div>
+</div>
 <div class="example-container mat-elevation-z8">
 
   <mat-table [dataSource]="dataSource">
-
+<!-- 
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
       <mat-cell *matCellDef="let order"> {{order.id}} </mat-cell>
-    </ng-container>
+    </ng-container> -->
 
-    <ng-container matColumnDef="client">
-      <mat-header-cell *matHeaderCellDef> client </mat-header-cell>
+    <ng-container matColumnDef="Client">
+      <mat-header-cell *matHeaderCellDef> Client </mat-header-cell>
       <mat-cell *matCellDef="let order"> {{order.client}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="model">
-      <mat-header-cell *matHeaderCellDef> model </mat-header-cell>
+    <ng-container matColumnDef="Modèle">
+      <mat-header-cell *matHeaderCellDef> Modèle </mat-header-cell>
       <mat-cell *matCellDef="let order"> {{order.model}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="article">
-      <mat-header-cell *matHeaderCellDef> article </mat-header-cell>
+    <ng-container matColumnDef="Article">
+      <mat-header-cell *matHeaderCellDef> Article </mat-header-cell>
       <mat-cell *matCellDef="let order"> {{order.article}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="minConfection">
-      <mat-header-cell *matHeaderCellDef> minConfection </mat-header-cell>
+    <ng-container matColumnDef="Min Confection">
+      <mat-header-cell *matHeaderCellDef> Min Confection </mat-header-cell>
       <mat-cell *matCellDef="let order"> {{order.minConfection}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="minCut">
-      <mat-header-cell *matHeaderCellDef> minCut </mat-header-cell>
+    <ng-container matColumnDef="Min Coupe">
+      <mat-header-cell *matHeaderCellDef> Min Coupe </mat-header-cell>
       <mat-cell *matCellDef="let order"> {{order.minCut}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="edit">
       <mat-header-cell *matHeaderCellDef> edit </mat-header-cell>
-      <mat-cell *matCellDef="let order"> <button type="button" (click)="loadOrderToEdit(order.id)">Edit</button> </mat-cell>
+      <mat-cell *matCellDef="let order"> <button mat-button (click)="loadOrderToEdit(order.id)">Edit</button> </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="delete">
       <mat-header-cell *matHeaderCellDef> delete </mat-header-cell>
-      <mat-cell *matCellDef="let order"> <button type="button" (click)="deleteOrder(order.id)">Delete</button> </mat-cell>
+      <mat-cell *matCellDef="let order"> <button mat-button (click)="deleteOrder(order.id)">Delete</button> </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
