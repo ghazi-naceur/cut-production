@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 import { OrderService } from './order.service';
@@ -8,19 +8,25 @@ import { saveAs } from 'file-saver';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import { MatPaginator, MatTableDataSource } from '@angular/material';
 
 @Component({
     selector: 'app-order',
     templateUrl: './order.component.html'
 })
 
-export class OrderComponent implements OnInit {
+export class OrderComponent implements OnInit, AfterViewInit {
 
-    orders: Order[];
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+    dataSource: MatTableDataSource<Order>;
+
+    orders: Order[] = [];
     statusCode: number;
     requestProcessing = false;
     orderIdToUpdate = null;
     processValidation = false;
+
+    displayedColumns = ['id','client', 'model', 'article', 'minConfection', 'minCut', 'edit', 'delete'];
 
     constructor(private orderService: OrderService, 
         private formBuilder: FormBuilder,
@@ -45,6 +51,10 @@ export class OrderComponent implements OnInit {
 
     ngOnInit(): void {
         this.getAllOrders();
+    }
+
+    ngAfterViewInit() {
+        // this.dataSource.paginator = this.paginator;
     }
 
     onOrderFormSubmit() {
@@ -98,7 +108,11 @@ export class OrderComponent implements OnInit {
     getAllOrders() {
         this.orderService.getAllOrders()
             .subscribe(
-                data => this.orders = data,
+                data => {
+                    this.orders = data;
+                    this.dataSource = new MatTableDataSource(this.orders);
+                    this.dataSource.paginator = this.paginator;
+                },
                 errorCode => this.statusCode = errorCode);
     }
 
@@ -184,3 +198,12 @@ export class OrderComponent implements OnInit {
             errorCode => this.statusCode = errorCode)
     }
 }
+
+export interface UserData {
+    id: string;
+    client: string;
+    model: string;
+    article: string;
+    minConfection: Number;
+    minCut: Number;
+  }

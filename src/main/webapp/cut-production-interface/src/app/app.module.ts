@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
-import { MatTableModule } from '@angular/material';
+import { MatTableModule, MatPaginatorModule } from '@angular/material';
 import { DataFileComponent } from './datafile/data.file.component';
 import { DataFileService } from './datafile/data.file.service';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -19,6 +19,7 @@ import { OrderService } from './orders/order.service';
 import { ExcelService } from './excel/excel.service';
 import { CutPlanningComponent } from './cut-planning/cut-planning.component';
 import { CutPlanningService } from './cut-planning/cut-planning.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,9 @@ import { CutPlanningService } from './cut-planning/cut-planning.service';
     ReactiveFormsModule,
     HttpModule,
     MatTableModule,
-    FormsModule
+    FormsModule,
+    MatPaginatorModule,
+    BrowserAnimationsModule
   ],
   providers: [
     OrderService,

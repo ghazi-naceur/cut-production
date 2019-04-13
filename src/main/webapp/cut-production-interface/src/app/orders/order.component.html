@@ -141,3 +141,55 @@
     </tr>
   </tbody>
 </table>
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
+      <mat-cell *matCellDef="let order"> {{order.id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="client">
+      <mat-header-cell *matHeaderCellDef> client </mat-header-cell>
+      <mat-cell *matCellDef="let order"> {{order.client}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="model">
+      <mat-header-cell *matHeaderCellDef> model </mat-header-cell>
+      <mat-cell *matCellDef="let order"> {{order.model}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="article">
+      <mat-header-cell *matHeaderCellDef> article </mat-header-cell>
+      <mat-cell *matCellDef="let order"> {{order.article}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="minConfection">
+      <mat-header-cell *matHeaderCellDef> minConfection </mat-header-cell>
+      <mat-cell *matCellDef="let order"> {{order.minConfection}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="minCut">
+      <mat-header-cell *matHeaderCellDef> minCut </mat-header-cell>
+      <mat-cell *matCellDef="let order"> {{order.minCut}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef> edit </mat-header-cell>
+      <mat-cell *matCellDef="let order"> <button type="button" (click)="loadOrderToEdit(order.id)">Edit</button> </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef> delete </mat-header-cell>
+      <mat-cell *matCellDef="let order"> <button type="button" (click)="deleteOrder(order.id)">Delete</button> </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let order; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
