@@ -186,7 +186,7 @@ export class OrderComponent implements OnInit, AfterViewInit {
     }
 
     exportAsXLSX():void {
-        this.excelService.exportAsExcelFile(this.orders, 'commandes');
+        this.excelService.exportAsExcelFile(this.orders, 'Commandes - '+new Date().toString().slice(0, 24));
     }
 
     clearOrders() {

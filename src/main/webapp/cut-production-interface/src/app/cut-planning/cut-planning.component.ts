@@ -151,11 +151,9 @@ export class CutPlanningComponent implements OnInit {
                         this.weekWorks.currentWeekTasks = [];
                     }
 
-                    if(this.weekWorks.currentWeekTasks.length == 51 && this.weekWorks.nextWeekTasks.length > 0) {
+                    if(this.weekWorks.currentWeekTasks.length == 95 && this.weekWorks.nextWeekTasks.length > 0) {
                         this.weekWorkTable = [...this.weekWorks.currentWeekTasks, ...this.weekWorks.nextWeekTasks];
-                        // this.nextWeekTasksList = this.weekWorks.nextWeekTasks;
                         this.numberOfNextWeekTasks = this.weekWorks.nextWeekTasks.length;
-                        
                     } else {
                         this.weekWorkTable = [...this.weekWorks.currentWeekTasks];                    
                     }
@@ -169,7 +167,6 @@ export class CutPlanningComponent implements OnInit {
             .subscribe(cutPlanning => {
                 this.cutPlanningIdToUpdate = cutPlanning.id;
                 this.cutPlanningForm.setValue({
-                    // .split('-').reverse().join('/') -  moment.utc(cutPlanning.exportDate.toString().slice(0, 10)).format('dd/MM/yyyy')
                     exportDate: cutPlanning.exportDate.toString().slice(0, 10),
                     planningWeek: cutPlanning.planningWeek, 
                     client: cutPlanning.client,
@@ -243,16 +240,12 @@ export class CutPlanningComponent implements OnInit {
     // }
 
     exportAsXLSX():void {
-        // this.excelService.exportAsExcelFile(this.cutPlannings, 'cut-planning');
         this.getAllWeekWorks();
         this.getAllCutPlannings();
-        const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.table.nativeElement);
+        const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
         const wb: XLSX.WorkBook = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-  
-        /* save to file */
-        XLSX.writeFile(wb, 'planning.xlsx');
-  
+        XLSX.writeFile(wb, 'Planning - '+new Date().toString().slice(0, 24)+'.xlsx');
     }
 
     clearCutPlannings() {

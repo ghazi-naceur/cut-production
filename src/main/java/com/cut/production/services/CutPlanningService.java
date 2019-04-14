@@ -32,7 +32,6 @@ public class CutPlanningService implements CrudService {
     @SuppressWarnings("unchecked")
     @Override
     public Object update(Object entity, String index, String type, String id) {
-
         repo.update(entity, index, type, id);
         CutPlanning cutPlanning = (CutPlanning) repo.getById(id, index, type);
         List<String> calculatedTasks = recalculateProduction(cutPlanning);
@@ -94,7 +93,7 @@ public class CutPlanningService implements CrudService {
             List<String> firstSlice = new ArrayList<>();
             nextResult = new ArrayList<>();
             for (int i = 0; i < result.size(); i++) {
-                if (i <= 50) {
+                if (i <= 94) {
                     firstSlice.add(result.get(i));
                 } else {
                     nextResult.add(result.get(i));
@@ -127,20 +126,16 @@ public class CutPlanningService implements CrudService {
             CopyOnWriteArrayList<String> after = new CopyOnWriteArrayList<>();
             before.addAll(result.subList(0, newTasksIndex));
             after.addAll(result.subList(newTasksIndex, result.size()));
-//            CopyOnWriteArrayList<String> listOfTasksBeforeTheModifiedOnes = result.subList(0, newTasksIndex);
-//            CopyOnWriteArrayList<String> listOfTasksAfterTheModifiedOnes = result.subList(newTasksIndex, result.size());
             result = new ArrayList<>();
             result.addAll(before);
             result.addAll(calculatedNewTasks);
             result.addAll(after);
             result.addAll(nextResult);
 
-
-
             List<String> firstSlice = new ArrayList<>();
             nextResult = new ArrayList<>();
             for (int i = 0; i < result.size(); i++) {
-                if (i <= 50) {
+                if (i <= 94) {
                     firstSlice.add(result.get(i));
                 } else {
                     nextResult.add(result.get(i));
@@ -197,13 +192,13 @@ public class CutPlanningService implements CrudService {
                 weeklyTasks.addAll(nextFromDB);
             }
             weeklyTasks.addAll(calculatedTasks);
-            if (weeklyTasks.size() <= 51) {
+            if (weeklyTasks.size() <= 95) {
                 Map<String, Object> entity = new HashMap<>();
                 entity.put(CURRENT_WEEK_TASKS_FIELD, weeklyTasks);
                 repo.indexEntity(WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID, entity);
             } else {
                 for (int i = 0; i < weeklyTasks.size(); i++) {
-                    if (i <= 50) {
+                    if (i <= 94) {
                         currentWeek.add(weeklyTasks.get(i));
                     } else {
                         nextWeek.add(weeklyTasks.get(i));
@@ -235,7 +230,7 @@ public class CutPlanningService implements CrudService {
             double production = (cutPlanning.getEfficiency() * cutPlanning.getPresenceTime() * cutPlanning.getEffective()) / (100 * list.get(0).getMinCut() * (1 - (cutPlanning.getAbsenteeismRate() / 100.0f)));
             System.out.println("Quantity : " + cutPlanning.getQuantity());
             System.out.println("Production : " + production);
-            double piecePerHour = Math.round(cutPlanning.getQuantity() / production);
+            double piecePerHour = Math.round(cutPlanning.getQuantity() / production) * 2;
             System.out.println("=> Piece per hour : " + piecePerHour);
             if (piecePerHour < 1) {
                 calculatedTasks.add(cutPlanning.getClient() + cutPlanning.getArticle());
@@ -252,13 +247,13 @@ public class CutPlanningService implements CrudService {
 //                weeklyTasks.addAll(nextFromDB);
 //            }
 //            weeklyTasks.addAll(calculatedTasks);
-//            if (weeklyTasks.size() <= 51) {
+//            if (weeklyTasks.size() <= 95) {
 //                Map<String, Object> entity = new HashMap<>();
 //                entity.put(CURRENT_WEEK_TASKS_FIELD, weeklyTasks);
 //                repo.indexEntity(WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID, entity);
 //            } else {
 //                for (int i = 0; i < weeklyTasks.size(); i++) {
-//                    if (i <= 50) {
+//                    if (i <= 94) {
 //                        currentWeek.add(weeklyTasks.get(i));
 //                    } else {
 //                        nextWeek.add(weeklyTasks.get(i));
