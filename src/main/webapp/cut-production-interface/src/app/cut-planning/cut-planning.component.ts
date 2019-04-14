@@ -169,7 +169,8 @@ export class CutPlanningComponent implements OnInit {
             .subscribe(cutPlanning => {
                 this.cutPlanningIdToUpdate = cutPlanning.id;
                 this.cutPlanningForm.setValue({
-                    exportDate: new Date(cutPlanning.exportDate.toString().slice(0, 10)),
+                    // .split('-').reverse().join('/') -  moment.utc(cutPlanning.exportDate.toString().slice(0, 10)).format('dd/MM/yyyy')
+                    exportDate: cutPlanning.exportDate.toString().slice(0, 10),
                     planningWeek: cutPlanning.planningWeek, 
                     client: cutPlanning.client,
                     model: cutPlanning.model,
@@ -182,6 +183,7 @@ export class CutPlanningComponent implements OnInit {
                     cutResponsable: cutPlanning.cutResponsable,
                     absenteeismRate: cutPlanning.absenteeismRate
                 });
+                
                 this.processValidation = true;
                 this.requestProcessing = false;
             },
