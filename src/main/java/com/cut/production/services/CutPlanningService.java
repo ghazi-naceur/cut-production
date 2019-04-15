@@ -83,7 +83,7 @@ public class CutPlanningService implements CrudService {
     private void deleteTasks(CutPlanning cutPlanning) {
         List<String> result = repo.getfieldValue(CURRENT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID);
         List<String> nextResult = repo.getfieldValue(NEXT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID);
-        String taskName = cutPlanning.getClient() + cutPlanning.getArticle();
+        String taskName = cutPlanning.getClient() +"/"+ cutPlanning.getArticle();
         result.removeIf(task -> task.equals(taskName));
         nextResult.removeIf(task -> task.equals(taskName));
         try {
@@ -111,7 +111,7 @@ public class CutPlanningService implements CrudService {
     private void updateTasks(CutPlanning cutPlanning, List<String> calculatedNewTasks) {
         List<String> result = repo.getfieldValue(CURRENT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID);
         List<String> nextResult = repo.getfieldValue(NEXT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID);
-        String taskName = cutPlanning.getClient() + cutPlanning.getArticle();
+        String taskName = cutPlanning.getClient() +"/"+ cutPlanning.getArticle();
         int newTasksIndex = 0;
         if (result.contains(taskName)) {
             newTasksIndex = result.indexOf(taskName);
@@ -143,7 +143,6 @@ public class CutPlanningService implements CrudService {
             }
             entity.put(CURRENT_WEEK_TASKS_FIELD, firstSlice);
             entity.put(NEXT_WEEK_TASKS_FIELD, nextResult);
-
             repo.indexEntity(WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID, entity);
         } catch (IOException e) {
             e.printStackTrace();
@@ -174,15 +173,12 @@ public class CutPlanningService implements CrudService {
                 throw new IllegalArgumentException("Probablement il n'y a pas de commande pour le client '" + cutPlanning.getClient() + "' - article '" + cutPlanning.getArticle() + "'");
             }
             double production = (cutPlanning.getEfficiency() * cutPlanning.getPresenceTime() * cutPlanning.getEffective()) / (100 * list.get(0).getMinCut() * (1 - (cutPlanning.getAbsenteeismRate() / 100.0f)));
-            System.out.println("Quantity : " + cutPlanning.getQuantity());
-            System.out.println("Production : " + production);
-            double piecePerHour = Math.round(cutPlanning.getQuantity() / production);
-            System.out.println("=> Piece per hour : " + piecePerHour);
+            double piecePerHour = Math.round(cutPlanning.getQuantity() / production) * 1.86;
             if (piecePerHour < 1) {
-                calculatedTasks.add(cutPlanning.getClient() + cutPlanning.getArticle());
+                calculatedTasks.add(cutPlanning.getClient() +"/"+ cutPlanning.getArticle());
             }
             for (int i = 0; i < piecePerHour; i++) {
-                calculatedTasks.add(cutPlanning.getClient() + cutPlanning.getArticle());
+                calculatedTasks.add(cutPlanning.getClient() +"/"+ cutPlanning.getArticle());
             }
             List<String> weeklyTasks = new ArrayList<>();
             List<String> currentFromDB = repo.getfieldValue(CURRENT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID);
@@ -209,7 +205,6 @@ public class CutPlanningService implements CrudService {
                 entity.put(NEXT_WEEK_TASKS_FIELD, nextWeek);
                 repo.indexEntity(WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID, entity);
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -228,43 +223,21 @@ public class CutPlanningService implements CrudService {
                 throw new IllegalArgumentException("Probablement il n'y a pas de commande pour le client '" + cutPlanning.getClient() + "' - article '" + cutPlanning.getArticle() + "'");
             }
             double production = (cutPlanning.getEfficiency() * cutPlanning.getPresenceTime() * cutPlanning.getEffective()) / (100 * list.get(0).getMinCut() * (1 - (cutPlanning.getAbsenteeismRate() / 100.0f)));
-            System.out.println("Quantity : " + cutPlanning.getQuantity());
-            System.out.println("Production : " + production);
-            double piecePerHour = Math.round(cutPlanning.getQuantity() / production) * 2;
-            System.out.println("=> Piece per hour : " + piecePerHour);
-            if (piecePerHour < 1) {
-                calculatedTasks.add(cutPlanning.getClient() + cutPlanning.getArticle());
+            /**
+             * piecePerHalfAnHour is calculated through multiplying by 1.86
+             * We get it through Cross-multiplication:
+             *      51  ===> 1
+             *      95  ===> X
+             *   => X = 95/51 = 1.86
+             */
+            double piecePerHalfAnHour = Math.round(cutPlanning.getQuantity() / production) * 1.86;
+            if (piecePerHalfAnHour < 1) {
+                calculatedTasks.add(cutPlanning.getClient() +"/"+ cutPlanning.getArticle());
             }
-            for (int i = 0; i < piecePerHour; i++) {
-                calculatedTasks.add(cutPlanning.getClient() + cutPlanning.getArticle());
+            for (int i = 0; i < piecePerHalfAnHour; i++) {
+                calculatedTasks.add(cutPlanning.getClient() +"/"+ cutPlanning.getArticle());
             }
             return calculatedTasks;
-//            List<String> weeklyTasks = new ArrayList<>();
-//            List<String> currentFromDB = repo.getfieldValue(CURRENT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID);
-//            List<String> nextFromDB = repo.getfieldValue(NEXT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID);
-//            if (currentFromDB != null) {
-//                weeklyTasks.addAll(currentFromDB);
-//                weeklyTasks.addAll(nextFromDB);
-//            }
-//            weeklyTasks.addAll(calculatedTasks);
-//            if (weeklyTasks.size() <= 95) {
-//                Map<String, Object> entity = new HashMap<>();
-//                entity.put(CURRENT_WEEK_TASKS_FIELD, weeklyTasks);
-//                repo.indexEntity(WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID, entity);
-//            } else {
-//                for (int i = 0; i < weeklyTasks.size(); i++) {
-//                    if (i <= 94) {
-//                        currentWeek.add(weeklyTasks.get(i));
-//                    } else {
-//                        nextWeek.add(weeklyTasks.get(i));
-//                    }
-//                }
-//                Map<String, Object> entity = new HashMap<>();
-//                entity.put(CURRENT_WEEK_TASKS_FIELD, currentWeek);
-//                entity.put(NEXT_WEEK_TASKS_FIELD, nextWeek);
-//                repo.indexEntity(WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID, entity);
-//            }
-
         } catch (Exception e) {
             e.printStackTrace();
         }

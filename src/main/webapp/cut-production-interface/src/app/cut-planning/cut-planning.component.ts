@@ -155,7 +155,8 @@ export class CutPlanningComponent implements OnInit {
                         this.weekWorkTable = [...this.weekWorks.currentWeekTasks, ...this.weekWorks.nextWeekTasks];
                         this.numberOfNextWeekTasks = this.weekWorks.nextWeekTasks.length;
                     } else {
-                        this.weekWorkTable = [...this.weekWorks.currentWeekTasks];                    
+                        this.weekWorkTable = [...this.weekWorks.currentWeekTasks];
+                        this.numberOfNextWeekTasks = 0;             
                     }
                 },
                 errorCode => this.statusCode = errorCode);
