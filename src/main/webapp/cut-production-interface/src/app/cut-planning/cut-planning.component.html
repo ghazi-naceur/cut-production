@@ -185,7 +185,7 @@
 </div>
 <h3>Détails du planning coupe</h3>
 
-<table mdbTable class="table table-border">
+<!-- <table mdbTable class="table table-border">
   <thead>
     <tr>
       <th>Date d'export</th>
@@ -222,8 +222,88 @@
       <td><button type="button" (click)="deleteCutPlanning(cutPlanning.id)">Delete</button></td>
     </tr>
   </tbody>
-</table>
+</table> -->
 
+<div alt="Max-width 100%">
+
+  <mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="Date Export">
+      <mat-header-cell *matHeaderCellDef> Date Export </mat-header-cell>
+      <mat-cell *matCellDef="let cutPlanning"> {{cutPlanning.exportDate | date: 'dd/MM/yyyy'}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Semaine">
+      <mat-header-cell *matHeaderCellDef> Semaine </mat-header-cell>
+      <mat-cell *matCellDef="let cutPlanning"> {{cutPlanning.planningWeek}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Client">
+      <mat-header-cell *matHeaderCellDef> Client </mat-header-cell>
+      <mat-cell *matCellDef="let cutPlanning"> {{cutPlanning.client}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Modèle">
+      <mat-header-cell *matHeaderCellDef> Modèle </mat-header-cell>
+      <mat-cell *matCellDef="let cutPlanning"> {{cutPlanning.model}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Article">
+      <mat-header-cell *matHeaderCellDef> Article </mat-header-cell>
+      <mat-cell *matCellDef="let cutPlanning"> {{cutPlanning.article}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Quantité">
+      <mat-header-cell *matHeaderCellDef> Quantité </mat-header-cell>
+      <mat-cell *matCellDef="let cutPlanning"> {{cutPlanning.quantity}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Rendement">
+      <mat-header-cell *matHeaderCellDef> Rendement </mat-header-cell>
+      <mat-cell *matCellDef="let cutPlanning"> {{cutPlanning.efficiency}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Effectif">
+      <mat-header-cell *matHeaderCellDef> Effectif </mat-header-cell>
+      <mat-cell *matCellDef="let cutPlanning"> {{cutPlanning.effective}} </mat-cell>
+    </ng-container>
+
+    <!-- <ng-container matColumnDef="Jour">
+      <mat-header-cell *matHeaderCellDef> Jour </mat-header-cell>
+      <mat-cell *matCellDef="let cutPlanning"> {{cutPlanning.day}} </mat-cell>
+    </ng-container> -->
+
+    <ng-container matColumnDef="Temps présence">
+      <mat-header-cell *matHeaderCellDef> Temps présence </mat-header-cell>
+      <mat-cell *matCellDef="let cutPlanning"> {{cutPlanning.presenceTime}} </mat-cell>
+    </ng-container>
+<!-- 
+    <ng-container matColumnDef="Responsable">
+      <mat-header-cell *matHeaderCellDef> Responsable </mat-header-cell>
+      <mat-cell *matCellDef="let cutPlanning"> {{cutPlanning.cutResponsable}} </mat-cell>
+    </ng-container> -->
+
+    <ng-container matColumnDef="Taux Absentéisme">
+      <mat-header-cell *matHeaderCellDef> Taux Absentéisme </mat-header-cell>
+      <mat-cell *matCellDef="let cutPlanning"> {{cutPlanning.absenteeismRate}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef> edit </mat-header-cell>
+      <mat-cell *matCellDef="let order"> <button mat-button (click)="loadCutPlanningToEdit(order.id)">Edit</button> </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef> delete </mat-header-cell>
+      <mat-cell *matCellDef="let order"> <button mat-button (click)="deleteCutPlanning(order.id)">Delete</button> </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let order; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
 <!-- <div class="card-columns">
   <div class="card bg-light">
     <div class="card-body text-center">
@@ -253,7 +333,7 @@
 </div>
 <table class="table table-bordered" #table>
   <thead>
-      <tr>
+      <!-- <tr>
           <th scope="col" colspan="2">Responsable Coupe : {{responsable}} </th>
           <th scope="col" colspan="3">Planning de la semaine : {{planningWeek}} </th>
           <th scope="col" colspan="2">Date d'export : {{exportDate  | date: 'dd/MM/yyyy'}} </th>
@@ -263,7 +343,7 @@
           </tr>
           <tr>
               <th scope="col" colspan="7"></th>
-            </tr>
+            </tr> -->
     <tr>
       <th scope="col"></th>
       <th scope="col">Lundi</th>
@@ -441,16 +521,16 @@
       <th scope="row"></th>
       <td scope="col" colspan="7"><span *ngIf="numberOfNextWeekTasks > 0">Vous avez {{numberOfNextWeekTasks}} tâches pour la semaine prochaine</span></td>
     </tr>
-    <tr>
+    <!-- <tr>
         <th scope="row"></th>
         <td scope="col" colspan="7"></td>
-      </tr>
-    <tr>
+      </tr> -->
+    <!-- <tr>
         <th scope="row"></th>
         <td></td>
         <td></td>
         <td colspan="4" class="font-weight-bold">Validé par le responsable planning :</td>
-      </tr>
+      </tr> -->
   </tbody>
 </table>
 

@@ -11,6 +11,7 @@ import { CutPlanningService } from './cut-planning.service';
 import { WeekWork } from './weekwork';
 import { WeekWorkTable } from './weekworkcalendar';
 import * as XLSX from 'xlsx';
+import { MatPaginator, MatTableDataSource } from '@angular/material';
 
 @Component({
     selector: 'app-cut-planning',
@@ -18,6 +19,10 @@ import * as XLSX from 'xlsx';
 })
 
 export class CutPlanningComponent implements OnInit {
+
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+    dataSource: MatTableDataSource<CutPlanning>;
+    displayedColumns = ['Date Export', 'Semaine', 'Client', 'Modèle', 'Article', 'Quantité', 'Rendement', 'Effectif',  'Temps présence',  'Taux Absentéisme', 'edit', 'delete'];
 
     cutPlannings: CutPlanning[] = [];
     weekWorks: WeekWork;
@@ -134,7 +139,11 @@ export class CutPlanningComponent implements OnInit {
     getAllCutPlannings() {
         this.cutPlanningService.getAllCutPlannings()
             .subscribe(
-                data => this.cutPlannings = data,
+                data => {
+                    this.cutPlannings = data;
+                    this.dataSource = new MatTableDataSource(this.cutPlannings);
+                    this.dataSource.paginator = this.paginator;
+                },
                 errorCode => this.statusCode = errorCode);
     }
 
