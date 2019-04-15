@@ -34,9 +34,6 @@ export class CutPlanningComponent implements OnInit {
     nextWeekTasksList: string[] = [];
     numberOfNextWeekTasks: Number = 0;
     @ViewChild('table') table: ElementRef;
-    responsable: string;
-    exportDate: Date;
-    planningWeek: Number;
 
     constructor(private cutPlanningService: CutPlanningService, 
         private formBuilder: FormBuilder,
@@ -52,35 +49,15 @@ export class CutPlanningComponent implements OnInit {
         quantity: new FormControl('', Validators.required),
         efficiency: new FormControl('', Validators.required),
         effective: new FormControl('', Validators.required),
-        day: new FormControl('', ),
         presenceTime: new FormControl('', Validators.required),
-        cutResponsable: new FormControl('', Validators.required),
         absenteeismRate: new FormControl('', Validators.required)
     });
 
-    // searchCutPlanningForm = this.formBuilder.group({
-    //     client: ['', ],
-    //     model: ['', ],
-    //     article: ['', ],
-    //     minConfection: ['', ],
-    //     minCut: ['', ]
-    // });
-
     ngOnInit(): void {
+        this.dataSource = new MatTableDataSource(this.cutPlannings);
+        this.dataSource.data = [];
         this.getAllCutPlannings();
         this.getAllWeekWorks();
-        
-        if (this.cutPlannings.length >= 1) {
-            this.responsable = this.cutPlannings[this.cutPlannings.length - 1].cutResponsable;
-            this.planningWeek = this.cutPlannings[this.cutPlannings.length - 1].planningWeek;
-            this.exportDate = this.cutPlannings[this.cutPlannings.length - 1].exportDate;
-        }
-    }
-
-    updateTableHeader(cutPlanning: CutPlanning) {
-        this.responsable = cutPlanning.cutResponsable;
-        this.planningWeek = cutPlanning.planningWeek;
-        this.exportDate = cutPlanning.exportDate;
     }
 
     onCutPlanningFormSubmit() {
@@ -100,7 +77,6 @@ export class CutPlanningComponent implements OnInit {
                     setTimeout(() => {
                         this.getAllCutPlannings();
                         this.getAllWeekWorks();
-                        this.updateTableHeader(cutPlanning);
                     }, 1000)
                 },
                     errorCode => this.statusCode = errorCode
@@ -116,7 +92,6 @@ export class CutPlanningComponent implements OnInit {
                     setTimeout(() => {
                         this.getAllCutPlannings();
                         this.getAllWeekWorks();
-                        this.updateTableHeader(cutPlanning);
                     }, 1000)
                 },
                     errorCode => this.statusCode = errorCode);
@@ -185,9 +160,7 @@ export class CutPlanningComponent implements OnInit {
                     quantity: cutPlanning.quantity,
                     efficiency: cutPlanning.efficiency,
                     effective: cutPlanning.effective,
-                    day: cutPlanning.day,
                     presenceTime: cutPlanning.presenceTime,
-                    cutResponsable: cutPlanning.cutResponsable,
                     absenteeismRate: cutPlanning.absenteeismRate
                 });
                 
@@ -218,36 +191,6 @@ export class CutPlanningComponent implements OnInit {
             .subscribe(data => this.cutPlannings = data,
                 errorCode => this.statusCode = errorCode);
     }
-
-    // onSearchCutPlanningFormSubmit() {
-
-    //     this.preProcessConfigurations();
-    //     let searchCriteria = this.searchCutPlanningForm.value;
-    //     if (searchCriteria.client == "") {
-    //         delete searchCriteria.client
-    //     }
-    //     if (searchCriteria.model == "") {
-    //         delete searchCriteria.model
-    //     }
-    //     if (searchCriteria.article == "") {
-    //         delete searchCriteria.article
-    //     }
-    //     if (searchCriteria.minConfection == "") {
-    //         delete searchCriteria.minConfection
-    //     }
-    //     if (searchCriteria.minCut == "") {
-    //         delete searchCriteria.minCut
-    //     }
-    //     this.cutPlanningService.searchCutPlannings(searchCriteria)
-    //         .subscribe(data => this.cutPlannings = data,
-    //             errorCode => this.statusCode = errorCode);
-    //     this.requestProcessing = false;
-    //     this.searchCutPlanningForm.reset();
-    // }
-
-    // refresh(){
-    //     this.searchCutPlanningForm.reset();
-    // }
 
     exportAsXLSX():void {
         this.getAllWeekWorks();

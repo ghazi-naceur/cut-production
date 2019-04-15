@@ -2,51 +2,14 @@
 
 <app-navbar></app-navbar>
 
-<!-- <form class="form-inline md-form form-sm" [formGroup]="searchOrderForm" (ngSubmit)="onSearchOrderFormSubmit()">
-    <div class="d-inline form-group">
-        <label>Client</label>
-        <input type="text" formControlName="client" class="form-control"/>
-    </div>
-    <div class="d-inline form-group">
-        <label>Modèle</label>
-        <input type="text" formControlName="model" class="form-control"/>
-    </div>
-    <div class="d-inline form-group">
-        <label>article</label>
-        <input type="text" formControlName="article" class="form-control"/>
-    </div>
-    <div class="d-inline form-group">
-        <label>Min Confection</label>
-        <input type="text" formControlName="minConfection" class="form-control"/>
-    </div>
-    <div class="d-inline form-group">
-        <label>Min Cut</label>
-        <input type="text" formControlName="minCut" class="form-control"/>
-    </div>
-    <div class="d-inline form-group">
-      <label> Lancer la recherche </label>
-        <button class="btn btn-primary">Search</button>
-    </div>
-    <div class="form-group">
-       
-    </div>
-</form> -->
-<!-- <button (click)="refresh()">Refresh</button> -->
-<!-- <ng-template #create>
-  <h3> Create New Order</h3>
-</ng-template> -->
 <h1>Nouveau planning coupe</h1>
 <div>
-  <!-- <div class="container">
-    <div class="row">
-      <div class="col-xs-6"> -->
   <form class="container" [formGroup]="cutPlanningForm" (ngSubmit)="onCutPlanningFormSubmit()">
     <table>
       <div class="row">
         <div class="col-xs-6">
           <tr>
             <td>Date d'export</td>
-            <!-- \d{1,2}/\d{1,2}/\d{4} type="date"  (0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}-->
             <td><input type="date" class="form-control" formControlName="exportDate">
               <label *ngIf="cutPlanningForm.get('exportDate').invalid && processValidation" [ngClass]="'error'"> Date
                 d'export est
@@ -87,16 +50,16 @@
                 requis. </label>
             </td>
           </tr>
-          <tr>
-            <td>Quantité</td>
-            <td><input class="form-control" formControlName="quantity">
-              <label *ngIf="cutPlanningForm.get('quantity').invalid && processValidation" [ngClass]="'error'">
-                Quantité est
-                requis. </label>
-            </td>
-          </tr>
         </div>
         <div class="col-xs-6">
+            <tr>
+                <td>Quantité</td>
+                <td><input class="form-control" formControlName="quantity">
+                  <label *ngIf="cutPlanningForm.get('quantity').invalid && processValidation" [ngClass]="'error'">
+                    Quantité est
+                    requis. </label>
+                </td>
+              </tr>
           <tr>
             <td>Rendement</td>
             <td><input class="form-control" formControlName="efficiency">
@@ -116,25 +79,12 @@
             </td>
           </tr>
           <tr>
-            <td>Jour</td>
-            <td><input class="form-control" formControlName="day">
-            </td>
-          </tr>
-          <tr>
             <td>Temps de présence</td>
             <td><input class="form-control" formControlName="presenceTime">
               <label *ngIf="cutPlanningForm.get('presenceTime').invalid && processValidation" [ngClass]="'error'">
                 Temps
                 de
                 présence est
-                requis. </label>
-            </td>
-          </tr>
-          <tr>
-            <td>Responsable de coupe</td>
-            <td><input class="form-control" formControlName="cutResponsable">
-              <label *ngIf="cutPlanningForm.get('cutResponsable').invalid && processValidation" [ngClass]="'error'">
-                Responsable de coupe est
                 requis. </label>
             </td>
           </tr>
@@ -158,9 +108,7 @@
       </div>
     </table>
   </form>
-  <!-- </div>
-    </div>
-  </div> -->
+
   <br />
   <div *ngIf="statusCode; else processing">
     <div *ngIf="statusCode === 201" [ngClass]="'success'">
@@ -183,6 +131,8 @@
     <img *ngIf="requestProcessing" src="assets/images/loading.gif">
   </ng-template>
 </div>
+
+<div *ngIf="cutPlannings != null && cutPlannings.length > 0">
 <h3>Détails du planning coupe</h3>
 
 <!-- <table mdbTable class="table table-border">
@@ -267,20 +217,10 @@
       <mat-cell *matCellDef="let cutPlanning"> {{cutPlanning.effective}} </mat-cell>
     </ng-container>
 
-    <!-- <ng-container matColumnDef="Jour">
-      <mat-header-cell *matHeaderCellDef> Jour </mat-header-cell>
-      <mat-cell *matCellDef="let cutPlanning"> {{cutPlanning.day}} </mat-cell>
-    </ng-container> -->
-
     <ng-container matColumnDef="Temps présence">
       <mat-header-cell *matHeaderCellDef> Temps présence </mat-header-cell>
       <mat-cell *matCellDef="let cutPlanning"> {{cutPlanning.presenceTime}} </mat-cell>
     </ng-container>
-<!-- 
-    <ng-container matColumnDef="Responsable">
-      <mat-header-cell *matHeaderCellDef> Responsable </mat-header-cell>
-      <mat-cell *matCellDef="let cutPlanning"> {{cutPlanning.cutResponsable}} </mat-cell>
-    </ng-container> -->
 
     <ng-container matColumnDef="Taux Absentéisme">
       <mat-header-cell *matHeaderCellDef> Taux Absentéisme </mat-header-cell>
@@ -302,25 +242,9 @@
     </mat-row>
   </mat-table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  <mat-paginator #paginator [length]="dataSource.data.length" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>
-<!-- <div class="card-columns">
-  <div class="card bg-light">
-    <div class="card-body text-center">
-      <p class="card-text">Responsable Coupe : </p>
-    </div>
-  </div>
-  <div class="card bg-light">
-    <div class="card-body text-center">
-      <p class="card-text">Planning de la semaine : </p>
-    </div>
-  </div>
-  <div class="card bg-light">
-    <div class="card-body text-center">
-      <p class="card-text">Date d'export : </p>
-    </div>
-  </div>
-</div> -->
+</div>
 
 <div>
   <div class="d-inline col">
@@ -333,17 +257,6 @@
 </div>
 <table class="table table-bordered" #table>
   <thead>
-      <!-- <tr>
-          <th scope="col" colspan="2">Responsable Coupe : {{responsable}} </th>
-          <th scope="col" colspan="3">Planning de la semaine : {{planningWeek}} </th>
-          <th scope="col" colspan="2">Date d'export : {{exportDate  | date: 'dd/MM/yyyy'}} </th>
-        </tr>
-        <tr>
-            <th scope="col" colspan="7"></th>
-          </tr>
-          <tr>
-              <th scope="col" colspan="7"></th>
-            </tr> -->
     <tr>
       <th scope="col"></th>
       <th scope="col">Lundi</th>
@@ -521,16 +434,6 @@
       <th scope="row"></th>
       <td scope="col" colspan="7"><span *ngIf="numberOfNextWeekTasks > 0">Vous avez {{numberOfNextWeekTasks}} tâches pour la semaine prochaine</span></td>
     </tr>
-    <!-- <tr>
-        <th scope="row"></th>
-        <td scope="col" colspan="7"></td>
-      </tr> -->
-    <!-- <tr>
-        <th scope="row"></th>
-        <td></td>
-        <td></td>
-        <td colspan="4" class="font-weight-bold">Validé par le responsable planning :</td>
-      </tr> -->
   </tbody>
 </table>
 

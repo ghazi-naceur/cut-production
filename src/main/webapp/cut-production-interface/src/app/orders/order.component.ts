@@ -50,11 +50,15 @@ export class OrderComponent implements OnInit, AfterViewInit {
     });
 
     ngOnInit(): void {
+        // this.dataSource = new MatTableDataSource(this.orders);
+        // this.dataSource.data = [];
         this.getAllOrders();
     }
 
     ngAfterViewInit() {
         // this.dataSource.paginator = this.paginator;
+        // this.dataSource = new MatTableDataSource(this.orders);
+        // this.dataSource.data = [];
     }
 
     onOrderFormSubmit() {
@@ -73,7 +77,7 @@ export class OrderComponent implements OnInit, AfterViewInit {
                     this.backToCreateOrder();
                     setTimeout(() => {
                         this.getAllOrders();
-                    }, 500)
+                    }, 1000)
                 },
                     errorCode => this.statusCode = errorCode
                 );
@@ -144,7 +148,7 @@ export class OrderComponent implements OnInit, AfterViewInit {
 
                 setTimeout(() => {
                     this.getAllOrders();
-                }, 500)
+                }, 1000)
             },
                 errorCode => this.statusCode = errorCode);
     }

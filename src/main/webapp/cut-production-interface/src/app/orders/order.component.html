@@ -32,9 +32,7 @@
     </div>
 </form>
 <button (click)="refresh()">Refresh</button>
-<!-- <ng-template #create>
-  <h3> Create New Order</h3>
-</ng-template> -->
+
 <h1>Nouvelle commande</h1>
 
 <div>
@@ -132,7 +130,7 @@
     </tr>
   </tbody>
 </table> -->
-
+<div *ngIf="orders != null && orders.length > 0">
 <h3>Détails des commandes</h3>
 <div>
   <div class="d-inline col">
@@ -143,14 +141,10 @@
     <button (click)="clearOrders()">Vider</button>
   </div>
 </div>
+
 <div class="example-container mat-elevation-z8">
 
   <mat-table [dataSource]="dataSource">
-<!-- 
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
-      <mat-cell *matCellDef="let order"> {{order.id}} </mat-cell>
-    </ng-container> -->
 
     <ng-container matColumnDef="Client">
       <mat-header-cell *matHeaderCellDef> Client </mat-header-cell>
@@ -193,4 +187,5 @@
   </mat-table>
 
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
 </div>
