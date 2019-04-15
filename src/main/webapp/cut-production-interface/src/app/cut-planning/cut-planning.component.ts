@@ -22,7 +22,7 @@ export class CutPlanningComponent implements OnInit {
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     dataSource: MatTableDataSource<CutPlanning>;
-    displayedColumns = ['Date Export', 'Semaine', 'Client', 'Modèle', 'Article', 'Quantité', 'Rendement', 'Effectif',  'Temps présence',  'Taux Absentéisme', 'edit', 'delete'];
+    displayedColumns = ['Date Export', 'Semaine', 'Client', 'Modèle', 'Article', 'Quantité', 'Rendement', 'Effectif', 'Taux Absentéisme', 'edit', 'delete'];
 
     cutPlannings: CutPlanning[] = [];
     weekWorks: WeekWork;
@@ -49,7 +49,6 @@ export class CutPlanningComponent implements OnInit {
         quantity: new FormControl('', Validators.required),
         efficiency: new FormControl('', Validators.required),
         effective: new FormControl('', Validators.required),
-        presenceTime: new FormControl('', Validators.required),
         absenteeismRate: new FormControl('', Validators.required)
     });
 
@@ -160,7 +159,6 @@ export class CutPlanningComponent implements OnInit {
                     quantity: cutPlanning.quantity,
                     efficiency: cutPlanning.efficiency,
                     effective: cutPlanning.effective,
-                    presenceTime: cutPlanning.presenceTime,
                     absenteeismRate: cutPlanning.absenteeismRate
                 });
                 

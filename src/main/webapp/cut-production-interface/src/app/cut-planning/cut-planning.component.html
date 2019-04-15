@@ -79,16 +79,6 @@
             </td>
           </tr>
           <tr>
-            <td>Temps de présence</td>
-            <td><input class="form-control" formControlName="presenceTime">
-              <label *ngIf="cutPlanningForm.get('presenceTime').invalid && processValidation" [ngClass]="'error'">
-                Temps
-                de
-                présence est
-                requis. </label>
-            </td>
-          </tr>
-          <tr>
             <td>Taux d'absentéisme</td>
             <td><input class="form-control" formControlName="absenteeismRate">
               <label *ngIf="cutPlanningForm.get('absenteeismRate').invalid && processValidation" [ngClass]="'error'">
@@ -215,11 +205,6 @@
     <ng-container matColumnDef="Effectif">
       <mat-header-cell *matHeaderCellDef> Effectif </mat-header-cell>
       <mat-cell *matCellDef="let cutPlanning"> {{cutPlanning.effective}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="Temps présence">
-      <mat-header-cell *matHeaderCellDef> Temps présence </mat-header-cell>
-      <mat-cell *matCellDef="let cutPlanning"> {{cutPlanning.presenceTime}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Taux Absentéisme">

@@ -19,7 +19,6 @@ public class CutPlanning extends Entity {
     private Integer quantity;
     private Integer efficiency; // Rendement
     private Integer effective; // effectif
-    private double presenceTime;
     private Integer absenteeismRate;
 
     @JsonCreator
@@ -31,7 +30,6 @@ public class CutPlanning extends Entity {
                        @JsonProperty(value = "quantity") Integer quantity,
                        @JsonProperty(value = "efficiency") Integer efficiency,
                        @JsonProperty(value = "effective") Integer effective,
-                       @JsonProperty(value = "presenceTime") double presenceTime,
                        @JsonProperty(value = "absenteeismRate") Integer absenteeismRate) {
         this.exportDate = exportDate;
         this.planningWeek = planningWeek;
@@ -41,7 +39,6 @@ public class CutPlanning extends Entity {
         this.quantity = quantity;
         this.efficiency = efficiency;
         this.effective = effective;
-        this.presenceTime = presenceTime;
         this.absenteeismRate = absenteeismRate;
     }
 
@@ -109,14 +106,6 @@ public class CutPlanning extends Entity {
         this.effective = effective;
     }
 
-    public double getPresenceTime() {
-        return presenceTime;
-    }
-
-    public void setPresenceTime(double presenceTime) {
-        this.presenceTime = presenceTime;
-    }
-
     public Integer getAbsenteeismRate() {
         return absenteeismRate;
     }
@@ -136,7 +125,6 @@ public class CutPlanning extends Entity {
                 ", quantity=" + quantity +
                 ", efficiency=" + efficiency +
                 ", effective=" + effective +
-                ", presenceTime=" + presenceTime +
                 ", absenteeismRate=" + absenteeismRate +
                 ", id='" + id + '\'' +
                 '}';
@@ -152,7 +140,6 @@ public class CutPlanning extends Entity {
         cutPlanning.put("quantity", this.quantity);
         cutPlanning.put("efficiency", this.efficiency);
         cutPlanning.put("effective", this.effective);
-        cutPlanning.put("presenceTime", this.presenceTime);
         cutPlanning.put("absenteeismRate", this.absenteeismRate);
         cutPlanning.put("id", this.id);
         return cutPlanning;

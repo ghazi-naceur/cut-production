@@ -172,7 +172,8 @@ public class CutPlanningService implements CrudService {
             if (list.isEmpty()) {
                 throw new IllegalArgumentException("Probablement il n'y a pas de commande pour le client '" + cutPlanning.getClient() + "' - article '" + cutPlanning.getArticle() + "'");
             }
-            double production = (cutPlanning.getEfficiency() * cutPlanning.getPresenceTime() * cutPlanning.getEffective()) / (100 * list.get(0).getMinCut() * (1 - (cutPlanning.getAbsenteeismRate() / 100.0f)));
+            // presence time = 30.0
+            double production = (cutPlanning.getEfficiency() * 30.0 * cutPlanning.getEffective()) / (100 * list.get(0).getMinCut() * (1 - (cutPlanning.getAbsenteeismRate() / 100.0f)));
             double piecePerHour = Math.round(cutPlanning.getQuantity() / production) * 1.86;
             if (piecePerHour < 1) {
                 calculatedTasks.add(cutPlanning.getClient() +"/"+ cutPlanning.getArticle());
@@ -222,7 +223,8 @@ public class CutPlanningService implements CrudService {
             if (list.isEmpty()) {
                 throw new IllegalArgumentException("Probablement il n'y a pas de commande pour le client '" + cutPlanning.getClient() + "' - article '" + cutPlanning.getArticle() + "'");
             }
-            double production = (cutPlanning.getEfficiency() * cutPlanning.getPresenceTime() * cutPlanning.getEffective()) / (100 * list.get(0).getMinCut() * (1 - (cutPlanning.getAbsenteeismRate() / 100.0f)));
+            // Presence time = 30.0
+            double production = (cutPlanning.getEfficiency() * 30.0 * cutPlanning.getEffective()) / (100 * list.get(0).getMinCut() * (1 - (cutPlanning.getAbsenteeismRate() / 100.0f)));
             /**
              * piecePerHalfAnHour is calculated through multiplying by 1.86
              * We get it through Cross-multiplication:
