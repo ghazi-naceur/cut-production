@@ -22,7 +22,7 @@ export class CutPlanningComponent implements OnInit {
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     dataSource: MatTableDataSource<CutPlanning>;
-    displayedColumns = ['Date Export', 'Semaine', 'Client', 'Modèle', 'Article', 'Quantité', 'Rendement', 'Effectif', 'Taux Absentéisme', 'edit', 'delete'];
+    displayedColumns = ['Date Export', 'Semaine', 'Client', 'Modèle', 'Article', 'Numéro Commande' ,'Quantité', 'Rendement', 'Effectif', 'Taux Absentéisme', 'edit', 'delete'];
 
     cutPlannings: CutPlanning[] = [];
     weekWorks: WeekWork;
@@ -35,6 +35,8 @@ export class CutPlanningComponent implements OnInit {
     numberOfNextWeekTasks: Number = 0;
     @ViewChild('table') table: ElementRef;
 
+    // defaultExportDate: Date;
+
     constructor(private cutPlanningService: CutPlanningService, 
         private formBuilder: FormBuilder,
         private excelService: ExcelService) {
@@ -46,6 +48,7 @@ export class CutPlanningComponent implements OnInit {
         client: new FormControl('', Validators.required),
         model: new FormControl('', Validators.required),
         article: new FormControl('', Validators.required),
+        commandNumber : new FormControl('', Validators.required),
         quantity: new FormControl('', Validators.required),
         efficiency: new FormControl('', Validators.required),
         effective: new FormControl('', Validators.required),
@@ -57,6 +60,9 @@ export class CutPlanningComponent implements OnInit {
         this.dataSource.data = [];
         this.getAllCutPlannings();
         this.getAllWeekWorks();
+
+        // this.defaultExportDate = new Date();
+        
     }
 
     onCutPlanningFormSubmit() {
@@ -99,8 +105,15 @@ export class CutPlanningComponent implements OnInit {
 
     }
 
-    backToCreateCutPlanning() {
+    resetForm() {
         this.cutPlanningForm.reset();
+        for( let i in this.cutPlanningForm.controls ) {
+            this.cutPlanningForm.controls[i].setErrors(null);
+        }
+    }
+
+    backToCreateCutPlanning() {
+        // this.cutPlanningForm.reset();
         this.processValidation = false;
         this.cutPlanningIdToUpdate = null;
     }
@@ -156,6 +169,7 @@ export class CutPlanningComponent implements OnInit {
                     client: cutPlanning.client,
                     model: cutPlanning.model,
                     article: cutPlanning.article,
+                    commandNumber : cutPlanning.commandNumber,
                     quantity: cutPlanning.quantity,
                     efficiency: cutPlanning.efficiency,
                     effective: cutPlanning.effective,

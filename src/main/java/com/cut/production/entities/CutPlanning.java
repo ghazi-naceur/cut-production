@@ -16,6 +16,7 @@ public class CutPlanning extends Entity {
     private String client;
     private String model;
     private String article;
+    private String commandNumber;
     private Integer quantity;
     private Integer efficiency; // Rendement
     private Integer effective; // effectif
@@ -27,6 +28,7 @@ public class CutPlanning extends Entity {
                        @JsonProperty(value = "client") String client,
                        @JsonProperty(value = "model") String model,
                        @JsonProperty(value = "article") String article,
+                       @JsonProperty(value = "commandNumber") String commandNumber,
                        @JsonProperty(value = "quantity") Integer quantity,
                        @JsonProperty(value = "efficiency") Integer efficiency,
                        @JsonProperty(value = "effective") Integer effective,
@@ -36,6 +38,7 @@ public class CutPlanning extends Entity {
         this.client = client;
         this.model = model;
         this.article = article;
+        this.commandNumber = commandNumber;
         this.quantity = quantity;
         this.efficiency = efficiency;
         this.effective = effective;
@@ -114,6 +117,14 @@ public class CutPlanning extends Entity {
         this.absenteeismRate = absenteeismRate;
     }
 
+    public String getCommandNumber() {
+        return commandNumber;
+    }
+
+    public void setCommandNumber(String commandNumber) {
+        this.commandNumber = commandNumber;
+    }
+
     @Override
     public String toString() {
         return "CutPlanning{" +
@@ -122,6 +133,7 @@ public class CutPlanning extends Entity {
                 ", client='" + client + '\'' +
                 ", model='" + model + '\'' +
                 ", article='" + article + '\'' +
+                ", commandNumber='" + commandNumber + '\'' +
                 ", quantity=" + quantity +
                 ", efficiency=" + efficiency +
                 ", effective=" + effective +
@@ -137,6 +149,7 @@ public class CutPlanning extends Entity {
         cutPlanning.put("client", this.client);
         cutPlanning.put("model", this.model);
         cutPlanning.put("article", this.article);
+        cutPlanning.put("commandNumber", this.commandNumber);
         cutPlanning.put("quantity", this.quantity);
         cutPlanning.put("efficiency", this.efficiency);
         cutPlanning.put("effective", this.effective);

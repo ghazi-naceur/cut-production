@@ -53,6 +53,14 @@
         </div>
         <div class="col-xs-6">
             <tr>
+                <td>Numéro de Commande</td>
+                <td><input class="form-control" formControlName="commandNumber">
+                  <label *ngIf="cutPlanningForm.get('commandNumber').invalid && processValidation" [ngClass]="'error'">
+                    Numéro de commande est
+                    requis. </label>
+                </td>
+              </tr>
+            <tr>
                 <td>Quantité</td>
                 <td><input class="form-control" formControlName="quantity">
                   <label *ngIf="cutPlanningForm.get('quantity').invalid && processValidation" [ngClass]="'error'">
@@ -117,6 +125,7 @@
       Erreur Serveur.
     </div>
   </div>
+  <button (click)="resetForm()">Reset</button>
   <ng-template #processing>
     <img *ngIf="requestProcessing" src="assets/images/loading.gif">
   </ng-template>
@@ -191,6 +200,11 @@
       <mat-header-cell *matHeaderCellDef> Article </mat-header-cell>
       <mat-cell *matCellDef="let cutPlanning"> {{cutPlanning.article}} </mat-cell>
     </ng-container>
+
+    <ng-container matColumnDef="Numéro Commande">
+        <mat-header-cell *matHeaderCellDef> Numéro Commande </mat-header-cell>
+        <mat-cell *matCellDef="let cutPlanning"> {{cutPlanning.commandNumber}} </mat-cell>
+      </ng-container>
 
     <ng-container matColumnDef="Quantité">
       <mat-header-cell *matHeaderCellDef> Quantité </mat-header-cell>
