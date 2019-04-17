@@ -1,0 +1,85 @@
+1- Generate package :
+    mvn clean package -Pwinsvc
+2- Install WINSW :
+    mvn install -Pwinsvc
+3- Install backend as Service :
+    cut-production.exe install
+4- Uninstall backend :
+    cut-production.exe uninstall
+        or
+    sc delete cut-production
+5- Generate frontend :
+    ng build
+6- Add this code to nginx.conf :
+	server {
+        listen       4200;
+        server_name  localhost;
+
+        location / {
+            root   html;
+            index  index.html index.htm;
+			try_files $uri $uri/ /index.html;
+        }
+
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+    }
+
+7- Place /dist (project) generated files under /html (nginx)
+8- Run NGINX :
+    nginx.exe
+9- Stop NGINX :
+    nginx -s stop	fast shutdown
+    nginx -s quit	graceful shutdown
+    nginx -s reload	changing configuration, starting new worker processes with a new configuration, graceful shutdown of old worker processes
+    nginx -s reopen	re-opening log files
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6- Verify that IIS is already installed and activate it :
+    Control Panel >
+        Programs >
+        Programs and Features >
+        Turn Windows Features On or Off > to turn on IIS click on Check box.
+7- Start IIS server :
+    net start w3svc
+8- Copy content from /dist to IIS wwwroot
+9- Create file :
+    type nul > web.config
+10- Copy content into file web.config :
+    <configuration>
+      <system.webServer>
+        <rewrite>
+          <rules>
+            <rule name="AngularJS Routes" stopProcessing="true">
+              <match url=".*" />
+              <conditions logicalGrouping="MatchAll">
+                <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+                <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
+              </conditions>
+              <action type="Rewrite" url="/" />
+            </rule>
+          </rules>
+        </rewrite>
+      </system.webServer>
+    </configuration>
+
+11- Install URL IIS : https://www.iis.net/downloads/microsoft/url-rewrite
+12- Open IIS manager and Check that URL IIS is installed
+
+//npm install --global --production windows-build-tools
