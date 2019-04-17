@@ -4,9 +4,9 @@
     <name>cut-production</name>
     <description>cut-production Windows Service</description>
     <executable>java</executable>
-    <arguments>-jar "%BASE%\..\cut-production.jar"</arguments>
-    <workingdirectory>%BASE%\..\</workingdirectory>
-    <logpath>%BASE%\..\logs</logpath>
+    <arguments>-jar "%BASE%\cut-production.jar"</arguments>
+    <workingdirectory>%BASE%\</workingdirectory>
+    <logpath>%BASE%\logs</logpath>
     <log mode="roll-by-time">
             <pattern>dd-MM-yyyy</pattern>
                             <keepFiles>3</keepFiles>

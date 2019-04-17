@@ -166,9 +166,9 @@
     <name>${project.artifactId}</name>
     <description>${winsvc.service.description}</description>
     <executable>${winsvc.service.exe}</executable>
-    <arguments>-jar "%BASE%\..\${winsvc.service.jar}"</arguments>
-    <workingdirectory>%BASE%\..\</workingdirectory>
-    <logpath>%BASE%\..\logs</logpath>
+    <arguments>-jar "%BASE%\${winsvc.service.jar}"</arguments>
+    <workingdirectory>%BASE%\</workingdirectory>
+    <logpath>%BASE%\logs</logpath>
     <log mode="${winsvc.service.log.mode}">
             ${winsvc.service.log.settings}
     </log>
@@ -201,7 +201,7 @@
                                     <target>
                                         <copy file="${build.bindir}/winsw.exe" tofile="${winsvc.exe}" />
                                         <copy file="${build.bindir}/winsw.xml" tofile="${winsvc.xml}" />
-                                        <copy file="${project.build.directory}/${project.artifactId}-${project.version}.jar" tofile="${dist.dir}/${winsvc.service.jar}" />
+                                        <copy file="${project.build.directory}/${project.artifactId}-${project.version}.jar" tofile="${dist.svcdir}/${winsvc.service.jar}" />
                                     </target>
                                 </configuration>
                                 <goals>
