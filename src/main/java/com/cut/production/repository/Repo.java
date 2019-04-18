@@ -1,4 +1,4 @@
-package com.cut.production.Repository;
+package com.cut.production.repository;
 
 import java.util.List;
 import java.util.Map;

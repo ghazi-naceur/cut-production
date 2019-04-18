@@ -1,6 +1,6 @@
 package com.cut.production.services;
 
-import com.cut.production.Repository.Repo;
+import com.cut.production.repository.Repo;
 import com.cut.production.entities.Order;
 import com.cut.production.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,11 +43,6 @@ public class UserService implements CrudService {
 
     @Override
     public void deleteById(String index, String type, String id) {
-
-    }
-
-    @Override
-    public void deleteAll(String index) {
 
     }
 

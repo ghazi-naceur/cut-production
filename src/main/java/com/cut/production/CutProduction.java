@@ -1,6 +1,6 @@
 package com.cut.production;
 
-import com.cut.production.Repository.ElasticMonitor;
+import com.cut.production.repository.ElasticMonitor;
 import com.cut.production.entities.User;
 import com.cut.production.services.CutPlanningService;
 import com.cut.production.services.OrderService;

@@ -192,22 +192,4 @@ export class OrderComponent implements OnInit, AfterViewInit {
     exportAsXLSX():void {
         this.excelService.exportAsExcelFile(this.orders, 'Commandes - '+new Date().toString().slice(0, 24));
     }
-
-    clearOrders() {
-        this.orderService.clearOrders().subscribe(data => {
-            setTimeout(() => {
-                this.getAllOrders();
-            }, 1000)
-        },
-            errorCode => this.statusCode = errorCode)
-    }
 }
-
-export interface UserData {
-    id: string;
-    client: string;
-    model: string;
-    article: string;
-    minConfection: Number;
-    minCut: Number;
-  }

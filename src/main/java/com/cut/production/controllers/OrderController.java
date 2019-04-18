@@ -133,17 +133,4 @@ public class OrderController {
             return new ResponseEntity<>(headers, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    @DeleteMapping(value = "/delete_orders")
-    public ResponseEntity<Order> deleteAllOrders() {
-        HttpHeaders headers = new HttpHeaders();
-        try {
-            service.deleteAll(ORDER_INDEX);
-            logger.info("All Orders are deleted successfully.");
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception e) {
-            logger.error("An error occurred when trying to delete all orders, caused by {}", e);
-            return new ResponseEntity<>(headers, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 }

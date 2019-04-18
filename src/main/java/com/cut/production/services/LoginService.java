@@ -22,7 +22,7 @@ public class LoginService {
             if (user.getUsername().equals(username)
                     && user.getPassword().equals(password)) {
                 System.out.println("This user exists already ");
-                u = user;// service.findByEmail(username);
+                u = user;
                 break;
             }
         }

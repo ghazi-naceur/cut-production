@@ -1,7 +1,7 @@
 package com.cut.production.services;
 
 
-import com.cut.production.Repository.EntityRepository;
+import com.cut.production.repository.EntityRepository;
 import com.cut.production.entities.CutPlanning;
 import com.cut.production.entities.Order;
 import com.cut.production.entities.WeekWork;
@@ -65,29 +65,14 @@ public class CutPlanningService implements CrudService {
         deleteTasks(cutPlanning);
     }
 
-    @Override
-    public void deleteAll(String index) {
-        repo.deleteAll(index);
-
-        Map<String, Object> entity = new HashMap<>();
-        entity.put(CURRENT_WEEK_TASKS_FIELD, Collections.emptyList());
-        entity.put(NEXT_WEEK_TASKS_FIELD, Collections.emptyList());
-        try {
-            repo.indexEntity(WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID, entity);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
     private void deleteTasks(CutPlanning cutPlanning) {
-        List<String> result = repo.getfieldValue(CURRENT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID);
-        List<String> nextResult = repo.getfieldValue(NEXT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID);
+        List<String> result = repo.getfieldValue(CURRENT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_TYPE_AND_ID, WEEK_WORK_TYPE_AND_ID);
+        List<String> nextResult = repo.getfieldValue(NEXT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_TYPE_AND_ID, WEEK_WORK_TYPE_AND_ID);
         String taskName = cutPlanning.getClient() +"/"+ cutPlanning.getArticle();
         result.removeIf(task -> task.equals(taskName));
         nextResult.removeIf(task -> task.equals(taskName));
         try {
-            repo.indexEntity(WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID, Collections.emptyMap());
+            repo.indexEntity(WEEK_WORK_INDEX, WEEK_WORK_TYPE_AND_ID, WEEK_WORK_TYPE_AND_ID, Collections.emptyMap());
             Map<String, Object> entity = new HashMap<>();
             result.addAll(nextResult);
             List<String> firstSlice = new ArrayList<>();
@@ -102,15 +87,15 @@ public class CutPlanningService implements CrudService {
             entity.put(CURRENT_WEEK_TASKS_FIELD, firstSlice);
             entity.put(NEXT_WEEK_TASKS_FIELD, nextResult);
 
-            repo.indexEntity(WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID, entity);
+            repo.indexEntity(WEEK_WORK_INDEX, WEEK_WORK_TYPE_AND_ID, WEEK_WORK_TYPE_AND_ID, entity);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     private void updateTasks(CutPlanning cutPlanning, List<String> calculatedNewTasks) {
-        List<String> result = repo.getfieldValue(CURRENT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID);
-        List<String> nextResult = repo.getfieldValue(NEXT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID);
+        List<String> result = repo.getfieldValue(CURRENT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_TYPE_AND_ID, WEEK_WORK_TYPE_AND_ID);
+        List<String> nextResult = repo.getfieldValue(NEXT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_TYPE_AND_ID, WEEK_WORK_TYPE_AND_ID);
         String taskName = cutPlanning.getClient() +"/"+ cutPlanning.getArticle();
         int newTasksIndex = 0;
         if (result.contains(taskName)) {
@@ -120,7 +105,7 @@ public class CutPlanningService implements CrudService {
         nextResult.removeIf(task -> task.equals(taskName));
 
         try {
-            repo.indexEntity(WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID, Collections.emptyMap());
+            repo.indexEntity(WEEK_WORK_INDEX, WEEK_WORK_TYPE_AND_ID, WEEK_WORK_TYPE_AND_ID, Collections.emptyMap());
             Map<String, Object> entity = new HashMap<>();
             CopyOnWriteArrayList<String> before = new CopyOnWriteArrayList<>();
             CopyOnWriteArrayList<String> after = new CopyOnWriteArrayList<>();
@@ -143,7 +128,7 @@ public class CutPlanningService implements CrudService {
             }
             entity.put(CURRENT_WEEK_TASKS_FIELD, firstSlice);
             entity.put(NEXT_WEEK_TASKS_FIELD, nextResult);
-            repo.indexEntity(WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID, entity);
+            repo.indexEntity(WEEK_WORK_INDEX, WEEK_WORK_TYPE_AND_ID, WEEK_WORK_TYPE_AND_ID, entity);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -182,8 +167,8 @@ public class CutPlanningService implements CrudService {
                 calculatedTasks.add(cutPlanning.getClient() +"/"+ cutPlanning.getArticle());
             }
             List<String> weeklyTasks = new ArrayList<>();
-            List<String> currentFromDB = repo.getfieldValue(CURRENT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID);
-            List<String> nextFromDB = repo.getfieldValue(NEXT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID);
+            List<String> currentFromDB = repo.getfieldValue(CURRENT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_TYPE_AND_ID, WEEK_WORK_TYPE_AND_ID);
+            List<String> nextFromDB = repo.getfieldValue(NEXT_WEEK_TASKS_FIELD, WEEK_WORK_INDEX, WEEK_WORK_TYPE_AND_ID, WEEK_WORK_TYPE_AND_ID);
             if (currentFromDB != null) {
                 weeklyTasks.addAll(currentFromDB);
                 weeklyTasks.addAll(nextFromDB);
@@ -192,7 +177,7 @@ public class CutPlanningService implements CrudService {
             if (weeklyTasks.size() <= 95) {
                 Map<String, Object> entity = new HashMap<>();
                 entity.put(CURRENT_WEEK_TASKS_FIELD, weeklyTasks);
-                repo.indexEntity(WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID, entity);
+                repo.indexEntity(WEEK_WORK_INDEX, WEEK_WORK_TYPE_AND_ID, WEEK_WORK_TYPE_AND_ID, entity);
             } else {
                 for (int i = 0; i < weeklyTasks.size(); i++) {
                     if (i <= 94) {
@@ -204,7 +189,7 @@ public class CutPlanningService implements CrudService {
                 Map<String, Object> entity = new HashMap<>();
                 entity.put(CURRENT_WEEK_TASKS_FIELD, currentWeek);
                 entity.put(NEXT_WEEK_TASKS_FIELD, nextWeek);
-                repo.indexEntity(WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID, entity);
+                repo.indexEntity(WEEK_WORK_INDEX, WEEK_WORK_TYPE_AND_ID, WEEK_WORK_TYPE_AND_ID, entity);
             }
         } catch (IOException e) {
             e.printStackTrace();

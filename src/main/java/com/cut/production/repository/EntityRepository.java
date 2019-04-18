@@ -1,4 +1,4 @@
-package com.cut.production.Repository;
+package com.cut.production.repository;
 
 import com.cut.production.entities.Entity;
 import com.cut.production.utils.Serializer;
@@ -35,7 +35,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.cut.production.utils.Constants.WEEK_WORK_ID;
+import static com.cut.production.utils.Constants.WEEK_WORK_TYPE_AND_ID;
 import static com.cut.production.utils.Constants.WEEK_WORK_INDEX;
 
 
@@ -259,14 +259,14 @@ public class EntityRepository<T> implements Repo<T> {
     public void updatefield(String field, List<String> value) {
         try {
             GetResponse response =
-                    elasticsearchOperations.getClient().prepareGet(WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID).setRefresh(true).execute().actionGet();
+                    elasticsearchOperations.getClient().prepareGet(WEEK_WORK_INDEX, WEEK_WORK_TYPE_AND_ID, WEEK_WORK_TYPE_AND_ID).setRefresh(true).execute().actionGet();
             if (!response.isExists()) {
-                IndexRequest indexRequest = new IndexRequest(WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID);
+                IndexRequest indexRequest = new IndexRequest(WEEK_WORK_INDEX, WEEK_WORK_TYPE_AND_ID, WEEK_WORK_TYPE_AND_ID);
                 indexRequest.source(Collections.emptyMap());
                 elasticsearchOperations.getClient().index(indexRequest).get();
             }
 
-            UpdateRequest updateRequest = new UpdateRequest(WEEK_WORK_INDEX, WEEK_WORK_ID, WEEK_WORK_ID);
+            UpdateRequest updateRequest = new UpdateRequest(WEEK_WORK_INDEX, WEEK_WORK_TYPE_AND_ID, WEEK_WORK_TYPE_AND_ID);
             updateRequest.doc(XContentFactory.jsonBuilder().startObject().field(field, value).endObject());
             elasticsearchOperations.getClient().update(updateRequest).get();
         } catch (Exception e) {

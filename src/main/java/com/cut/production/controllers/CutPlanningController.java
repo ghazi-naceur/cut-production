@@ -151,17 +151,4 @@ public class CutPlanningController {
             return new ResponseEntity<>(headers, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    @DeleteMapping(value = "/delete_orders")
-    public ResponseEntity<CutPlanning> deleteAllCutPlannings() {
-        HttpHeaders headers = new HttpHeaders();
-        try {
-            service.deleteAll(CUT_PLANNING_INDEX);
-            logger.info("All cut plannings are deleted successfully.");
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception e) {
-            logger.error("An error occurred when trying to delete all cut plannings, caused by {}", e);
-            return new ResponseEntity<>(headers, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 }

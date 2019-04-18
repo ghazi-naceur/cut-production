@@ -212,14 +212,4 @@ export class CutPlanningComponent implements OnInit {
         XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
         XLSX.writeFile(wb, 'Planning - '+new Date().toString().slice(0, 24)+'.xlsx');
     }
-
-    clearCutPlannings() {
-        this.cutPlanningService.clearCutPlannings().subscribe(data => {
-            setTimeout(() => {
-                this.getAllCutPlannings();
-                this.getAllWeekWorks();
-            }, 1000)
-        },
-            errorCode => this.statusCode = errorCode)
-    }
 }

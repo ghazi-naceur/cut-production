@@ -3,6 +3,7 @@
 2- Install WINSW :
     mvn install -Pwinsvc
 3- Install backend as Service :
+    CMD as Administrator :
     cd D:\cut_production_packaging
     cut-production.exe install
 4- Uninstall backend :
@@ -41,3 +42,6 @@ Old - Manually :
     nginx -s quit	graceful shutdown
     nginx -s reload	changing configuration, starting new worker processes with a new configuration, graceful shutdown of old worker processes
     nginx -s reopen	re-opening log files
+
+Spring Boot 1.5 based application as Windows service.
+Maven 3.3.3 or higher and .NET Framework 4.0 or higher are required.

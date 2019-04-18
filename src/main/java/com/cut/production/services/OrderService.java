@@ -1,8 +1,7 @@
 package com.cut.production.services;
 
-import com.cut.production.Repository.Repo;
+import com.cut.production.repository.Repo;
 import com.cut.production.entities.Order;
-import com.cut.production.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,11 +41,6 @@ public class OrderService implements CrudService{
 
     public void deleteById(String index, String type, String id) {
         repo.deleteById(index, type, id);
-    }
-
-    @Override
-    public void deleteAll(String index) {
-        repo.deleteAll(index);
     }
 
     @Override
