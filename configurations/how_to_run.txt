@@ -9,7 +9,7 @@
 4- Uninstall backend :
     cut-production.exe uninstall
         or
-    sc delete cut-production
+    sc delete nginx
 5- Generate frontend :
     ng build
 6- Add this code to nginx.conf :
