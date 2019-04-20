@@ -36,12 +36,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _datafile_data_file_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./datafile/data.file.component */ "./src/app/datafile/data.file.component.ts");
-/* harmony import */ var _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./not-found/not-found.component */ "./src/app/not-found/not-found.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
-/* harmony import */ var _success_success_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./success/success.component */ "./src/app/success/success.component.ts");
-/* harmony import */ var _orders_order_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./orders/order.component */ "./src/app/orders/order.component.ts");
-/* harmony import */ var _cut_planning_cut_planning_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./cut-planning/cut-planning.component */ "./src/app/cut-planning/cut-planning.component.ts");
+/* harmony import */ var _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./not-found/not-found.component */ "./src/app/not-found/not-found.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _success_success_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./success/success.component */ "./src/app/success/success.component.ts");
+/* harmony import */ var _orders_order_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./orders/order.component */ "./src/app/orders/order.component.ts");
+/* harmony import */ var _cut_planning_cut_planning_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./cut-planning/cut-planning.component */ "./src/app/cut-planning/cut-planning.component.ts");
+/* harmony import */ var _production_planning_production_planning_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./production-planning/production-planning.component */ "./src/app/production-planning/production-planning.component.ts");
 
 
 
@@ -52,12 +52,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var routes = [
-    { path: 'order', component: _orders_order_component__WEBPACK_IMPORTED_MODULE_7__["OrderComponent"] },
-    { path: 'datafile', component: _datafile_data_file_component__WEBPACK_IMPORTED_MODULE_3__["DataFileComponent"] },
-    { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_5__["LoginComponent"] },
-    { path: 'success', component: _success_success_component__WEBPACK_IMPORTED_MODULE_6__["SuccessComponent"] },
-    { path: 'cut_planning', component: _cut_planning_cut_planning_component__WEBPACK_IMPORTED_MODULE_8__["CutPlanningComponent"] },
-    { path: '**', component: _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_4__["NotFoundComponent"] }
+    { path: 'order', component: _orders_order_component__WEBPACK_IMPORTED_MODULE_6__["OrderComponent"] },
+    { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_4__["LoginComponent"] },
+    { path: 'success', component: _success_success_component__WEBPACK_IMPORTED_MODULE_5__["SuccessComponent"] },
+    { path: 'cut_planning', component: _cut_planning_cut_planning_component__WEBPACK_IMPORTED_MODULE_7__["CutPlanningComponent"] },
+    { path: 'production_planning', component: _production_planning_production_planning_component__WEBPACK_IMPORTED_MODULE_8__["ProductionPlanningComponent"] },
+    { path: '**', component: _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_3__["NotFoundComponent"] }
 ]; // Routes table
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -148,19 +148,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _datafile_data_file_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./datafile/data.file.component */ "./src/app/datafile/data.file.component.ts");
-/* harmony import */ var _datafile_data_file_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./datafile/data.file.service */ "./src/app/datafile/data.file.service.ts");
-/* harmony import */ var _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./navbar/navbar.component */ "./src/app/navbar/navbar.component.ts");
-/* harmony import */ var _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./not-found/not-found.component */ "./src/app/not-found/not-found.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
-/* harmony import */ var _login_login_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./login/login.service */ "./src/app/login/login.service.ts");
-/* harmony import */ var _success_success_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./success/success.component */ "./src/app/success/success.component.ts");
-/* harmony import */ var _orders_order_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./orders/order.component */ "./src/app/orders/order.component.ts");
-/* harmony import */ var _orders_order_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./orders/order.service */ "./src/app/orders/order.service.ts");
-/* harmony import */ var _excel_excel_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./excel/excel.service */ "./src/app/excel/excel.service.ts");
-/* harmony import */ var _cut_planning_cut_planning_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./cut-planning/cut-planning.component */ "./src/app/cut-planning/cut-planning.component.ts");
-/* harmony import */ var _cut_planning_cut_planning_service__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./cut-planning/cut-planning.service */ "./src/app/cut-planning/cut-planning.service.ts");
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./navbar/navbar.component */ "./src/app/navbar/navbar.component.ts");
+/* harmony import */ var _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./not-found/not-found.component */ "./src/app/not-found/not-found.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _login_login_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./login/login.service */ "./src/app/login/login.service.ts");
+/* harmony import */ var _success_success_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./success/success.component */ "./src/app/success/success.component.ts");
+/* harmony import */ var _orders_order_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./orders/order.component */ "./src/app/orders/order.component.ts");
+/* harmony import */ var _orders_order_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./orders/order.service */ "./src/app/orders/order.service.ts");
+/* harmony import */ var _excel_excel_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./excel/excel.service */ "./src/app/excel/excel.service.ts");
+/* harmony import */ var _cut_planning_cut_planning_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./cut-planning/cut-planning.component */ "./src/app/cut-planning/cut-planning.component.ts");
+/* harmony import */ var _cut_planning_cut_planning_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./cut-planning/cut-planning.service */ "./src/app/cut-planning/cut-planning.service.ts");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _production_planning_production_planning_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./production-planning/production-planning.component */ "./src/app/production-planning/production-planning.component.ts");
+/* harmony import */ var _production_planning_production_planning_service__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./production-planning/production-planning.service */ "./src/app/production-planning/production-planning.service.ts");
 
 
 
@@ -190,13 +190,13 @@ var AppModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
-                _orders_order_component__WEBPACK_IMPORTED_MODULE_16__["OrderComponent"],
-                _datafile_data_file_component__WEBPACK_IMPORTED_MODULE_9__["DataFileComponent"],
-                _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_11__["NavbarComponent"],
-                _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_12__["NotFoundComponent"],
-                _login_login_component__WEBPACK_IMPORTED_MODULE_13__["LoginComponent"],
-                _success_success_component__WEBPACK_IMPORTED_MODULE_15__["SuccessComponent"],
-                _cut_planning_cut_planning_component__WEBPACK_IMPORTED_MODULE_19__["CutPlanningComponent"]
+                _orders_order_component__WEBPACK_IMPORTED_MODULE_14__["OrderComponent"],
+                _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_9__["NavbarComponent"],
+                _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_10__["NotFoundComponent"],
+                _login_login_component__WEBPACK_IMPORTED_MODULE_11__["LoginComponent"],
+                _success_success_component__WEBPACK_IMPORTED_MODULE_13__["SuccessComponent"],
+                _cut_planning_cut_planning_component__WEBPACK_IMPORTED_MODULE_17__["CutPlanningComponent"],
+                _production_planning_production_planning_component__WEBPACK_IMPORTED_MODULE_20__["ProductionPlanningComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -207,14 +207,14 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatTableModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatPaginatorModule"],
-                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_21__["BrowserAnimationsModule"]
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_19__["BrowserAnimationsModule"]
             ],
             providers: [
-                _orders_order_service__WEBPACK_IMPORTED_MODULE_17__["OrderService"],
-                _datafile_data_file_service__WEBPACK_IMPORTED_MODULE_10__["DataFileService"],
-                _login_login_service__WEBPACK_IMPORTED_MODULE_14__["LoginService"],
-                _excel_excel_service__WEBPACK_IMPORTED_MODULE_18__["ExcelService"],
-                _cut_planning_cut_planning_service__WEBPACK_IMPORTED_MODULE_20__["CutPlanningService"]
+                _orders_order_service__WEBPACK_IMPORTED_MODULE_15__["OrderService"],
+                _login_login_service__WEBPACK_IMPORTED_MODULE_12__["LoginService"],
+                _excel_excel_service__WEBPACK_IMPORTED_MODULE_16__["ExcelService"],
+                _cut_planning_cut_planning_service__WEBPACK_IMPORTED_MODULE_18__["CutPlanningService"],
+                _production_planning_production_planning_service__WEBPACK_IMPORTED_MODULE_21__["ProductionPlanningService"]
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
         })
@@ -426,7 +426,7 @@ var CutPlanningComponent = /** @class */ (function () {
         var ws = xlsx__WEBPACK_IMPORTED_MODULE_7__["utils"].table_to_sheet(this.table.nativeElement);
         var wb = xlsx__WEBPACK_IMPORTED_MODULE_7__["utils"].book_new();
         xlsx__WEBPACK_IMPORTED_MODULE_7__["utils"].book_append_sheet(wb, ws, 'Sheet1');
-        xlsx__WEBPACK_IMPORTED_MODULE_7__["writeFile"](wb, 'Planning - ' + new Date().toString().slice(0, 24) + '.xlsx');
+        xlsx__WEBPACK_IMPORTED_MODULE_7__["writeFile"](wb, 'PlanningCoupe - ' + new Date().toString().slice(0, 24) + '.xlsx');
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_8__["MatPaginator"]),
@@ -532,142 +532,11 @@ var CutPlanningService = /** @class */ (function () {
             .map(this.extractData)
             .catch(this.handleError);
     };
-    CutPlanningService.prototype.clearCutPlannings = function () {
-        return this.http.delete(this.cutPlanningUrl + "/delete_orders", this.options)
-            .map(this.extractData)
-            .catch(this.handleError);
-    };
     CutPlanningService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_http__WEBPACK_IMPORTED_MODULE_6__["Http"], _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClient"]])
     ], CutPlanningService);
     return CutPlanningService;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/datafile/data.file.component.html":
-/*!***************************************************!*\
-  !*** ./src/app/datafile/data.file.component.html ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<form [formGroup]=\"dataFilesForm\">\r\n  <div class=\"form-group row\">\r\n    <div class=\"col-sm-6\">\r\n      <input type=\"text\" class=\"form-control\" formControlName=\"path\" placeholder=\"Provide your datafiles path\"\r\n        [(ngModel)]=\"providedInput\">\r\n    </div>\r\n  </div>\r\n  <button type=\"button\" class=\"btn btn-success btn-s\" (click)=\"sendPath()\" [disabled]=\"isInvalid()\">\r\n    Provide path\r\n  </button>\r\n</form>\r\n<div *ngIf=\"statusCode; else processing\">\r\n  <div *ngIf=\"statusCode === 201\" [ngClass]=\"'success'\">\r\n    Your files were processed successfully.\r\n  </div>\r\n  <div *ngIf=\"statusCode === 500\" [ngClass]=\"'error'\">\r\n    An error occurred when trying to process your files.\r\n  </div>\r\n</div>\r\n<ng-template #processing>\r\n  <img *ngIf=\"requestProcessing\" src=\"assets/images/loading.gif\">\r\n</ng-template>\r\n\r\n<h3>Processed Files Details</h3>\r\n<table mdbTable class=\"table table-border\">\r\n  <thead>\r\n    <tr>\r\n      <th>File name</th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr mdbTableCol *ngFor=\"let file of files\">\r\n      <td>{{file}}</td>\r\n    </tr>\r\n  </tbody>\r\n</table>"
-
-/***/ }),
-
-/***/ "./src/app/datafile/data.file.component.ts":
-/*!*************************************************!*\
-  !*** ./src/app/datafile/data.file.component.ts ***!
-  \*************************************************/
-/*! exports provided: DataFileComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DataFileComponent", function() { return DataFileComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _data_file_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./data.file.service */ "./src/app/datafile/data.file.service.ts");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-
-
-
-
-var DataFileComponent = /** @class */ (function () {
-    function DataFileComponent(dataFileService) {
-        this.dataFileService = dataFileService;
-        this.requestProcessing = false;
-        this.files = [];
-        this.dataFilesForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormGroup"]({
-            path: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required)
-        });
-    }
-    DataFileComponent.prototype.ngOnInit = function () {
-    };
-    DataFileComponent.prototype.preProcessConfigurations = function () {
-        this.statusCode = null;
-        this.requestProcessing = true;
-    };
-    DataFileComponent.prototype.sendPath = function () {
-        var _this = this;
-        this.preProcessConfigurations();
-        var dataFiles = this.dataFilesForm.value;
-        this.dataFileService.sendPath(dataFiles).subscribe(function (data) {
-            _this.files = data;
-            _this.statusCode = 201;
-            _this.providedInput = null;
-        }, function (errorCode) { return _this.statusCode = errorCode; });
-    };
-    DataFileComponent.prototype.isInvalid = function () {
-        return this.providedInput == undefined || this.providedInput == "";
-    };
-    DataFileComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'data-file',
-            template: __webpack_require__(/*! ./data.file.component.html */ "./src/app/datafile/data.file.component.html"),
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_data_file_service__WEBPACK_IMPORTED_MODULE_2__["DataFileService"]])
-    ], DataFileComponent);
-    return DataFileComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/datafile/data.file.service.ts":
-/*!***********************************************!*\
-  !*** ./src/app/datafile/data.file.service.ts ***!
-  \***********************************************/
-/*! exports provided: DataFileService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DataFileService", function() { return DataFileService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm5/add/operator/map.js");
-/* harmony import */ var rxjs_add_operator_catch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/add/operator/catch */ "./node_modules/rxjs-compat/_esm5/add/operator/catch.js");
-/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
-
-
-// import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
-
-
-// import { map, filter, switchMap } from 'rxjs/operators';
-
-
-var DataFileService = /** @class */ (function () {
-    function DataFileService(http) {
-        this.http = http;
-        this.datafilesUrl = 'http://localhost:8080/datafile';
-        this.contentTypeHeader = new _angular_http__WEBPACK_IMPORTED_MODULE_5__["Headers"]({ 'Content-Type': 'application/json' });
-        this.options = new _angular_http__WEBPACK_IMPORTED_MODULE_5__["RequestOptions"]({ headers: this.contentTypeHeader });
-    }
-    DataFileService.prototype.sendPath = function (dataFiles) {
-        return this.http.post(this.datafilesUrl, dataFiles, this.options)
-            .map(this.extractData)
-            .catch(this.handleError);
-    };
-    DataFileService.prototype.handleError = function (error) {
-        console.error(error.message || error);
-        return rxjs__WEBPACK_IMPORTED_MODULE_2__["Observable"].throw(error.status);
-    };
-    DataFileService.prototype.extractData = function (res) {
-        var body = res.json();
-        return body;
-    };
-    DataFileService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_http__WEBPACK_IMPORTED_MODULE_5__["Http"]])
-    ], DataFileService);
-    return DataFileService;
 }());
 
 
@@ -1246,6 +1115,323 @@ var OrderService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/production-planning/production-planning.component.html":
+/*!************************************************************************!*\
+  !*** ./src/app/production-planning/production-planning.component.html ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h3>Planning Production</h3>\r\n\r\n<app-navbar></app-navbar>\r\n\r\n<h1>Nouveau planning production</h1>\r\n<div>\r\n  <form class=\"container\" [formGroup]=\"prodPlanningForm\" (ngSubmit)=\"onProdPlanningFormSubmit()\">\r\n    <table>\r\n      <div class=\"row\">\r\n        <div class=\"col-xs-6\">\r\n          <tr>\r\n            <td>Date d'export</td>\r\n            <td><input type=\"date\" class=\"form-control\" formControlName=\"exportDate\">\r\n              <label *ngIf=\"prodPlanningForm.get('exportDate').invalid && processValidation\" [ngClass]=\"'error'\"> Date\r\n                d'export est\r\n                requis. </label>\r\n            </td>\r\n          </tr>\r\n          <tr>\r\n            <td>Semaine</td>\r\n            <td><input class=\"form-control\" formControlName=\"planningWeek\">\r\n              <label *ngIf=\"prodPlanningForm.get('planningWeek').invalid && processValidation\" [ngClass]=\"'error'\">\r\n                Semaine\r\n                est\r\n                requis. </label>\r\n            </td>\r\n          </tr>\r\n          <tr>\r\n            <td>Client</td>\r\n            <td><input class=\"form-control\" formControlName=\"client\">\r\n              <label *ngIf=\"prodPlanningForm.get('client').invalid && processValidation\" [ngClass]=\"'error'\"> Client\r\n                est\r\n                requis. </label>\r\n            </td>\r\n          </tr>\r\n          <tr>\r\n          <tr>\r\n            <td>Modèle</td>\r\n            <td><input class=\"form-control\" formControlName=\"model\">\r\n              <label *ngIf=\"prodPlanningForm.get('model').invalid && processValidation\" [ngClass]=\"'error'\"> Modèle\r\n                est\r\n                requis. </label>\r\n            </td>\r\n          </tr>\r\n          <tr>\r\n            <td>Article</td>\r\n            <td><input class=\"form-control\" formControlName=\"article\">\r\n              <label *ngIf=\"prodPlanningForm.get('article').invalid && processValidation\" [ngClass]=\"'error'\"> Article\r\n                est\r\n                requis. </label>\r\n            </td>\r\n          </tr>\r\n        </div>\r\n        <div class=\"col-xs-6\">\r\n            <tr>\r\n                <td>Numéro de Commande</td>\r\n                <td><input class=\"form-control\" formControlName=\"commandNumber\">\r\n                  <label *ngIf=\"prodPlanningForm.get('commandNumber').invalid && processValidation\" [ngClass]=\"'error'\">\r\n                    Numéro de commande est\r\n                    requis. </label>\r\n                </td>\r\n              </tr>\r\n              <tr>\r\n                <td>Responsable Chaine</td>\r\n                <td><input class=\"form-control\" formControlName=\"chainResponsible\">\r\n                  <label *ngIf=\"prodPlanningForm.get('chainResponsible').invalid && processValidation\" [ngClass]=\"'error'\">\r\n                    Responsable chaine est\r\n                    requis. </label>\r\n                </td>\r\n              </tr>\r\n            <tr>\r\n                <td>Quantité</td>\r\n                <td><input class=\"form-control\" formControlName=\"quantity\">\r\n                  <label *ngIf=\"prodPlanningForm.get('quantity').invalid && processValidation\" [ngClass]=\"'error'\">\r\n                    Quantité est\r\n                    requis. </label>\r\n                </td>\r\n              </tr>\r\n          <tr>\r\n            <td>Rendement</td>\r\n            <td><input class=\"form-control\" formControlName=\"efficiency\">\r\n              <label *ngIf=\"prodPlanningForm.get('efficiency').invalid && processValidation\" [ngClass]=\"'error'\">\r\n                Rendement\r\n                est\r\n                requis. </label>\r\n            </td>\r\n          </tr>\r\n          <tr>\r\n            <td>Effectif</td>\r\n            <td><input class=\"form-control\" formControlName=\"effective\">\r\n              <label *ngIf=\"prodPlanningForm.get('effective').invalid && processValidation\" [ngClass]=\"'error'\">\r\n                Effectif\r\n                est\r\n                requis. </label>\r\n            </td>\r\n          </tr>\r\n          <tr>\r\n            <td>Taux d'absentéisme</td>\r\n            <td><input class=\"form-control\" formControlName=\"absenteeismRate\">\r\n              <label *ngIf=\"prodPlanningForm.get('absenteeismRate').invalid && processValidation\" [ngClass]=\"'error'\">\r\n                Taux\r\n                d'absentéisme est\r\n                requis. </label>\r\n            </td>\r\n          </tr>\r\n          <tr>\r\n            <td colspan=\"2\">\r\n              <button *ngIf=\"!prodPlanningIdToUpdate\">Ajouter</button>\r\n              <button *ngIf=\"prodPlanningIdToUpdate\">Modifier</button>\r\n              <button (click)=\"backToCreateProdPlanning()\" *ngIf=\"prodPlanningIdToUpdate\">Retourner</button>\r\n            </td>\r\n          </tr>\r\n        </div>\r\n      </div>\r\n    </table>\r\n  </form>\r\n\r\n  <br />\r\n  <div *ngIf=\"statusCode; else processing\">\r\n    <div *ngIf=\"statusCode === 201\" [ngClass]=\"'success'\">\r\n      Planning production ajouté.\r\n    </div>\r\n    <div *ngIf=\"statusCode === 409\" [ngClass]=\"'success'\">\r\n      Planning production déjà ajouté.\r\n    </div>\r\n    <div *ngIf=\"statusCode === 200\" [ngClass]=\"'success'\">\r\n      Planning production modifié.\r\n    </div>\r\n    <div *ngIf=\"statusCode === 204\" [ngClass]=\"'success'\">\r\n      Planning production supprimé.\r\n    </div>\r\n    <div *ngIf=\"statusCode === 500\" [ngClass]=\"'error'\">\r\n      Erreur Serveur.\r\n    </div>\r\n  </div>\r\n  <button (click)=\"resetForm()\">Reset</button>\r\n  <ng-template #processing>\r\n    <img *ngIf=\"requestProcessing\" src=\"assets/images/loading.gif\">\r\n  </ng-template>\r\n</div>\r\n\r\n<div *ngIf=\"prodPlannings != null && prodPlannings.length > 0\">\r\n<h3>Détails du planning production</h3>\r\n\r\n<div alt=\"Max-width 100%\">\r\n\r\n  <mat-table [dataSource]=\"dataSource\">\r\n    <ng-container matColumnDef=\"Date Export\">\r\n      <mat-header-cell *matHeaderCellDef> Date Export </mat-header-cell>\r\n      <mat-cell *matCellDef=\"let prodPlanning\"> {{prodPlanning.exportDate | date: 'dd/MM/yyyy'}} </mat-cell>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"Semaine\">\r\n      <mat-header-cell *matHeaderCellDef> Semaine </mat-header-cell>\r\n      <mat-cell *matCellDef=\"let prodPlanning\"> {{prodPlanning.planningWeek}} </mat-cell>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"Client\">\r\n      <mat-header-cell *matHeaderCellDef> Client </mat-header-cell>\r\n      <mat-cell *matCellDef=\"let prodPlanning\"> {{prodPlanning.client}} </mat-cell>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"Modèle\">\r\n      <mat-header-cell *matHeaderCellDef> Modèle </mat-header-cell>\r\n      <mat-cell *matCellDef=\"let prodPlanning\"> {{prodPlanning.model}} </mat-cell>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"Article\">\r\n      <mat-header-cell *matHeaderCellDef> Article </mat-header-cell>\r\n      <mat-cell *matCellDef=\"let prodPlanning\"> {{prodPlanning.article}} </mat-cell>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"Numéro Commande\">\r\n        <mat-header-cell *matHeaderCellDef> Numéro Commande </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let prodPlanning\"> {{prodPlanning.commandNumber}} </mat-cell>\r\n      </ng-container>\r\n\r\n      <ng-container matColumnDef=\"Resp Chaine\">\r\n        <mat-header-cell *matHeaderCellDef> Resp Chaine </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let prodPlanning\"> {{prodPlanning.chainResponsible}} </mat-cell>\r\n      </ng-container>\r\n\r\n    <ng-container matColumnDef=\"Quantité\">\r\n      <mat-header-cell *matHeaderCellDef> Quantité </mat-header-cell>\r\n      <mat-cell *matCellDef=\"let prodPlanning\"> {{prodPlanning.quantity}} </mat-cell>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"Rendement\">\r\n      <mat-header-cell *matHeaderCellDef> Rendement </mat-header-cell>\r\n      <mat-cell *matCellDef=\"let prodPlanning\"> {{prodPlanning.efficiency}} </mat-cell>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"Effectif\">\r\n      <mat-header-cell *matHeaderCellDef> Effectif </mat-header-cell>\r\n      <mat-cell *matCellDef=\"let prodPlanning\"> {{prodPlanning.effective}} </mat-cell>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"Taux Absentéisme\">\r\n      <mat-header-cell *matHeaderCellDef> Taux Absentéisme </mat-header-cell>\r\n      <mat-cell *matCellDef=\"let prodPlanning\"> {{prodPlanning.absenteeismRate}} </mat-cell>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"edit\">\r\n      <mat-header-cell *matHeaderCellDef> edit </mat-header-cell>\r\n      <mat-cell *matCellDef=\"let order\"> <button mat-button (click)=\"loadProdPlanningToEdit(order.id)\">Edit</button> </mat-cell>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"delete\">\r\n      <mat-header-cell *matHeaderCellDef> delete </mat-header-cell>\r\n      <mat-cell *matCellDef=\"let order\"> <button mat-button (click)=\"deleteProdPlanning(order.id)\">Delete</button> </mat-cell>\r\n    </ng-container>\r\n\r\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\r\n    <mat-row *matRowDef=\"let order; columns: displayedColumns;\">\r\n    </mat-row>\r\n  </mat-table>\r\n\r\n  <mat-paginator #paginator [length]=\"dataSource.data.length\" [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\r\n</div>\r\n</div>\r\n\r\n<div>\r\n  <div class=\"d-inline col\">\r\n    <button (click)=\"exportAsXLSX()\">Télécharger le planning production</button>\r\n  </div>\r\n</div>\r\n<table class=\"table table-bordered\" #table>\r\n  <thead>\r\n    <tr>\r\n      <th scope=\"col\"></th>\r\n      <th scope=\"col\">Lundi</th>\r\n      <th scope=\"col\">Mardi</th>\r\n      <th scope=\"col\">Mercredi</th>\r\n      <th scope=\"col\">Jeudi</th>\r\n      <th scope=\"col\">Vendredi</th>\r\n      <th scope=\"col\">Samedi</th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr>\r\n      <th scope=\"row\">07:15-07:45</th>\r\n      <td>{{prodWeekWorkTable[0]}}</td>\r\n      <td>{{prodWeekWorkTable[17]}}</td>\r\n      <td>{{prodWeekWorkTable[34]}}</td>\r\n      <td>{{prodWeekWorkTable[51]}}</td>\r\n      <td>{{prodWeekWorkTable[68]}}</td>\r\n      <td>{{prodWeekWorkTable[85]}}</td>\r\n    </tr>\r\n    <tr>\r\n      <th scope=\"row\">07:45-08:15</th>\r\n      <td>{{prodWeekWorkTable[1]}}</td>\r\n      <td>{{prodWeekWorkTable[18]}}</td>\r\n      <td>{{prodWeekWorkTable[35]}}</td>\r\n      <td>{{prodWeekWorkTable[52]}}</td>\r\n      <td>{{prodWeekWorkTable[69]}}</td>\r\n      <td>{{prodWeekWorkTable[86]}}</td>\r\n    </tr>\r\n    <tr>\r\n      <th scope=\"row\">08:15-08:45</th>\r\n      <td>{{prodWeekWorkTable[2]}}</td>\r\n      <td>{{prodWeekWorkTable[19]}}</td>\r\n      <td>{{prodWeekWorkTable[36]}}</td>\r\n      <td>{{prodWeekWorkTable[53]}}</td>\r\n      <td>{{prodWeekWorkTable[70]}}</td>\r\n      <td>{{prodWeekWorkTable[87]}}</td>\r\n    </tr>\r\n    <tr>\r\n      <th scope=\"row\">08:45-09:15</th>\r\n      <td>{{prodWeekWorkTable[3]}}</td>\r\n      <td>{{prodWeekWorkTable[20]}}</td>\r\n      <td>{{prodWeekWorkTable[37]}}</td>\r\n      <td>{{prodWeekWorkTable[54]}}</td>\r\n      <td>{{prodWeekWorkTable[71]}}</td>\r\n      <td>{{prodWeekWorkTable[88]}}</td>\r\n    </tr>\r\n    <tr>\r\n      <th scope=\"row\">09:15-09:45</th>\r\n      <td>{{prodWeekWorkTable[4]}}</td>\r\n      <td>{{prodWeekWorkTable[21]}}</td>\r\n      <td>{{prodWeekWorkTable[38]}}</td>\r\n      <td>{{prodWeekWorkTable[55]}}</td>\r\n      <td>{{prodWeekWorkTable[72]}}</td>\r\n      <td>{{prodWeekWorkTable[89]}}</td>\r\n    </tr>\r\n    <tr>\r\n      <th scope=\"row\">09:45-10:15</th>\r\n      <td>{{prodWeekWorkTable[5]}}</td>\r\n      <td>{{prodWeekWorkTable[22]}}</td>\r\n      <td>{{prodWeekWorkTable[39]}}</td>\r\n      <td>{{prodWeekWorkTable[56]}}</td>\r\n      <td>{{prodWeekWorkTable[73]}}</td>\r\n      <td>{{prodWeekWorkTable[90]}}</td>\r\n    </tr>\r\n    <tr>\r\n      <th scope=\"row\">10:15-10:45</th>\r\n      <td>{{prodWeekWorkTable[6]}}</td>\r\n      <td>{{prodWeekWorkTable[23]}}</td>\r\n      <td>{{prodWeekWorkTable[40]}}</td>\r\n      <td>{{prodWeekWorkTable[57]}}</td>\r\n      <td>{{prodWeekWorkTable[74]}}</td>\r\n      <td>{{prodWeekWorkTable[91]}}</td>\r\n    </tr>\r\n    <tr>\r\n      <th scope=\"row\">10:45-11:15</th>\r\n      <td>{{prodWeekWorkTable[7]}}</td>\r\n      <td>{{prodWeekWorkTable[24]}}</td>\r\n      <td>{{prodWeekWorkTable[41]}}</td>\r\n      <td>{{prodWeekWorkTable[58]}}</td>\r\n      <td>{{prodWeekWorkTable[75]}}</td>\r\n      <td>{{prodWeekWorkTable[92]}}</td>\r\n    </tr>\r\n    <tr>\r\n      <th scope=\"row\">11:15-11:45</th>\r\n      <td>{{prodWeekWorkTable[8]}}</td>\r\n      <td>{{prodWeekWorkTable[25]}}</td>\r\n      <td>{{prodWeekWorkTable[42]}}</td>\r\n      <td>{{prodWeekWorkTable[59]}}</td>\r\n      <td>{{prodWeekWorkTable[76]}}</td>\r\n      <td>{{prodWeekWorkTable[93]}}</td>\r\n    </tr>\r\n    <tr>\r\n      <th scope=\"row\"></th>\r\n      <td></td>\r\n      <td></td>\r\n      <td></td>\r\n      <td></td>\r\n      <td></td>\r\n      <td>{{prodWeekWorkTable[94]}}</td>\r\n    </tr>\r\n    <tr>\r\n      <th scope=\"row\">12:30-13:00</th>\r\n      <td>{{prodWeekWorkTable[9]}}</td>\r\n      <td>{{prodWeekWorkTable[26]}}</td>\r\n      <td>{{prodWeekWorkTable[43]}}</td>\r\n      <td>{{prodWeekWorkTable[60]}}</td>\r\n      <td>{{prodWeekWorkTable[77]}}</td>\r\n      <td></td>\r\n    </tr>\r\n    <tr>\r\n      <th scope=\"row\">13:00-13:30</th>\r\n      <td>{{prodWeekWorkTable[10]}}</td>\r\n      <td>{{prodWeekWorkTable[27]}}</td>\r\n      <td>{{prodWeekWorkTable[44]}}</td>\r\n      <td>{{prodWeekWorkTable[61]}}</td>\r\n      <td>{{prodWeekWorkTable[78]}}</td>\r\n      <td></td>\r\n    </tr>\r\n    <tr>\r\n      <th scope=\"row\">13:30-14:00</th>\r\n      <td>{{prodWeekWorkTable[11]}}</td>\r\n      <td>{{prodWeekWorkTable[28]}}</td>\r\n      <td>{{prodWeekWorkTable[45]}}</td>\r\n      <td>{{prodWeekWorkTable[62]}}</td>\r\n      <td>{{prodWeekWorkTable[79]}}</td>\r\n      <td></td>\r\n    </tr>\r\n    <tr>\r\n      <th scope=\"row\">14:00-14:30</th>\r\n      <td>{{prodWeekWorkTable[12]}}</td>\r\n      <td>{{prodWeekWorkTable[29]}}</td>\r\n      <td>{{prodWeekWorkTable[46]}}</td>\r\n      <td>{{prodWeekWorkTable[63]}}</td>\r\n      <td>{{prodWeekWorkTable[80]}}</td>\r\n      <td></td>\r\n    </tr>\r\n    <tr>\r\n      <th scope=\"row\">14:30-15:00</th>\r\n      <td>{{prodWeekWorkTable[13]}}</td>\r\n      <td>{{prodWeekWorkTable[30]}}</td>\r\n      <td>{{prodWeekWorkTable[47]}}</td>\r\n      <td>{{prodWeekWorkTable[64]}}</td>\r\n      <td>{{prodWeekWorkTable[81]}}</td>\r\n      <td></td>\r\n    </tr>\r\n    <tr>\r\n      <th scope=\"row\">15:00-15:30</th>\r\n      <td>{{prodWeekWorkTable[14]}}</td>\r\n      <td>{{prodWeekWorkTable[31]}}</td>\r\n      <td>{{prodWeekWorkTable[48]}}</td>\r\n      <td>{{prodWeekWorkTable[65]}}</td>\r\n      <td>{{prodWeekWorkTable[82]}}</td>\r\n      <td></td>\r\n    </tr>\r\n    <tr>\r\n      <th scope=\"row\">15:30-16:00</th>\r\n      <td>{{prodWeekWorkTable[15]}}</td>\r\n      <td>{{prodWeekWorkTable[32]}}</td>\r\n      <td>{{prodWeekWorkTable[49]}}</td>\r\n      <td>{{prodWeekWorkTable[66]}}</td>\r\n      <td>{{prodWeekWorkTable[83]}}</td>\r\n      <td></td>\r\n    </tr>\r\n    <tr>\r\n      <th scope=\"row\">16:00-16:30</th>\r\n      <td>{{prodWeekWorkTable[16]}}</td>\r\n      <td>{{prodWeekWorkTable[33]}}</td>\r\n      <td>{{prodWeekWorkTable[50]}}</td>\r\n      <td>{{prodWeekWorkTable[67]}}</td>\r\n      <td>{{prodWeekWorkTable[84]}}</td>\r\n      <td></td>\r\n    </tr>\r\n    <tr>\r\n      <th scope=\"row\"></th>\r\n      <td scope=\"col\" colspan=\"7\"><span *ngIf=\"prodNumberOfNextWeekTasks > 0\">Vous avez {{prodNumberOfNextWeekTasks}} tâches pour la semaine prochaine</span></td>\r\n    </tr>\r\n  </tbody>\r\n</table>\r\n\r\n"
+
+/***/ }),
+
+/***/ "./src/app/production-planning/production-planning.component.ts":
+/*!**********************************************************************!*\
+  !*** ./src/app/production-planning/production-planning.component.ts ***!
+  \**********************************************************************/
+/*! exports provided: ProductionPlanningComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductionPlanningComponent", function() { return ProductionPlanningComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _excel_excel_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../excel/excel.service */ "./src/app/excel/excel.service.ts");
+/* harmony import */ var rxjs_add_operator_catch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/add/operator/catch */ "./node_modules/rxjs-compat/_esm5/add/operator/catch.js");
+/* harmony import */ var rxjs_add_observable_throw__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/add/observable/throw */ "./node_modules/rxjs-compat/_esm5/add/observable/throw.js");
+/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! xlsx */ "./node_modules/xlsx/xlsx.js");
+/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(xlsx__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _production_planning_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./production-planning.service */ "./src/app/production-planning/production-planning.service.ts");
+
+
+
+
+
+
+
+
+
+var ProductionPlanningComponent = /** @class */ (function () {
+    // defaultExportDate: Date;
+    function ProductionPlanningComponent(prodPlanningService, formBuilder, excelService) {
+        this.prodPlanningService = prodPlanningService;
+        this.formBuilder = formBuilder;
+        this.excelService = excelService;
+        this.displayedColumns = ['Date Export', 'Semaine', 'Client', 'Modèle', 'Article', 'Numéro Commande', 'Resp Chaine', 'Quantité', 'Rendement', 'Effectif', 'Taux Absentéisme', 'edit', 'delete'];
+        this.prodPlannings = [];
+        this.requestProcessing = false;
+        this.prodPlanningIdToUpdate = null;
+        this.processValidation = false;
+        this.prodWeekWorkTable = [];
+        this.prodNextWeekTasksList = [];
+        this.prodNumberOfNextWeekTasks = 0;
+        this.prodPlanningForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
+            exportDate: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            planningWeek: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            client: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            model: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            article: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            commandNumber: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            chainResponsible: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            quantity: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            efficiency: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            effective: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            absenteeismRate: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required)
+        });
+    }
+    ProductionPlanningComponent.prototype.ngOnInit = function () {
+        this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatTableDataSource"](this.prodPlannings);
+        this.dataSource.data = [];
+        this.getAllProdPlannings();
+        this.getAllProdWeekWorks();
+    };
+    ProductionPlanningComponent.prototype.onProdPlanningFormSubmit = function () {
+        var _this = this;
+        this.processValidation = true;
+        if (this.prodPlanningForm.invalid) {
+            return;
+        }
+        this.preProcessConfigurations();
+        var prodPlanning = this.prodPlanningForm.value;
+        if (this.prodPlanningIdToUpdate == null) {
+            this.prodPlanningService.createProdPlanning(prodPlanning)
+                .subscribe(function (successCode) {
+                _this.statusCode = successCode;
+                _this.backToCreateProdPlanning();
+                setTimeout(function () {
+                    _this.getAllProdPlannings();
+                    _this.getAllProdWeekWorks();
+                }, 1000);
+            }, function (errorCode) { return _this.statusCode = errorCode; });
+        }
+        else {
+            prodPlanning.id = this.prodPlanningIdToUpdate;
+            this.prodPlanningService.updateProdPlanning(prodPlanning)
+                .subscribe(function (successCode) {
+                _this.statusCode = successCode;
+                _this.getAllProdPlannings();
+                _this.getAllProdWeekWorks();
+                _this.backToCreateProdPlanning();
+                setTimeout(function () {
+                    _this.getAllProdPlannings();
+                    _this.getAllProdWeekWorks();
+                }, 1000);
+            }, function (errorCode) { return _this.statusCode = errorCode; });
+        }
+    };
+    ProductionPlanningComponent.prototype.resetForm = function () {
+        this.prodPlanningForm.reset();
+        for (var i in this.prodPlanningForm.controls) {
+            this.prodPlanningForm.controls[i].setErrors(null);
+        }
+    };
+    ProductionPlanningComponent.prototype.backToCreateProdPlanning = function () {
+        this.processValidation = false;
+        this.prodPlanningIdToUpdate = null;
+    };
+    ProductionPlanningComponent.prototype.preProcessConfigurations = function () {
+        this.statusCode = null;
+        this.requestProcessing = true;
+    };
+    ProductionPlanningComponent.prototype.getAllProdPlannings = function () {
+        var _this = this;
+        this.prodPlanningService.getAllProdPlannings()
+            .subscribe(function (data) {
+            _this.prodPlannings = data;
+            _this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatTableDataSource"](_this.prodPlannings);
+            _this.dataSource.paginator = _this.paginator;
+        }, function (errorCode) { return _this.statusCode = errorCode; });
+    };
+    ProductionPlanningComponent.prototype.getAllProdWeekWorks = function () {
+        var _this = this;
+        this.prodPlanningService.getAllProdWeekWorks()
+            .subscribe(function (data) {
+            _this.prodWeekWorks = data;
+            if (_this.prodWeekWorks.prodNextWeekTasks == null || _this.prodWeekWorks.prodNextWeekTasks == undefined) {
+                _this.prodWeekWorks.prodNextWeekTasks = [];
+            }
+            if (_this.prodWeekWorks.prodCurrentWeekTasks == null || _this.prodWeekWorks.prodCurrentWeekTasks == undefined) {
+                _this.prodWeekWorks.prodCurrentWeekTasks = [];
+            }
+            if (_this.prodWeekWorks.prodCurrentWeekTasks.length == 95 && _this.prodWeekWorks.prodNextWeekTasks.length > 0) {
+                _this.prodWeekWorkTable = _this.prodWeekWorks.prodCurrentWeekTasks.concat(_this.prodWeekWorks.prodNextWeekTasks);
+                _this.prodNumberOfNextWeekTasks = _this.prodWeekWorks.prodNextWeekTasks.length;
+            }
+            else {
+                _this.prodWeekWorkTable = _this.prodWeekWorks.prodCurrentWeekTasks.slice();
+                _this.prodNumberOfNextWeekTasks = 0;
+            }
+        }, function (errorCode) { return _this.statusCode = errorCode; });
+    };
+    ProductionPlanningComponent.prototype.loadProdPlanningToEdit = function (prodPlanningId) {
+        var _this = this;
+        this.preProcessConfigurations();
+        this.prodPlanningService.getProdPlanningById(prodPlanningId)
+            .subscribe(function (prodPlanning) {
+            _this.prodPlanningIdToUpdate = prodPlanning.id;
+            _this.prodPlanningForm.setValue({
+                exportDate: prodPlanning.exportDate.toString().slice(0, 10),
+                planningWeek: prodPlanning.planningWeek,
+                client: prodPlanning.client,
+                model: prodPlanning.model,
+                article: prodPlanning.article,
+                commandNumber: prodPlanning.commandNumber,
+                chainResponsible: prodPlanning.chainResponsible,
+                quantity: prodPlanning.quantity,
+                efficiency: prodPlanning.efficiency,
+                effective: prodPlanning.effective,
+                absenteeismRate: prodPlanning.absenteeismRate
+            });
+            _this.processValidation = true;
+            _this.requestProcessing = false;
+        }, function (errorCode) { return _this.statusCode = errorCode; });
+    };
+    ProductionPlanningComponent.prototype.deleteProdPlanning = function (prodPlanningId) {
+        var _this = this;
+        this.preProcessConfigurations();
+        this.prodPlanningService.deleteProdPlanningById(prodPlanningId)
+            .subscribe(function (successCode) {
+            _this.statusCode = successCode;
+            _this.statusCode = 204;
+            _this.backToCreateProdPlanning();
+            setTimeout(function () {
+                _this.getAllProdPlannings();
+                _this.getAllProdWeekWorks();
+            }, 1000);
+        }, function (errorCode) { return _this.statusCode = errorCode; });
+    };
+    ProductionPlanningComponent.prototype.searchProdPlannings = function (criteria) {
+        var _this = this;
+        this.prodPlanningService.searchProdPlannings(criteria)
+            .subscribe(function (data) { return _this.prodPlannings = data; }, function (errorCode) { return _this.statusCode = errorCode; });
+    };
+    ProductionPlanningComponent.prototype.exportAsXLSX = function () {
+        this.getAllProdWeekWorks();
+        this.getAllProdPlannings();
+        var ws = xlsx__WEBPACK_IMPORTED_MODULE_6__["utils"].table_to_sheet(this.table.nativeElement);
+        var wb = xlsx__WEBPACK_IMPORTED_MODULE_6__["utils"].book_new();
+        xlsx__WEBPACK_IMPORTED_MODULE_6__["utils"].book_append_sheet(wb, ws, 'Sheet1');
+        xlsx__WEBPACK_IMPORTED_MODULE_6__["writeFile"](wb, 'PlanningProduction - ' + new Date().toString().slice(0, 24) + '.xlsx');
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_7__["MatPaginator"]),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatPaginator"])
+    ], ProductionPlanningComponent.prototype, "paginator", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('table'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], ProductionPlanningComponent.prototype, "table", void 0);
+    ProductionPlanningComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-production-planning',
+            template: __webpack_require__(/*! ./production-planning.component.html */ "./src/app/production-planning/production-planning.component.html")
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_production_planning_service__WEBPACK_IMPORTED_MODULE_8__["ProductionPlanningService"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
+            _excel_excel_service__WEBPACK_IMPORTED_MODULE_3__["ExcelService"]])
+    ], ProductionPlanningComponent);
+    return ProductionPlanningComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/production-planning/production-planning.service.ts":
+/*!********************************************************************!*\
+  !*** ./src/app/production-planning/production-planning.service.ts ***!
+  \********************************************************************/
+/*! exports provided: ProductionPlanningService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductionPlanningService", function() { return ProductionPlanningService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm5/add/operator/map.js");
+/* harmony import */ var rxjs_add_operator_catch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/add/operator/catch */ "./node_modules/rxjs-compat/_esm5/add/operator/catch.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
+
+
+// import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
+
+
+// import { map, filter, switchMap } from 'rxjs/operators';
+
+
+
+var ProductionPlanningService = /** @class */ (function () {
+    //Create constructor to get Http instance
+    function ProductionPlanningService(http, httpClient) {
+        this.http = http;
+        this.httpClient = httpClient;
+        //URL for CRUD operations
+        this.prodPlanningUrl = "http://localhost:8080/production_planning";
+        this.contentTypeHeader = new _angular_http__WEBPACK_IMPORTED_MODULE_6__["Headers"]({ 'Content-Type': 'application/json' });
+        this.options = new _angular_http__WEBPACK_IMPORTED_MODULE_6__["RequestOptions"]({ headers: this.contentTypeHeader });
+    }
+    ProductionPlanningService.prototype.handleError = function (error) {
+        console.error(error.message || error);
+        return rxjs__WEBPACK_IMPORTED_MODULE_2__["Observable"].throw(error.status);
+    };
+    ProductionPlanningService.prototype.createProdPlanning = function (prodPlanning) {
+        return this.http.post(this.prodPlanningUrl, prodPlanning, this.options)
+            .map(function (success) { return success.status; })
+            .catch(this.handleError);
+    };
+    ProductionPlanningService.prototype.getAllProdPlannings = function () {
+        return this.http.get(this.prodPlanningUrl)
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    ProductionPlanningService.prototype.getAllProdWeekWorks = function () {
+        return this.http.get(this.prodPlanningUrl + "/prod_weekwork")
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    ProductionPlanningService.prototype.extractData = function (res) {
+        var body = res.json();
+        return body;
+    };
+    ProductionPlanningService.prototype.updateProdPlanning = function (prodPlanning) {
+        return this.http.put(this.prodPlanningUrl, prodPlanning, this.options)
+            .map(function (success) { return success.status; })
+            .catch(this.handleError);
+    };
+    ProductionPlanningService.prototype.getProdPlanningById = function (prodPlanningId) {
+        console.log(this.prodPlanningUrl + "/" + prodPlanningId);
+        return this.http.get(this.prodPlanningUrl + "/" + prodPlanningId, this.options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    ProductionPlanningService.prototype.deleteProdPlanningById = function (prodPlanningId) {
+        return this.http.delete(this.prodPlanningUrl + "/" + prodPlanningId, this.options)
+            .map(function (success) { return success.status; })
+            .catch(this.handleError);
+    };
+    ProductionPlanningService.prototype.searchProdPlannings = function (criteria) {
+        return this.http.post(this.prodPlanningUrl + "/search", criteria, this.options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    ProductionPlanningService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_http__WEBPACK_IMPORTED_MODULE_6__["Http"], _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClient"]])
+    ], ProductionPlanningService);
+    return ProductionPlanningService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/success/success.component.html":
 /*!************************************************!*\
   !*** ./src/app/success/success.component.html ***!
@@ -1253,7 +1439,7 @@ var OrderService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<h1>Production</h1>\r\n\r\n<app-navbar></app-navbar>\r\n\r\n<div>\r\n  <div class=\"d-inline col py-3 px-md-5\">\r\n      <button class=\"btn btn-primary btn-lg\" (click)=\"goToCutPlanning()\">Planning Coupe</button>\r\n  </div>\r\n  <div class=\"d-inline col py-3 px-md-5\">\r\n      <button class=\"btn btn-primary btn-lg\">Planning Production</button>\r\n  </div>\r\n  <div class=\"d-inline col py-3 px-md-5\">\r\n      <button class=\"btn btn-primary btn-lg\">Rendement</button>\r\n  </div>\r\n</div>"
+module.exports = "\r\n<h1>Production</h1>\r\n\r\n<app-navbar></app-navbar>\r\n\r\n<div>\r\n  <div class=\"d-inline col py-3 px-md-5\">\r\n      <button class=\"btn btn-primary btn-lg\" (click)=\"goToCutPlanning()\">Planning Coupe</button>\r\n  </div>\r\n  <div class=\"d-inline col py-3 px-md-5\">\r\n      <button class=\"btn btn-primary btn-lg\" (click)=\"goToProdPlanning()\">Planning Production</button>\r\n  </div>\r\n  <div class=\"d-inline col py-3 px-md-5\">\r\n      <button class=\"btn btn-primary btn-lg\">Rendement</button>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -1281,6 +1467,9 @@ var SuccessComponent = /** @class */ (function () {
     };
     SuccessComponent.prototype.goToCutPlanning = function () {
         this.router.navigateByUrl('/cut_planning');
+    };
+    SuccessComponent.prototype.goToProdPlanning = function () {
+        this.router.navigateByUrl('/production_planning');
     };
     SuccessComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
