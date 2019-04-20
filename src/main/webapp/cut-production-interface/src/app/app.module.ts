@@ -7,8 +7,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { MatTableModule, MatPaginatorModule } from '@angular/material';
-import { DataFileComponent } from './datafile/data.file.component';
-import { DataFileService } from './datafile/data.file.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
@@ -20,17 +18,19 @@ import { ExcelService } from './excel/excel.service';
 import { CutPlanningComponent } from './cut-planning/cut-planning.component';
 import { CutPlanningService } from './cut-planning/cut-planning.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProductionPlanningComponent } from './production-planning/production-planning.component';
+import { ProductionPlanningService } from './production-planning/production-planning.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     OrderComponent,
-    DataFileComponent,
     NavbarComponent,
     NotFoundComponent,
     LoginComponent,
     SuccessComponent,
-    CutPlanningComponent
+    CutPlanningComponent,
+    ProductionPlanningComponent
   ],
   imports: [
     BrowserModule,
@@ -45,10 +45,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   providers: [
     OrderService,
-    DataFileService,
     LoginService,
     ExcelService,
-    CutPlanningService
+    CutPlanningService,
+    ProductionPlanningService
   ],
   bootstrap: [AppComponent]
 })

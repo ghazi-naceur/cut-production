@@ -16,4 +16,7 @@ export class SuccessComponent implements OnInit {
     this.router.navigateByUrl('/cut_planning');
   }
 
+  goToProdPlanning() { 
+    this.router.navigateByUrl('/production_planning');
+  }
 }

@@ -1,9 +1,6 @@
 package com.cut.production.utils;
 
-import com.cut.production.entities.CutPlanning;
-import com.cut.production.entities.Order;
-import com.cut.production.entities.User;
-import com.cut.production.entities.WeekWork;
+import com.cut.production.entities.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +20,8 @@ public final class Matcher {
         MAPPER.put(Constants.USER_INDEX, User.class);
         MAPPER.put(Constants.CUT_PLANNING_INDEX, CutPlanning.class);
         MAPPER.put(Constants.WEEK_WORK_INDEX, WeekWork.class);
+        MAPPER.put(Constants.PRODUCTION_PLANNING_INDEX, ProductionPlanning.class);
+        MAPPER.put(Constants.PRODUCTION_WEEK_WORK_INDEX, ProdWeekWork.class);
         INVERTED_MAPPER = getInvertedMapper();
     }
 

@@ -6,13 +6,13 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
-import { CutPlanning } from './cut-planning';
-import { WeekWork } from './weekwork';
+import { ProductionPlanning } from './production-planning';
+import { ProdWeekWork } from './prodweekwork';
 
 @Injectable()
-export class CutPlanningService {
+export class ProductionPlanningService {
     //URL for CRUD operations
-    cutPlanningUrl = "http://localhost:8080/cut_planning";
+    prodPlanningUrl = "http://localhost:8080/production_planning";
 
     contentTypeHeader = new Headers({ 'Content-Type': 'application/json' });
     options = new RequestOptions({ headers: this.contentTypeHeader });
@@ -25,20 +25,20 @@ export class CutPlanningService {
         return Observable.throw(error.status);
     }
 
-    createCutPlanning(cutPlanning: CutPlanning): Observable<number> {
-        return this.http.post(this.cutPlanningUrl, cutPlanning, this.options)
+    createProdPlanning(prodPlanning: ProductionPlanning): Observable<number> {
+        return this.http.post(this.prodPlanningUrl, prodPlanning, this.options)
             .map(success => success.status)
             .catch(this.handleError);
     }
 
-    getAllCutPlannings(): Observable<CutPlanning[]> {
-        return this.http.get(this.cutPlanningUrl)
+    getAllProdPlannings(): Observable<ProductionPlanning[]> {
+        return this.http.get(this.prodPlanningUrl)
 		   		.map(this.extractData)
 		        .catch(this.handleError);
     }
 
-    getAllWeekWorks(): Observable<WeekWork> {
-        return this.http.get(this.cutPlanningUrl + "/weekwork")
+    getAllProdWeekWorks(): Observable<ProdWeekWork> {
+        return this.http.get(this.prodPlanningUrl + "/prod_weekwork")
 		   		.map(this.extractData)
 		        .catch(this.handleError);
     }
@@ -48,27 +48,27 @@ export class CutPlanningService {
         return body;
     }
 
-    updateCutPlanning(cutPlanning: CutPlanning):Observable<number> {
-        return this.http.put(this.cutPlanningUrl, cutPlanning, this.options)
+    updateProdPlanning(prodPlanning: ProductionPlanning):Observable<number> {
+        return this.http.put(this.prodPlanningUrl, prodPlanning, this.options)
                .map(success => success.status)
                .catch(this.handleError);
     }
 
-    getCutPlanningById(cutPlanningId: string): Observable<CutPlanning> {
-		console.log(this.cutPlanningUrl +"/"+ cutPlanningId);
-		return this.http.get(this.cutPlanningUrl +"/"+ cutPlanningId, this.options)
+    getProdPlanningById(prodPlanningId: string): Observable<ProductionPlanning> {
+		console.log(this.prodPlanningUrl +"/"+ prodPlanningId);
+		return this.http.get(this.prodPlanningUrl +"/"+ prodPlanningId, this.options)
 			   .map(this.extractData)
 			   .catch(this.handleError);
     }
 
-    deleteCutPlanningById(cutPlanningId: string): Observable<number> {
-		return this.http.delete(this.cutPlanningUrl +"/"+ cutPlanningId, this.options)
+    deleteProdPlanningById(prodPlanningId: string): Observable<number> {
+		return this.http.delete(this.prodPlanningUrl +"/"+ prodPlanningId, this.options)
 			   .map(success => success.status)
 			   .catch(this.handleError);
     }
 
-    searchCutPlannings(criteria: any): Observable<CutPlanning[]> {
-        return this.http.post(this.cutPlanningUrl+"/search", criteria, this.options)
+    searchProdPlannings(criteria: any): Observable<ProductionPlanning[]> {
+        return this.http.post(this.prodPlanningUrl+"/search", criteria, this.options)
             .map(this.extractData)
             .catch(this.handleError);
     }

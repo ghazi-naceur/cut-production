@@ -1,0 +1,408 @@
+<h3>Planning Production</h3>
+
+<app-navbar></app-navbar>
+
+<h1>Nouveau planning production</h1>
+<div>
+  <form class="container" [formGroup]="prodPlanningForm" (ngSubmit)="onProdPlanningFormSubmit()">
+    <table>
+      <div class="row">
+        <div class="col-xs-6">
+          <tr>
+            <td>Date d'export</td>
+            <td><input type="date" class="form-control" formControlName="exportDate">
+              <label *ngIf="prodPlanningForm.get('exportDate').invalid && processValidation" [ngClass]="'error'"> Date
+                d'export est
+                requis. </label>
+            </td>
+          </tr>
+          <tr>
+            <td>Semaine</td>
+            <td><input class="form-control" formControlName="planningWeek">
+              <label *ngIf="prodPlanningForm.get('planningWeek').invalid && processValidation" [ngClass]="'error'">
+                Semaine
+                est
+                requis. </label>
+            </td>
+          </tr>
+          <tr>
+            <td>Client</td>
+            <td><input class="form-control" formControlName="client">
+              <label *ngIf="prodPlanningForm.get('client').invalid && processValidation" [ngClass]="'error'"> Client
+                est
+                requis. </label>
+            </td>
+          </tr>
+          <tr>
+          <tr>
+            <td>Modèle</td>
+            <td><input class="form-control" formControlName="model">
+              <label *ngIf="prodPlanningForm.get('model').invalid && processValidation" [ngClass]="'error'"> Modèle
+                est
+                requis. </label>
+            </td>
+          </tr>
+          <tr>
+            <td>Article</td>
+            <td><input class="form-control" formControlName="article">
+              <label *ngIf="prodPlanningForm.get('article').invalid && processValidation" [ngClass]="'error'"> Article
+                est
+                requis. </label>
+            </td>
+          </tr>
+        </div>
+        <div class="col-xs-6">
+            <tr>
+                <td>Numéro de Commande</td>
+                <td><input class="form-control" formControlName="commandNumber">
+                  <label *ngIf="prodPlanningForm.get('commandNumber').invalid && processValidation" [ngClass]="'error'">
+                    Numéro de commande est
+                    requis. </label>
+                </td>
+              </tr>
+              <tr>
+                <td>Responsable Chaine</td>
+                <td><input class="form-control" formControlName="chainResponsible">
+                  <label *ngIf="prodPlanningForm.get('chainResponsible').invalid && processValidation" [ngClass]="'error'">
+                    Responsable chaine est
+                    requis. </label>
+                </td>
+              </tr>
+            <tr>
+                <td>Quantité</td>
+                <td><input class="form-control" formControlName="quantity">
+                  <label *ngIf="prodPlanningForm.get('quantity').invalid && processValidation" [ngClass]="'error'">
+                    Quantité est
+                    requis. </label>
+                </td>
+              </tr>
+          <tr>
+            <td>Rendement</td>
+            <td><input class="form-control" formControlName="efficiency">
+              <label *ngIf="prodPlanningForm.get('efficiency').invalid && processValidation" [ngClass]="'error'">
+                Rendement
+                est
+                requis. </label>
+            </td>
+          </tr>
+          <tr>
+            <td>Effectif</td>
+            <td><input class="form-control" formControlName="effective">
+              <label *ngIf="prodPlanningForm.get('effective').invalid && processValidation" [ngClass]="'error'">
+                Effectif
+                est
+                requis. </label>
+            </td>
+          </tr>
+          <tr>
+            <td>Taux d'absentéisme</td>
+            <td><input class="form-control" formControlName="absenteeismRate">
+              <label *ngIf="prodPlanningForm.get('absenteeismRate').invalid && processValidation" [ngClass]="'error'">
+                Taux
+                d'absentéisme est
+                requis. </label>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <button *ngIf="!prodPlanningIdToUpdate">Ajouter</button>
+              <button *ngIf="prodPlanningIdToUpdate">Modifier</button>
+              <button (click)="backToCreateProdPlanning()" *ngIf="prodPlanningIdToUpdate">Retourner</button>
+            </td>
+          </tr>
+        </div>
+      </div>
+    </table>
+  </form>
+
+  <br />
+  <div *ngIf="statusCode; else processing">
+    <div *ngIf="statusCode === 201" [ngClass]="'success'">
+      Planning production ajouté.
+    </div>
+    <div *ngIf="statusCode === 409" [ngClass]="'success'">
+      Planning production déjà ajouté.
+    </div>
+    <div *ngIf="statusCode === 200" [ngClass]="'success'">
+      Planning production modifié.
+    </div>
+    <div *ngIf="statusCode === 204" [ngClass]="'success'">
+      Planning production supprimé.
+    </div>
+    <div *ngIf="statusCode === 500" [ngClass]="'error'">
+      Erreur Serveur.
+    </div>
+  </div>
+  <button (click)="resetForm()">Reset</button>
+  <ng-template #processing>
+    <img *ngIf="requestProcessing" src="assets/images/loading.gif">
+  </ng-template>
+</div>
+
+<div *ngIf="prodPlannings != null && prodPlannings.length > 0">
+<h3>Détails du planning production</h3>
+
+<div alt="Max-width 100%">
+
+  <mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="Date Export">
+      <mat-header-cell *matHeaderCellDef> Date Export </mat-header-cell>
+      <mat-cell *matCellDef="let prodPlanning"> {{prodPlanning.exportDate | date: 'dd/MM/yyyy'}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Semaine">
+      <mat-header-cell *matHeaderCellDef> Semaine </mat-header-cell>
+      <mat-cell *matCellDef="let prodPlanning"> {{prodPlanning.planningWeek}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Client">
+      <mat-header-cell *matHeaderCellDef> Client </mat-header-cell>
+      <mat-cell *matCellDef="let prodPlanning"> {{prodPlanning.client}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Modèle">
+      <mat-header-cell *matHeaderCellDef> Modèle </mat-header-cell>
+      <mat-cell *matCellDef="let prodPlanning"> {{prodPlanning.model}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Article">
+      <mat-header-cell *matHeaderCellDef> Article </mat-header-cell>
+      <mat-cell *matCellDef="let prodPlanning"> {{prodPlanning.article}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Numéro Commande">
+        <mat-header-cell *matHeaderCellDef> Numéro Commande </mat-header-cell>
+        <mat-cell *matCellDef="let prodPlanning"> {{prodPlanning.commandNumber}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Resp Chaine">
+        <mat-header-cell *matHeaderCellDef> Resp Chaine </mat-header-cell>
+        <mat-cell *matCellDef="let prodPlanning"> {{prodPlanning.chainResponsible}} </mat-cell>
+      </ng-container>
+
+    <ng-container matColumnDef="Quantité">
+      <mat-header-cell *matHeaderCellDef> Quantité </mat-header-cell>
+      <mat-cell *matCellDef="let prodPlanning"> {{prodPlanning.quantity}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Rendement">
+      <mat-header-cell *matHeaderCellDef> Rendement </mat-header-cell>
+      <mat-cell *matCellDef="let prodPlanning"> {{prodPlanning.efficiency}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Effectif">
+      <mat-header-cell *matHeaderCellDef> Effectif </mat-header-cell>
+      <mat-cell *matCellDef="let prodPlanning"> {{prodPlanning.effective}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Taux Absentéisme">
+      <mat-header-cell *matHeaderCellDef> Taux Absentéisme </mat-header-cell>
+      <mat-cell *matCellDef="let prodPlanning"> {{prodPlanning.absenteeismRate}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef> edit </mat-header-cell>
+      <mat-cell *matCellDef="let order"> <button mat-button (click)="loadProdPlanningToEdit(order.id)">Edit</button> </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef> delete </mat-header-cell>
+      <mat-cell *matCellDef="let order"> <button mat-button (click)="deleteProdPlanning(order.id)">Delete</button> </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let order; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator [length]="dataSource.data.length" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+</div>
+
+<div>
+  <div class="d-inline col">
+    <button (click)="exportAsXLSX()">Télécharger le planning production</button>
+  </div>
+</div>
+<table class="table table-bordered" #table>
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Lundi</th>
+      <th scope="col">Mardi</th>
+      <th scope="col">Mercredi</th>
+      <th scope="col">Jeudi</th>
+      <th scope="col">Vendredi</th>
+      <th scope="col">Samedi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">07:15-07:45</th>
+      <td>{{prodWeekWorkTable[0]}}</td>
+      <td>{{prodWeekWorkTable[17]}}</td>
+      <td>{{prodWeekWorkTable[34]}}</td>
+      <td>{{prodWeekWorkTable[51]}}</td>
+      <td>{{prodWeekWorkTable[68]}}</td>
+      <td>{{prodWeekWorkTable[85]}}</td>
+    </tr>
+    <tr>
+      <th scope="row">07:45-08:15</th>
+      <td>{{prodWeekWorkTable[1]}}</td>
+      <td>{{prodWeekWorkTable[18]}}</td>
+      <td>{{prodWeekWorkTable[35]}}</td>
+      <td>{{prodWeekWorkTable[52]}}</td>
+      <td>{{prodWeekWorkTable[69]}}</td>
+      <td>{{prodWeekWorkTable[86]}}</td>
+    </tr>
+    <tr>
+      <th scope="row">08:15-08:45</th>
+      <td>{{prodWeekWorkTable[2]}}</td>
+      <td>{{prodWeekWorkTable[19]}}</td>
+      <td>{{prodWeekWorkTable[36]}}</td>
+      <td>{{prodWeekWorkTable[53]}}</td>
+      <td>{{prodWeekWorkTable[70]}}</td>
+      <td>{{prodWeekWorkTable[87]}}</td>
+    </tr>
+    <tr>
+      <th scope="row">08:45-09:15</th>
+      <td>{{prodWeekWorkTable[3]}}</td>
+      <td>{{prodWeekWorkTable[20]}}</td>
+      <td>{{prodWeekWorkTable[37]}}</td>
+      <td>{{prodWeekWorkTable[54]}}</td>
+      <td>{{prodWeekWorkTable[71]}}</td>
+      <td>{{prodWeekWorkTable[88]}}</td>
+    </tr>
+    <tr>
+      <th scope="row">09:15-09:45</th>
+      <td>{{prodWeekWorkTable[4]}}</td>
+      <td>{{prodWeekWorkTable[21]}}</td>
+      <td>{{prodWeekWorkTable[38]}}</td>
+      <td>{{prodWeekWorkTable[55]}}</td>
+      <td>{{prodWeekWorkTable[72]}}</td>
+      <td>{{prodWeekWorkTable[89]}}</td>
+    </tr>
+    <tr>
+      <th scope="row">09:45-10:15</th>
+      <td>{{prodWeekWorkTable[5]}}</td>
+      <td>{{prodWeekWorkTable[22]}}</td>
+      <td>{{prodWeekWorkTable[39]}}</td>
+      <td>{{prodWeekWorkTable[56]}}</td>
+      <td>{{prodWeekWorkTable[73]}}</td>
+      <td>{{prodWeekWorkTable[90]}}</td>
+    </tr>
+    <tr>
+      <th scope="row">10:15-10:45</th>
+      <td>{{prodWeekWorkTable[6]}}</td>
+      <td>{{prodWeekWorkTable[23]}}</td>
+      <td>{{prodWeekWorkTable[40]}}</td>
+      <td>{{prodWeekWorkTable[57]}}</td>
+      <td>{{prodWeekWorkTable[74]}}</td>
+      <td>{{prodWeekWorkTable[91]}}</td>
+    </tr>
+    <tr>
+      <th scope="row">10:45-11:15</th>
+      <td>{{prodWeekWorkTable[7]}}</td>
+      <td>{{prodWeekWorkTable[24]}}</td>
+      <td>{{prodWeekWorkTable[41]}}</td>
+      <td>{{prodWeekWorkTable[58]}}</td>
+      <td>{{prodWeekWorkTable[75]}}</td>
+      <td>{{prodWeekWorkTable[92]}}</td>
+    </tr>
+    <tr>
+      <th scope="row">11:15-11:45</th>
+      <td>{{prodWeekWorkTable[8]}}</td>
+      <td>{{prodWeekWorkTable[25]}}</td>
+      <td>{{prodWeekWorkTable[42]}}</td>
+      <td>{{prodWeekWorkTable[59]}}</td>
+      <td>{{prodWeekWorkTable[76]}}</td>
+      <td>{{prodWeekWorkTable[93]}}</td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>{{prodWeekWorkTable[94]}}</td>
+    </tr>
+    <tr>
+      <th scope="row">12:30-13:00</th>
+      <td>{{prodWeekWorkTable[9]}}</td>
+      <td>{{prodWeekWorkTable[26]}}</td>
+      <td>{{prodWeekWorkTable[43]}}</td>
+      <td>{{prodWeekWorkTable[60]}}</td>
+      <td>{{prodWeekWorkTable[77]}}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">13:00-13:30</th>
+      <td>{{prodWeekWorkTable[10]}}</td>
+      <td>{{prodWeekWorkTable[27]}}</td>
+      <td>{{prodWeekWorkTable[44]}}</td>
+      <td>{{prodWeekWorkTable[61]}}</td>
+      <td>{{prodWeekWorkTable[78]}}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">13:30-14:00</th>
+      <td>{{prodWeekWorkTable[11]}}</td>
+      <td>{{prodWeekWorkTable[28]}}</td>
+      <td>{{prodWeekWorkTable[45]}}</td>
+      <td>{{prodWeekWorkTable[62]}}</td>
+      <td>{{prodWeekWorkTable[79]}}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">14:00-14:30</th>
+      <td>{{prodWeekWorkTable[12]}}</td>
+      <td>{{prodWeekWorkTable[29]}}</td>
+      <td>{{prodWeekWorkTable[46]}}</td>
+      <td>{{prodWeekWorkTable[63]}}</td>
+      <td>{{prodWeekWorkTable[80]}}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">14:30-15:00</th>
+      <td>{{prodWeekWorkTable[13]}}</td>
+      <td>{{prodWeekWorkTable[30]}}</td>
+      <td>{{prodWeekWorkTable[47]}}</td>
+      <td>{{prodWeekWorkTable[64]}}</td>
+      <td>{{prodWeekWorkTable[81]}}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">15:00-15:30</th>
+      <td>{{prodWeekWorkTable[14]}}</td>
+      <td>{{prodWeekWorkTable[31]}}</td>
+      <td>{{prodWeekWorkTable[48]}}</td>
+      <td>{{prodWeekWorkTable[65]}}</td>
+      <td>{{prodWeekWorkTable[82]}}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">15:30-16:00</th>
+      <td>{{prodWeekWorkTable[15]}}</td>
+      <td>{{prodWeekWorkTable[32]}}</td>
+      <td>{{prodWeekWorkTable[49]}}</td>
+      <td>{{prodWeekWorkTable[66]}}</td>
+      <td>{{prodWeekWorkTable[83]}}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">16:00-16:30</th>
+      <td>{{prodWeekWorkTable[16]}}</td>
+      <td>{{prodWeekWorkTable[33]}}</td>
+      <td>{{prodWeekWorkTable[50]}}</td>
+      <td>{{prodWeekWorkTable[67]}}</td>
+      <td>{{prodWeekWorkTable[84]}}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td scope="col" colspan="7"><span *ngIf="prodNumberOfNextWeekTasks > 0">Vous avez {{prodNumberOfNextWeekTasks}} tâches pour la semaine prochaine</span></td>
+    </tr>
+  </tbody>
+</table>
+

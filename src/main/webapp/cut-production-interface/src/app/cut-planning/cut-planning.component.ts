@@ -9,7 +9,6 @@ import 'rxjs/add/observable/throw';
 import { CutPlanning } from './cut-planning';
 import { CutPlanningService } from './cut-planning.service';
 import { WeekWork } from './weekwork';
-import { WeekWorkTable } from './weekworkcalendar';
 import * as XLSX from 'xlsx';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 
@@ -210,6 +209,6 @@ export class CutPlanningComponent implements OnInit {
         const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
         const wb: XLSX.WorkBook = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-        XLSX.writeFile(wb, 'Planning - '+new Date().toString().slice(0, 24)+'.xlsx');
+        XLSX.writeFile(wb, 'PlanningCoupe - '+new Date().toString().slice(0, 24)+'.xlsx');
     }
 }

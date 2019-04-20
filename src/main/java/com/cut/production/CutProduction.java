@@ -36,6 +36,8 @@ public class CutProduction implements CommandLineRunner {
         allowedIndices.add(Constants.USER_INDEX);
         allowedIndices.add(Constants.CUT_PLANNING_INDEX);
         allowedIndices.add(Constants.WEEK_WORK_INDEX);
+        allowedIndices.add(Constants.PRODUCTION_WEEK_WORK_INDEX);
+        allowedIndices.add(Constants.PRODUCTION_PLANNING_INDEX);
         List<String> currentIndices = monitor.getIndicesList();
 
         allowedIndices.forEach(index -> {
