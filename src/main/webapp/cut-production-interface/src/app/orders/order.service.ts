@@ -8,11 +8,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 
 import { Order } from './order';
+import { DataFiles } from '../datafile/DataFiles';
 
 @Injectable()
 export class OrderService {
     //URL for CRUD operations
     orderUrl = "http://localhost:8080/orders";
+    datafilesUrl = 'http://localhost:8080/datafile';
 
     contentTypeHeader = new Headers({ 'Content-Type': 'application/json' });
     options = new RequestOptions({ headers: this.contentTypeHeader });
@@ -23,6 +25,12 @@ export class OrderService {
     private handleError(error: Response | any) {
         console.error(error.message || error);
         return Observable.throw(error.status);
+    }
+
+    sendPath(dataFiles: DataFiles): Observable<string[]> {
+        return this.http.post(this.datafilesUrl, dataFiles, this.options)
+            .map(this.extractData)
+            .catch(this.handleError);
     }
 
     createOrder(order: Order): Observable<number> {

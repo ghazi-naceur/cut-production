@@ -25,6 +25,8 @@ export class OrderComponent implements OnInit, AfterViewInit {
     requestProcessing = false;
     orderIdToUpdate = null;
     processValidation = false;
+    providedInput: string;
+    files: string[] = [];
 
     displayedColumns = ['Client', 'Modèle', 'Article', 'Min Confection', 'Min Coupe', 'edit', 'delete'];
 
@@ -32,6 +34,10 @@ export class OrderComponent implements OnInit, AfterViewInit {
         private formBuilder: FormBuilder,
         private excelService: ExcelService) {
     }
+
+    dataFilesForm = new FormGroup({
+        path: new FormControl('', Validators.required)
+      });
 
     orderForm = new FormGroup({
         client: new FormControl('', Validators.required),
@@ -50,15 +56,10 @@ export class OrderComponent implements OnInit, AfterViewInit {
     });
 
     ngOnInit(): void {
-        // this.dataSource = new MatTableDataSource(this.orders);
-        // this.dataSource.data = [];
         this.getAllOrders();
     }
 
     ngAfterViewInit() {
-        // this.dataSource.paginator = this.paginator;
-        // this.dataSource = new MatTableDataSource(this.orders);
-        // this.dataSource.data = [];
     }
 
     onOrderFormSubmit() {
@@ -108,6 +109,25 @@ export class OrderComponent implements OnInit, AfterViewInit {
         this.statusCode = null;
         this.requestProcessing = true;
     }
+
+    sendPath() {
+        this.preProcessConfigurations();
+        let dataFiles = this.dataFilesForm.value;
+        this.orderService.sendPath(dataFiles).subscribe(
+          data =>{
+            this.files = data;
+            this.statusCode = 201;
+            this.providedInput = null;
+            setTimeout(() => {
+              this.getAllOrders();
+          }, 1000)
+          },
+          errorCode => this.statusCode = errorCode);
+      }
+
+      isInvalid() {
+        return this.providedInput == undefined || this.providedInput == ""
+      }
 
     getAllOrders() {
         this.orderService.getAllOrders()

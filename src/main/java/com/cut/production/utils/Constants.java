@@ -28,4 +28,5 @@ public class Constants {
     public static final String PRODUCTION_NEXT_WEEK_TASKS_FIELD = "prodNextWeekTasks";
     public static final String PRODUCTION_PLANNING_MAPPING = "{   \"properties\" : { \"absenteeismRate\" : {  \"type\" : \"long\" }, \"article\" : { \"type\" : \"text\"  }, \"client\" : { \"type\" : \"text\" }, \"commandNumber\" : { \"type\" : \"text\" }, \"chainResponsible\" : { \"type\" : \"text\" }, \"effective\" : { \"type\" : \"long\" }, \"efficiency\" : { \"type\" : \"float\" }, \"exportDate\" : { \"type\" : \"date\" }, \"id\" : { \"type\" : \"text\" }, \"model\" : { \"type\" : \"text\" }, \"planningWeek\" : { \"type\" : \"long\" }, \"quantity\" : {        \"type\" : \"long\"    }} }";
 
+    public static final String COMMA_SEPARATOR = ",";
 }

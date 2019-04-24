@@ -1,4 +1,44 @@
-<h3>Recherche des commandes</h3>
+<h5>Ajouter des commandes en masse :</h5>
+<form [formGroup]="dataFilesForm">
+  <div class="form-group row">
+    <div class="col-sm-6">
+      <input type="text" class="form-control" formControlName="path" placeholder="Fournir le chemin du dossier contenant vos commandes"
+        [(ngModel)]="providedInput">
+    </div>
+  </div>
+  <button type="button" class="btn btn-success btn-s" (click)="sendPath()" [disabled]="isInvalid()">
+    Fournir le chemin
+  </button>
+</form>
+<div *ngIf="statusCode; else processing">
+  <div *ngIf="statusCode === 201" [ngClass]="'success'">
+    Vos fichiers ont été traités.
+  </div>
+  <div *ngIf="statusCode === 500" [ngClass]="'error'">
+    Erreur Serveur.
+  </div>
+</div>
+<ng-template #processing>
+  <img *ngIf="requestProcessing" src="assets/images/loading.gif">
+</ng-template>
+
+<div *ngIf="files.length > 0">
+<h5>Liste des fichiers traités </h5>
+<table mdbTable class="table table-border">
+  <thead>
+    <tr>
+      <th>Nom de fichier</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr mdbTableCol *ngFor="let file of files">
+      <td>{{file}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h5>Recherche des commandes</h5>
 
 <app-navbar></app-navbar>
 
@@ -131,7 +171,7 @@
   </tbody>
 </table> -->
 <div *ngIf="orders != null && orders.length > 0">
-<h3>Détails des commandes</h3>
+<h5>Détails des commandes</h5>
 <div>
   <div class="d-inline col">
     <button (click)="exportAsXLSX()">Télécharger les commandes</button>
