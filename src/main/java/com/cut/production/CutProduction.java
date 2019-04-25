@@ -1,9 +1,7 @@
 package com.cut.production;
 
-import com.cut.production.repository.ElasticMonitor;
 import com.cut.production.entities.User;
-import com.cut.production.services.CutPlanningService;
-import com.cut.production.services.OrderService;
+import com.cut.production.repository.ElasticMonitor;
 import com.cut.production.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -12,16 +10,11 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.query.IndexQuery;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class CutProduction implements CommandLineRunner {
-
-    @Autowired
-    private OrderService service;
-
-    @Autowired
-    private CutPlanningService cutPlanningService;
 
     @Autowired
     ElasticsearchOperations elasticsearchOperations;
