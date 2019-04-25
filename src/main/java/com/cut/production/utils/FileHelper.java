@@ -5,15 +5,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -108,7 +100,12 @@ public final class FileHelper {
             //          but the problem, we will loose the column with no header
             entity = new HashMap<>();
             for (int i = 0; i < value.length; i++) {
-                entity.put(mappedKeys[i], value[i]);
+                if (value[i].contains(",")) {
+                    String replace = value[i].replace(",", ".");
+                    entity.put(mappedKeys[i], replace);
+                } else {
+                    entity.put(mappedKeys[i], value[i]);
+                }
             }
             entities.add(entity);
         }
