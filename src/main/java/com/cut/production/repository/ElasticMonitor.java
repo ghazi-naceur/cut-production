@@ -19,8 +19,6 @@ import java.util.List;
 import static com.cut.production.utils.Constants.*;
 
 /**
- * Created by Ghazi Naceur on 16/04/2019
- * Email: ghazi.ennacer@gmail.com
  */
 @Service
 public class ElasticMonitor {

@@ -14,10 +14,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Ghazi Naceur on 24/04/2019
- * Email: ghazi.ennacer@gmail.com
- */
 @SuppressWarnings("all")
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController

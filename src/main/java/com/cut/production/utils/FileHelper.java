@@ -13,11 +13,6 @@ import java.util.stream.Collectors;
 
 import static com.cut.production.utils.Constants.COMMA_SEPARATOR;
 
-/**
- * Created by Ghazi Naceur on 24/04/2019
- * Email: ghazi.ennacer@gmail.com
- */
-
 public final class FileHelper {
 
     private FileHelper() {

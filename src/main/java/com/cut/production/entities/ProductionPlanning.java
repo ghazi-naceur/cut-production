@@ -8,10 +8,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by Ghazi Naceur on 20/04/2019
- * Email: ghazi.ennacer@gmail.com
- */
 @Document(indexName = "production_plannings", type = "production_planning")
 public class ProductionPlanning extends Entity {
 

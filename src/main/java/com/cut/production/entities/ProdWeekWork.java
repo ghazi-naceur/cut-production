@@ -6,10 +6,6 @@ import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.util.List;
 
-/**
- * Created by Ghazi Naceur on 20/04/2019
- * Email: ghazi.ennacer@gmail.com
- */
 @Document(indexName = "prod_weekly_work", type = "prod_task")
 public class ProdWeekWork extends Entity{
 

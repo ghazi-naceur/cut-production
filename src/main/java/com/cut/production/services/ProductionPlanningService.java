@@ -14,10 +14,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import static com.cut.production.utils.Constants.*;
 
-/**
- * Created by Ghazi Naceur on 20/04/2019
- * Email: ghazi.ennacer@gmail.com
- */
 @Service
 public class ProductionPlanningService implements CrudService {
 
