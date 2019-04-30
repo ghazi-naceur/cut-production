@@ -17,8 +17,8 @@ import { MatPaginator, MatTableDataSource } from '@angular/material';
 
 export class OrderComponent implements OnInit, AfterViewInit {
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-    dataSource: MatTableDataSource<Order>;
+    // @ViewChild(MatPaginator) paginator: MatPaginator;
+    // dataSource: MatTableDataSource<Order>;
 
     orders: Order[] = [];
     statusCode: number;
@@ -134,8 +134,8 @@ export class OrderComponent implements OnInit, AfterViewInit {
             .subscribe(
                 data => {
                     this.orders = data;
-                    this.dataSource = new MatTableDataSource(this.orders);
-                    this.dataSource.paginator = this.paginator;
+                    // this.dataSource = new MatTableDataSource(this.orders);
+                    // this.dataSource.paginator = this.paginator;
                 },
                 errorCode => this.statusCode = errorCode);
     }

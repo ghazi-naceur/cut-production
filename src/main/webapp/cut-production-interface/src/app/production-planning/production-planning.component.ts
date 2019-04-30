@@ -19,8 +19,8 @@ import { ProductionPlanningService } from './production-planning.service';
 
 export class ProductionPlanningComponent implements OnInit {
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-    dataSource: MatTableDataSource<ProductionPlanning>;
+    // @ViewChild(MatPaginator) paginator: MatPaginator;
+    // dataSource: MatTableDataSource<ProductionPlanning>;
     displayedColumns = ['Date Export', 'Semaine', 'Client', 'Modèle', 'Article', 'Numéro Commande' , 'Resp Chaine' ,'Quantité', 'Rendement', 'Effectif', 'Taux Absentéisme', 'edit', 'delete'];
 
     prodPlannings: ProductionPlanning[] = [];
@@ -56,8 +56,8 @@ export class ProductionPlanningComponent implements OnInit {
     });
 
     ngOnInit(): void {
-        this.dataSource = new MatTableDataSource(this.prodPlannings);
-        this.dataSource.data = [];
+        // this.dataSource = new MatTableDataSource(this.prodPlannings);
+        // this.dataSource.data = [];
         this.getAllProdPlannings();
         this.getAllProdWeekWorks();
     }
@@ -124,8 +124,8 @@ export class ProductionPlanningComponent implements OnInit {
             .subscribe(
                 data => {
                     this.prodPlannings = data;
-                    this.dataSource = new MatTableDataSource(this.prodPlannings);
-                    this.dataSource.paginator = this.paginator;
+                    // this.dataSource = new MatTableDataSource(this.prodPlannings);
+                    // this.dataSource.paginator = this.paginator;
                 },
                 errorCode => this.statusCode = errorCode);
     }

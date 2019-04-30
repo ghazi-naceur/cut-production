@@ -134,7 +134,7 @@
 <div *ngIf="cutPlannings != null && cutPlannings.length > 0">
 <h3>Détails du planning coupe</h3>
 
-<!-- <table mdbTable class="table table-border">
+<table mdbTable class="table table-border">
   <thead>
     <tr>
       <th>Date d'export</th>
@@ -142,38 +142,34 @@
       <th>Client</th>
       <th>Modèle</th>
       <th>Article</th>
+      <th>Num Commande</th>
       <th>Quantité</th>
       <th>Rendement</th>
       <th>Effectif</th>
-      <th>Jour</th>
-      <th>Date de présence</th>
-      <th>Responsable coupe</th>
       <th>Taux d'absentéisme</th>
       <th></th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-    <tr mdbTableCol *ngFor="let cutPlanning of cutPlannings">
+    <tr mdbTableCol *ngFor="let cutPlanning of cutPlannings | paginate: { itemsPerPage: 5, currentPage: p }">
       <td>{{cutPlanning.exportDate  | date: 'dd/MM/yyyy'}}</td>
       <td>{{cutPlanning.planningWeek}}</td>
       <td>{{cutPlanning.client}}</td>
       <td>{{cutPlanning.model}}</td>
       <td>{{cutPlanning.article}}</td>
+      <td>{{cutPlanning.commandNumber}}</td>
       <td>{{cutPlanning.quantity}}</td>
       <td>{{cutPlanning.efficiency}}</td>
       <td>{{cutPlanning.effective}}</td>
-      <td>{{cutPlanning.day}}</td>
-      <td>{{cutPlanning.presenceTime}}</td>
-      <td>{{cutPlanning.cutResponsable}}</td>
       <td>{{cutPlanning.absenteeismRate}}</td>
       <td><button type="button" (click)="loadCutPlanningToEdit(cutPlanning.id)">Edit</button> </td>
       <td><button type="button" (click)="deleteCutPlanning(cutPlanning.id)">Delete</button></td>
     </tr>
   </tbody>
-</table> -->
-
-<div alt="Max-width 100%">
+</table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<!-- <div alt="Max-width 100%">
 
   <mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="Date Export">
@@ -242,7 +238,7 @@
   </mat-table>
 
   <mat-paginator #paginator [length]="dataSource.data.length" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-</div>
+</div> -->
 </div>
 
 <div>

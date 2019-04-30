@@ -19,8 +19,8 @@ import { MatPaginator, MatTableDataSource } from '@angular/material';
 
 export class CutPlanningComponent implements OnInit {
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-    dataSource: MatTableDataSource<CutPlanning>;
+    // @ViewChild(MatPaginator) paginator: MatPaginator;
+    // dataSource: MatTableDataSource<CutPlanning>;
     displayedColumns = ['Date Export', 'Semaine', 'Client', 'Modèle', 'Article', 'Numéro Commande' ,'Quantité', 'Rendement', 'Effectif', 'Taux Absentéisme', 'edit', 'delete'];
 
     cutPlannings: CutPlanning[] = [];
@@ -55,8 +55,8 @@ export class CutPlanningComponent implements OnInit {
     });
 
     ngOnInit(): void {
-        this.dataSource = new MatTableDataSource(this.cutPlannings);
-        this.dataSource.data = [];
+        // this.dataSource = new MatTableDataSource(this.cutPlannings);
+        // this.dataSource.data = [];
         this.getAllCutPlannings();
         this.getAllWeekWorks();
 
@@ -127,8 +127,8 @@ export class CutPlanningComponent implements OnInit {
             .subscribe(
                 data => {
                     this.cutPlannings = data;
-                    this.dataSource = new MatTableDataSource(this.cutPlannings);
-                    this.dataSource.paginator = this.paginator;
+                    // this.dataSource = new MatTableDataSource(this.cutPlannings);
+                    // this.dataSource.paginator = this.paginator;
                 },
                 errorCode => this.statusCode = errorCode);
     }

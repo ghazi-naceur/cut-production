@@ -145,8 +145,8 @@
     <img *ngIf="requestProcessing" src="assets/images/loading.gif">
   </ng-template>
 </div>
-<!-- 
-<table mdbTable class="table table-border">
+
+<table  class="table table-border">
   <thead>
     <tr>
       <th>Client</th>
@@ -159,7 +159,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr mdbTableCol *ngFor="let order of orders">
+    <tr *ngFor="let order of orders | paginate: { itemsPerPage: 5, currentPage: p }">
       <td>{{order.client}}</td>
       <td>{{order.model}}</td>
       <td>{{order.article}}</td>
@@ -169,8 +169,10 @@
       <td><button type="button" (click)="deleteOrder(order.id)">Delete</button></td>
     </tr>
   </tbody>
-</table> -->
-<div *ngIf="orders != null && orders.length > 0">
+  
+</table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<!-- <div *ngIf="orders != null && orders.length > 0">
 <h5>Détails des commandes</h5>
 <div>
   <div class="d-inline col">
@@ -224,4 +226,4 @@
 
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>
-</div>
+</div> -->

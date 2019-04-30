@@ -141,8 +141,44 @@
 
 <div *ngIf="prodPlannings != null && prodPlannings.length > 0">
 <h3>Détails du planning production</h3>
-
-<div alt="Max-width 100%">
+<table mdbTable class="table table-border">
+  <thead>
+    <tr>
+      <th>Date d'export</th>
+      <th>Semaine</th>
+      <th>Client</th>
+      <th>Modèle</th>
+      <th>Article</th>
+      <th>Num Commande</th>
+      <th>Responsable Chaine</th>
+      <th>Quantité</th>
+      <th>Rendement</th>
+      <th>Effectif</th>
+      <th>Taux d'absentéisme</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr mdbTableCol *ngFor="let prodPlanning of prodPlannings | paginate: { itemsPerPage: 5, currentPage: p }">
+      <td>{{prodPlanning.exportDate  | date: 'dd/MM/yyyy'}}</td>
+      <td>{{prodPlanning.planningWeek}}</td>
+      <td>{{prodPlanning.client}}</td>
+      <td>{{prodPlanning.model}}</td>
+      <td>{{prodPlanning.article}}</td>
+      <td>{{prodPlanning.commandNumber}}</td>
+      <td>{{prodPlanning.chainResponsible}}</td>
+      <td>{{prodPlanning.quantity}}</td>
+      <td>{{prodPlanning.efficiency}}</td>
+      <td>{{prodPlanning.effective}}</td>
+      <td>{{prodPlanning.absenteeismRate}}</td>
+      <td><button type="button" (click)="loadProdPlanningToEdit(prodPlanning.id)">Edit</button> </td>
+      <td><button type="button" (click)="deleteProdPlanning(prodPlanning.id)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<!-- <div alt="Max-width 100%">
 
   <mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="Date Export">
@@ -216,7 +252,7 @@
   </mat-table>
 
   <mat-paginator #paginator [length]="dataSource.data.length" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-</div>
+</div> -->
 </div>
 
 <div>
