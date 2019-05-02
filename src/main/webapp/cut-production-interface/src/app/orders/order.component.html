@@ -1,3 +1,6 @@
+<h1>Commandes</h1>
+<app-navbar></app-navbar>
+
 <h5>Ajouter des commandes en masse :</h5>
 <form [formGroup]="dataFilesForm">
   <div class="form-group row">
@@ -40,8 +43,6 @@
 
 <h5>Recherche des commandes</h5>
 
-<app-navbar></app-navbar>
-
 <form class="form-inline md-form form-sm" [formGroup]="searchOrderForm" (ngSubmit)="onSearchOrderFormSubmit()">
     <div class="d-inline form-group">
         <label>Client</label>
@@ -65,15 +66,15 @@
     </div>
     <div class="d-inline form-group">
       <label> Lancer la recherche </label>
-        <button class="btn btn-primary">Search</button>
+        <button class="btn btn-primary">Rechercher</button>
     </div>
     <div class="form-group">
        
     </div>
 </form>
-<button (click)="refresh()">Refresh</button>
+<button class="btn btn-info" (click)="refresh()">Refraîchir</button>
 
-<h1>Nouvelle commande</h1>
+<h5>Nouvelle commande</h5>
 
 <div>
   <form [formGroup]="orderForm" (ngSubmit)="onOrderFormSubmit()">
@@ -116,9 +117,9 @@
         </tr>
       <tr>
         <td colspan="2">
-          <button *ngIf="!orderIdToUpdate">Ajouter</button>
-          <button *ngIf="orderIdToUpdate">Modifier</button>
-          <button (click)="backToCreateOrder()" *ngIf="orderIdToUpdate">Retourner</button>
+          <button *ngIf="!orderIdToUpdate" class="btn btn-primary">Ajouter</button>
+          <button *ngIf="orderIdToUpdate" class="btn btn-info">Modifier</button>
+          <button (click)="backToCreateOrder()" class="btn btn-primary" *ngIf="orderIdToUpdate">Retourner</button>
         </td>
       </tr>
     </table>
@@ -165,8 +166,8 @@
       <td>{{order.article}}</td>
       <td>{{order.minConfection}}</td>
       <td>{{order.minCut}}</td>
-      <td><button type="button" (click)="loadOrderToEdit(order.id)">Edit</button> </td>
-      <td><button type="button" (click)="deleteOrder(order.id)">Delete</button></td>
+      <td><button class="btn btn-info" type="button" (click)="loadOrderToEdit(order.id)">Modifier</button> </td>
+      <td><button class="btn btn-danger" type="button" (click)="deleteOrder(order.id)">Supprimer</button></td>
     </tr>
   </tbody>
   

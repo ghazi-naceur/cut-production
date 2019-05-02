@@ -105,9 +105,9 @@
           </tr>
           <tr>
             <td colspan="2">
-              <button *ngIf="!prodPlanningIdToUpdate">Ajouter</button>
-              <button *ngIf="prodPlanningIdToUpdate">Modifier</button>
-              <button (click)="backToCreateProdPlanning()" *ngIf="prodPlanningIdToUpdate">Retourner</button>
+              <button class="btn btn-primary" *ngIf="!prodPlanningIdToUpdate">Ajouter</button>
+              <button class="btn btn-info" *ngIf="prodPlanningIdToUpdate">Modifier</button>
+              <button class="btn btn-primary" (click)="backToCreateProdPlanning()" *ngIf="prodPlanningIdToUpdate">Retourner</button>
             </td>
           </tr>
         </div>
@@ -133,7 +133,7 @@
       Erreur Serveur.
     </div>
   </div>
-  <button (click)="resetForm()">Reset</button>
+  <button class="btn btn-info" (click)="resetForm()">Refraîchir</button>
   <ng-template #processing>
     <img *ngIf="requestProcessing" src="assets/images/loading.gif">
   </ng-template>
@@ -172,8 +172,8 @@
       <td>{{prodPlanning.efficiency}}</td>
       <td>{{prodPlanning.effective}}</td>
       <td>{{prodPlanning.absenteeismRate}}</td>
-      <td><button type="button" (click)="loadProdPlanningToEdit(prodPlanning.id)">Edit</button> </td>
-      <td><button type="button" (click)="deleteProdPlanning(prodPlanning.id)">Delete</button></td>
+      <td><button class="btn btn-info" type="button" (click)="loadProdPlanningToEdit(prodPlanning.id)">Modifier</button> </td>
+      <td><button class="btn btn-danger" type="button" (click)="deleteProdPlanning(prodPlanning.id)">Supprimer</button></td>
     </tr>
   </tbody>
 </table>
@@ -257,7 +257,7 @@
 
 <div>
   <div class="d-inline col">
-    <button (click)="exportAsXLSX()">Télécharger le planning production</button>
+    <button class="btn btn-success" (click)="exportAsXLSX()">Télécharger le planning production</button>
   </div>
 </div>
 <table class="table table-bordered" #table>

@@ -97,9 +97,9 @@
           </tr>
           <tr>
             <td colspan="2">
-              <button *ngIf="!cutPlanningIdToUpdate">Ajouter</button>
-              <button *ngIf="cutPlanningIdToUpdate">Modifier</button>
-              <button (click)="backToCreateCutPlanning()" *ngIf="cutPlanningIdToUpdate">Retourner</button>
+              <button class="btn btn-primary" *ngIf="!cutPlanningIdToUpdate">Ajouter</button>
+              <button class="btn btn-info" *ngIf="cutPlanningIdToUpdate">Modifier</button>
+              <button class="btn btn-primary" (click)="backToCreateCutPlanning()" *ngIf="cutPlanningIdToUpdate">Retourner</button>
             </td>
           </tr>
         </div>
@@ -125,7 +125,7 @@
       Erreur Serveur.
     </div>
   </div>
-  <button (click)="resetForm()">Reset</button>
+  <button class="btn btn-info" (click)="resetForm()">Refraîchir</button>
   <ng-template #processing>
     <img *ngIf="requestProcessing" src="assets/images/loading.gif">
   </ng-template>
@@ -163,8 +163,8 @@
       <td>{{cutPlanning.efficiency}}</td>
       <td>{{cutPlanning.effective}}</td>
       <td>{{cutPlanning.absenteeismRate}}</td>
-      <td><button type="button" (click)="loadCutPlanningToEdit(cutPlanning.id)">Edit</button> </td>
-      <td><button type="button" (click)="deleteCutPlanning(cutPlanning.id)">Delete</button></td>
+      <td><button type="button" class="btn btn-info" (click)="loadCutPlanningToEdit(cutPlanning.id)">Modifier</button> </td>
+      <td><button type="button" class="btn btn-danger" (click)="deleteCutPlanning(cutPlanning.id)">Supprimer</button></td>
     </tr>
   </tbody>
 </table>
@@ -243,7 +243,7 @@
 
 <div>
   <div class="d-inline col">
-    <button (click)="exportAsXLSX()">Télécharger le planning coupe</button>
+    <button class="btn btn-success" (click)="exportAsXLSX()">Télécharger le planning coupe</button>
   </div>
 </div>
 <table class="table table-bordered" #table>
