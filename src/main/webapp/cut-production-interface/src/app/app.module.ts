@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductionPlanningComponent } from './production-planning/production-planning.component';
 import { ProductionPlanningService } from './production-planning/production-planning.service';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { AProposComponent } from './apropos/a.propos.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     LoginComponent,
     SuccessComponent,
     CutPlanningComponent,
-    ProductionPlanningComponent
+    ProductionPlanningComponent,
+    AProposComponent
   ],
   imports: [
     BrowserModule,

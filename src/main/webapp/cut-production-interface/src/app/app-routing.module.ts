@@ -6,6 +6,7 @@ import { SuccessComponent } from './success/success.component';
 import { OrderComponent } from './orders/order.component';
 import { CutPlanningComponent } from './cut-planning/cut-planning.component';
 import { ProductionPlanningComponent } from './production-planning/production-planning.component';
+import { AProposComponent } from './apropos/a.propos.component';
 
 const routes: Routes = [
   {path: 'order', component: OrderComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'success', component: SuccessComponent},
   {path: 'cut_planning', component: CutPlanningComponent},
   {path: 'production_planning', component: ProductionPlanningComponent},
+  {path: 'apropos', component: AProposComponent},
   {path: '**', component: NotFoundComponent}
 ]; // Routes table
 
