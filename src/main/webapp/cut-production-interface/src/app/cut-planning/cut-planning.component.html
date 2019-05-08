@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col-xs-6">
           <tr>
-            <td>Date d'export</td>
+            <td><b>Date d'export</b></td>
             <td><input type="date" class="form-control" formControlName="exportDate">
               <label *ngIf="cutPlanningForm.get('exportDate').invalid && processValidation" [ngClass]="'error'"> Date
                 d'export est
@@ -17,7 +17,7 @@
             </td>
           </tr>
           <tr>
-            <td>Semaine</td>
+            <td><b>Semaine</b></td>
             <td><input class="form-control" formControlName="planningWeek">
               <label *ngIf="cutPlanningForm.get('planningWeek').invalid && processValidation" [ngClass]="'error'">
                 Semaine
@@ -26,7 +26,7 @@
             </td>
           </tr>
           <tr>
-            <td>Client</td>
+            <td><b>Client</b></td>
             <td><input class="form-control" formControlName="client">
               <label *ngIf="cutPlanningForm.get('client').invalid && processValidation" [ngClass]="'error'"> Client
                 est
@@ -35,7 +35,7 @@
           </tr>
           <tr>
           <tr>
-            <td>Modèle</td>
+            <td><b>Modèle</b></td>
             <td><input class="form-control" formControlName="model">
               <label *ngIf="cutPlanningForm.get('model').invalid && processValidation" [ngClass]="'error'"> Modèle
                 est
@@ -43,7 +43,7 @@
             </td>
           </tr>
           <tr>
-            <td>Article</td>
+            <td><b>Article</b></td>
             <td><input class="form-control" formControlName="article">
               <label *ngIf="cutPlanningForm.get('article').invalid && processValidation" [ngClass]="'error'"> Article
                 est
@@ -53,7 +53,7 @@
         </div>
         <div class="col-xs-6">
             <tr>
-                <td>Numéro de Commande</td>
+                <td><b>Numéro de Commande</b></td>
                 <td><input class="form-control" formControlName="commandNumber">
                   <label *ngIf="cutPlanningForm.get('commandNumber').invalid && processValidation" [ngClass]="'error'">
                     Numéro de commande est
@@ -61,7 +61,7 @@
                 </td>
               </tr>
             <tr>
-                <td>Quantité</td>
+                <td><b>Quantité</b></td>
                 <td><input class="form-control" formControlName="quantity">
                   <label *ngIf="cutPlanningForm.get('quantity').invalid && processValidation" [ngClass]="'error'">
                     Quantité est
@@ -69,7 +69,7 @@
                 </td>
               </tr>
           <tr>
-            <td>Rendement</td>
+            <td><b>Rendement</b></td>
             <td><input class="form-control" formControlName="efficiency">
               <label *ngIf="cutPlanningForm.get('efficiency').invalid && processValidation" [ngClass]="'error'">
                 Rendement
@@ -78,7 +78,7 @@
             </td>
           </tr>
           <tr>
-            <td>Effectif</td>
+            <td><b>Effectif</b></td>
             <td><input class="form-control" formControlName="effective">
               <label *ngIf="cutPlanningForm.get('effective').invalid && processValidation" [ngClass]="'error'">
                 Effectif
@@ -87,7 +87,7 @@
             </td>
           </tr>
           <tr>
-            <td>Taux d'absentéisme</td>
+            <td><b>Taux d'absentéisme</b></td>
             <td><input class="form-control" formControlName="absenteeismRate">
               <label *ngIf="cutPlanningForm.get('absenteeismRate').invalid && processValidation" [ngClass]="'error'">
                 Taux
