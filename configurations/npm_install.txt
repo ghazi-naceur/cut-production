@@ -1,3 +1,4 @@
 npm install --save file-saver
 npm install --save xlsx
 npm install ngx-pagination --save
+npm install -g angular-cli --save

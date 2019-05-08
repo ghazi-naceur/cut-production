@@ -20,7 +20,7 @@ A project about stuff and things w katha ...
 
 #### Frontend
 1- Generate package : <br/>
-    > `ng build`
+    > `npm run ng build`
 
 ### Packaging
 #### Backend

@@ -80,21 +80,21 @@
   <form [formGroup]="orderForm" (ngSubmit)="onOrderFormSubmit()">
     <table>
       <tr>
-        <td>Client</td>
+        <td><b>Client</b></td>
         <td><input class="form-control" formControlName="client">
           <label *ngIf="orderForm.get('client').invalid && processValidation" [ngClass]="'error'"> Client est
             requis. </label>
         </td>
       </tr>
       <tr>
-        <td>Modèle</td>
+        <td><b>Modèle</b></td>
         <td><input class="form-control" formControlName="model">
           <label *ngIf="orderForm.get('model').invalid && processValidation" [ngClass]="'error'"> Modèle est
             requis. </label>
         </td>
       </tr>
       <tr>
-        <td>Article</td>
+        <td><b>Article</b></td>
         <td><input class="form-control" formControlName="article">
           <label *ngIf="orderForm.get('article').invalid && processValidation" [ngClass]="'error'"> Article est
             requis. </label>
@@ -102,14 +102,14 @@
       </tr>
       <tr>
       <tr>
-        <td>Min Confection</td>
+        <td><b>Min Confection</b></td>
         <td><input class="form-control" formControlName="minConfection">
           <label *ngIf="orderForm.get('minConfection').invalid && processValidation" [ngClass]="'error'"> Min Confection est
             requis. </label>
         </td>
       </tr>
       <tr>
-          <td>Min Coupe</td>
+          <td><b>Min Coupe</b></td>
           <td><input class="form-control" formControlName="minCut">
             <label *ngIf="orderForm.get('minCut').invalid && processValidation" [ngClass]="'error'"> Min Coupe est
               requis. </label>
